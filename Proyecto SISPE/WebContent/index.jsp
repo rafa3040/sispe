@@ -15,8 +15,8 @@
 	<form action="Validacion" method="post">
 		<h1>SISPE</h1>
 		<h1>Inicio de sesión</h1>
-		<input name="username" type="text" placeholder="Nombre de usuario" required="" id="username"/>
-		<input name="password" type="password" placeholder="Contraseña" required="" id="password" />
+		<input name="nombreusuario" type="text" placeholder="Nombre de usuario" required="" id="username"/>
+		<input name="contrasenha" type="password" placeholder="Contraseña" required="" id="password" />
 		<input type="submit" value="Iniciar sesión" />
 	</form>
 </section>
