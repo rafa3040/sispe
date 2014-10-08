@@ -25,6 +25,7 @@ public class Validacion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombreusuario=request.getParameter("nombreusuario");
 		String contrasenha=request.getParameter("contrasenha");
+
 		PrintWriter escritor=response.getWriter();
 		escritor.write(nombreusuario);
 		escritor.write(contrasenha);
