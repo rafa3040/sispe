@@ -1,7 +1,7 @@
-                                <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <title></title>
+    <title>SISPE - Sistema de Selección de Personal</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
@@ -40,6 +40,13 @@
    		<script type="text/javascript" src="js/html5.js"></script>
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
 	<![endif]-->
+	
+	<%
+	if(session.getAttribute("nombreUsuario")==null){
+		response.sendRedirect("index.jsp");
+	}
+	%>
+	
 </head>
 <body id="page1">
 	<div class="extra">
@@ -66,10 +73,10 @@
                         <nav class="indent-left">
                             <ul class="menu wrapper">
                                 <li class="active"><a href="inicio.html">Home page</a></li>
-                                <li><a href="company.html">our Company</a></li>
-                                <li><a href="services.html">our services</a></li>
-                                <li><a href="projects.html">our projects</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="company.jsp">our Company</a></li>
+                                <li><a href="services.jsp">our services</a></li>
+                                <li><a href="projects.jsp">our projects</a></li>
+                                <li><a href="Validacion?orden=cerrarsesion">Cerrar sesión</a></li>
                             </ul>
                         </nav>
                     </div>

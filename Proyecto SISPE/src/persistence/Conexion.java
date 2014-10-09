@@ -10,17 +10,14 @@ public class Conexion {
 	private String USER="root";
 	private String PASSWORD="electiva2";
 	private Connection conexion;
-	private String URL ="jdbc:mysql://localhost:3306/sispe";
+	private String URL ="jdbc:mysql://localhost:3306/SISPE";
 	
 	public Conexion() {
 		conexion=null;
-		
 	}
 
-	
 	public Connection getConexion(){
 		return conexion;
-		
 	}
 
 	public boolean conectorBD(){
@@ -42,7 +39,6 @@ public class Conexion {
 	}
 	
 	public void cerrarConexion(){ 
-		
 		try {
 			conexion.close();
 		} catch (SQLException e){
