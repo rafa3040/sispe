@@ -100,17 +100,17 @@ public class Persona {
 		this.experiencias = experiencias;
 	}
 	
-	public String textoFechaNacimiento(){
-		SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
-		return formato.format(fechaNacimiento.getTime());
-	}
-	
 	@Override
 	public String toString() {
 		String mensaje=numeroIdentificacion+" "+nombrePersona+" "+apellidoPersona+" "
 				+tipoDocumento.toString()+" "+textoFechaNacimiento()+" "+telefono+" "
 				+correoElectronico+" "+profesion+" "+especializacion;
 		return mensaje;
+	}
+	
+	public String textoFechaNacimiento(){
+		SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+		return formato.format(fechaNacimiento.getTime());
 	}
 
 }

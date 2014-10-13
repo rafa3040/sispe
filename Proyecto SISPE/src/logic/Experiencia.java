@@ -1,5 +1,6 @@
 package logic;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Experiencia {
@@ -43,6 +44,16 @@ public class Experiencia {
 
 	public void setFechaFinal(Calendar fechaFinal) {
 		this.fechaFinal = fechaFinal;
+	}
+	
+	public String textoFechaInicio(){
+		SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+		return formato.format(fechaInicio.getTime());
+	}
+	
+	public String textoFechaFinal(){
+		SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+		return formato.format(fechaFinal.getTime());
 	}
 
 }

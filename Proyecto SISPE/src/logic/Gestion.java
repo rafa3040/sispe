@@ -1,5 +1,8 @@
 package logic;
 
+import java.util.ArrayList;
+
+import persistence.ExperienciaDao;
 import persistence.GestionBD;
 import persistence.PersonaDao;
 import persistence.UsuarioDao;
@@ -9,11 +12,13 @@ public class Gestion {
 	private GestionBD gestionBD;
 	private UsuarioDao usuarioDao;
 	private PersonaDao personaDao;
+	private ExperienciaDao experienciaDao;
 	
 	public Gestion() {
 		gestionBD=new GestionBD();
 		usuarioDao=gestionBD.getUsuarioDao();
 		personaDao=gestionBD.getPersonaDao();
+		experienciaDao=gestionBD.getExperienciaDao();
 	}
 	
 	// Métodos para la gestión de usuarios
@@ -25,7 +30,12 @@ public class Gestion {
 	// Métodos para la gestión de personas
 	
 	public Persona consultarPersona(long numeroIdentificacion){
-		return personaDao.consultarPersona(numeroIdentificacion);
+		Persona persona=personaDao.consultarPersona(numeroIdentificacion);
+		ArrayList<Experiencia> experiencias=experienciaDao.consultarExperiencias(numeroIdentificacion);
+		Experiencia[] experienciasPersona=new Experiencia[experiencias.size()];
+		experiencias.toArray(experienciasPersona);
+		persona.setExperiencias(experienciasPersona);
+		return persona;
 	}
 	
 	public void actualizarPersona(Persona persona){

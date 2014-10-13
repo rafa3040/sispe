@@ -1,4 +1,5 @@
                                 <!DOCTYPE html>
+<%@page import="logic.Experiencia"%>
 <%@page import="gui.ModificarHojaVida"%>
 <%@page import="logic.Persona"%>
 <%@page import="logic.Gestion"%>
@@ -83,7 +84,7 @@
                     <div class="container_12">
                         <div class="wrapper">
                         
-                            <h2>Información de las hojas de vida solicitada</h2>
+                            <h3>Información de la hoja de vida solicitada</h3>
                             <br><br>
 							<%
 							
@@ -99,12 +100,20 @@
 							out.print("<h5>Teléfono</h5>"+persona.getTelefono()+"<br>");
 							out.print("<h5>Profesión</h5>"+persona.getProfesion()+"<br>");
 							out.print("<h5>Especialización</h5>"+persona.getEspecializacion()+"<br>");
-	
+							Experiencia[] experiencias=persona.getExperiencias();
+							for(int i=0 ; i<experiencias.length ; i++){
+								out.print("<h4>Experiencia laboral #"+(i+1)+"</h4><br>");
+								out.print("<h5>Fecha inicio</h5>"+persona.getExperiencias()[i].textoFechaInicio()+"<br>");
+								out.print("<h5>Fecha final</h5>"+persona.getExperiencias()[i].textoFechaFinal()+"<br>");
+							
+							}
 							session.setAttribute("personaSeleccionada", persona);
 							
 							%>
-							
+							<br>
 							<a href="modificarhojavida.jsp">Modificar hoja de vida</a>
+                            <br>
+							<a href="EliminarHojaVida">Eliminar hoja de vida</a>
                             
                         </div>
                     </div>

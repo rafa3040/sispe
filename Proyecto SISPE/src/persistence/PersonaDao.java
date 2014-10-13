@@ -68,9 +68,9 @@ public class PersonaDao {
 	
 	public boolean actualizarPersona(Persona persona){
 		if(conexion!=null){
-			long numeroIdentificacion=persona.getNumeroIdentificacion();
 			String nombrePersona=persona.getNombrePersona();
 			String apellidoPersona=persona.getApellidoPersona();
+			long numeroIdentificacion=persona.getNumeroIdentificacion();
 			try {
 				psActualizarPersona.setString(1, nombrePersona);
 				psActualizarPersona.setString(2, apellidoPersona);

@@ -1,4 +1,7 @@
                                 <!DOCTYPE html>
+<%@page import="java.util.Calendar"%>
+<%@page import="org.apache.el.lang.ELSupport"%>
+<%@page import="logic.Experiencia"%>
 <%@page import="logic.TipoDocumento"%>
 <%@page import="logic.Persona"%>
 <%@page import="logic.Gestion"%>
@@ -88,6 +91,29 @@
                             
 							<%
 							Persona persona=(Persona)session.getAttribute("personaSeleccionada");
+							Experiencia[] experiencias=persona.getExperiencias();
+							Calendar fechaInicio, fechaFinal;
+							String[][] textosExperiencias=new String[3][6];
+
+							int i=0;
+							for( ; i<experiencias.length ; i++){
+								fechaInicio=experiencias[i].getFechaInicio();
+								fechaFinal=experiencias[i].getFechaFinal();
+								textosExperiencias[i][0]=String.valueOf(fechaInicio.get(Calendar.YEAR));
+								textosExperiencias[i][1]=String.valueOf(fechaInicio.get(Calendar.MONTH)+1);
+								textosExperiencias[i][2]=String.valueOf(fechaInicio.get(Calendar.DAY_OF_MONTH)); 
+								textosExperiencias[i][3]=String.valueOf(fechaFinal.get(Calendar.YEAR));
+								textosExperiencias[i][4]=String.valueOf(fechaFinal.get(Calendar.MONTH)+1);
+								textosExperiencias[i][5]=String.valueOf(fechaFinal.get(Calendar.DAY_OF_MONTH)); 
+							}
+							for( ; i<textosExperiencias.length ; i++){
+								textosExperiencias[i][0]="";
+								textosExperiencias[i][1]="";
+								textosExperiencias[i][2]="";
+								textosExperiencias[i][3]="";
+								textosExperiencias[i][4]="";
+								textosExperiencias[i][5]="";
+							}
 							%>
 							
 							<form action="ModificarHojaVida" method="post">
@@ -119,6 +145,7 @@
 								Especialización
 								<input name="apellidoPersona" value="<%out.print(persona.getEspecializacion());%>">
 								<br>
+
 								<input type="submit" value="Modificar hoja de vida">
 								<input type="reset" value="Revertir cambios">
 							

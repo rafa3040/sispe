@@ -15,11 +15,13 @@ public class GestionBD {
 	
 	private UsuarioDao usuarioDao;
 	private PersonaDao personaDao;
+	private ExperienciaDao experienciaDao;
 	
 	public GestionBD() {
 		abrirConexion();
 		usuarioDao=new UsuarioDao(conexion);
 		personaDao=new PersonaDao(conexion);
+		experienciaDao=new ExperienciaDao(conexion);
 	}
 	
 	public UsuarioDao getUsuarioDao() {
@@ -28,6 +30,10 @@ public class GestionBD {
 
 	public PersonaDao getPersonaDao() {
 		return personaDao;
+	}
+
+	public ExperienciaDao getExperienciaDao() {
+		return experienciaDao;
 	}
 
 	private void abrirConexion(){
