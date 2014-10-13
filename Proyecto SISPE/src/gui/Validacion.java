@@ -9,19 +9,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import logic.Gestion;
 import logic.Usuario;
-import persistence.UsuarioDao;
 
+/**
+ * Servlet que se encarga de iniciar y cerrar sesión
+ * @author Solutions Developers
+ *
+ */
 @WebServlet("/Validacion")
 public class Validacion extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private UsuarioDao usuarioDao;
+	private Gestion gestion;
        
     public Validacion() {
-    	usuarioDao=new UsuarioDao();
+    	gestion=new Gestion();
     }
 
+    /**
+     * Método para cerrar sesión
+     */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sesion=request.getSession();
 		String orden=request.getParameter("orden");
@@ -31,14 +39,23 @@ public class Validacion extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Método para iniciar sesión
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sesion=request.getSession();
 		String nombreUsuario=request.getParameter("nombreusuario");
 		String contrasenha=request.getParameter("contrasenha");
-		Usuario usuario=usuarioDao.consultarUsuario(nombreUsuario);
+		Usuario usuario=gestion.consultarUsuario(nombreUsuario);
 		if (usuario!=null) {
 			if (usuario.getContrasenhaUsuario().equals(contrasenha)) {
+				// se crea el atributo nombreusuario, para poder verificar
+				// en otras paginas que existe una sesión iniciada
 				sesion.setAttribute("nombreUsuario", nombreUsuario);
+				// se inicializan los objetos de la logica que se van a 
+				// usar a lo largo de la sesion
+				sesion.setAttribute("gestion", gestion);
+				// redireccion a la pagina principal
 				sesion.setAttribute("mensajeValidacion", "");
 				response.sendRedirect("inicio.jsp");
 			} else {

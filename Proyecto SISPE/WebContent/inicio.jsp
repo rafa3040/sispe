@@ -74,7 +74,7 @@
                             <ul class="menu wrapper">
                                 <li class="active"><a href="inicio.html">Home page</a></li>
                                 <li><a href="company.jsp">our Company</a></li>
-                                <li><a href="services.jsp">our services</a></li>
+                                <li><a href="hojasvida.jsp">Hojas de vida</a></li>
                                 <li><a href="projects.jsp">our projects</a></li>
                                 <li><a href="Validacion?orden=cerrarsesion">Cerrar sesión</a></li>
                             </ul>

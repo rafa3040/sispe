@@ -1,27 +1,42 @@
 package persistence;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import logic.Usuario;
 
+/**
+ * Clase que realiza las consultas en la tabla USUARIO
+ * @author Solutions Developers
+ *
+ */
 public class UsuarioDao {
 	
-	private Conexion conexion;
-	private UsuarioSql usuarioSql;
+	private Connection conexion;
 	
-	public UsuarioDao() {
-		conexion=new Conexion();
-		usuarioSql=new UsuarioSql();
+	private PreparedStatement psConsultar;
+	
+	public UsuarioDao(Connection conexion) {
+		this.conexion=conexion;
+		crearSentencias();
+	}
+	
+	private void crearSentencias(){
+		try {
+			psConsultar=conexion.prepareStatement("SELECT * FROM USUARIO WHERE nombre_usuario=?");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public Usuario consultarUsuario(String nombreUsuario){
 		Usuario usuario=null;
-		if (conexion.conectorBD()) {
+		if (conexion!=null) {
 			try {
-				Statement estamento= conexion.getConexion().createStatement();
-				ResultSet dato=estamento.executeQuery(usuarioSql.consultarUsuario(nombreUsuario));
+				psConsultar.setString(1, nombreUsuario);
+				ResultSet dato=psConsultar.executeQuery();
 				if(dato.next()){
 					usuario=new Usuario();
 					usuario.setIdUsuario(dato.getInt(1));
