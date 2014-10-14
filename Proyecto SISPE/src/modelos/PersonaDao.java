@@ -27,9 +27,9 @@ public class PersonaDao {
 	
 	private void crearSentencias(){
 		try {
-			psConsultarPersona=conexion.prepareStatement("SELECT * FROM PERSONA WHERE numero_identificacion=?");
-			psActualizarPersona=conexion.prepareStatement("UPDATE PERSONA SET nombre_persona=?, apellido_persona=? WHERE numero_identificacion=?");
-			psEliminarPersona=conexion.prepareStatement("DELETE FROM PERSONA WHERE numero_identificacion=?");
+			psConsultarPersona=conexion.prepareStatement("SELECT * FROM persona WHERE numero_identificacion=?");
+			psActualizarPersona=conexion.prepareStatement("UPDATE persona SET nombre_persona=?, apellido_persona=? WHERE numero_identificacion=?");
+			psEliminarPersona=conexion.prepareStatement("DELETE FROM persona WHERE numero_identificacion=?");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -28,9 +28,9 @@ public class ExperienciaDao {
 	
 	private void crearSentencias(){
 		try {
-			psConsultarExperiencia=conexion.prepareStatement("SELECT * FROM EXPERIENCIA WHERE numero_identificacion=?");
-			psActualizarExperiencia=conexion.prepareStatement("UPDATE EXPERIENCIA SET fecha_inicio=?, fecha_final=? WHERE numero_experiencia=?");
-			psEliminarExperiencia=conexion.prepareStatement("DELETE FROM EXPERIENCIA WHERE numero_experiencia=?");
+			psConsultarExperiencia=conexion.prepareStatement("SELECT * FROM experiencia WHERE numero_identificacion=?");
+			psActualizarExperiencia=conexion.prepareStatement("UPDATE experiencia SET fecha_inicio=?, fecha_final=? WHERE numero_experiencia=?");
+			psEliminarExperiencia=conexion.prepareStatement("DELETE FROM experiencia WHERE numero_experiencia=?");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -23,7 +23,7 @@ public class UsuarioDao {
 	
 	private void crearSentencias(){
 		try {
-			psConsultar=conexion.prepareStatement("SELECT * FROM USUARIO WHERE nombre_usuario=?");
+			psConsultar=conexion.prepareStatement("SELECT * FROM usuario WHERE nombre_usuario=?");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

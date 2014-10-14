@@ -2,13 +2,13 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE SCHEMA IF NOT EXISTS `SISPE` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+CREATE SCHEMA IF NOT EXISTS `sispe` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `SISPE` ;
 
 -- -----------------------------------------------------
--- Table `SISPE`.`PERSONA`
+-- Table `sispe`.`persona`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `SISPE`.`PERSONA` (
+CREATE  TABLE IF NOT EXISTS `sispe`.`persona` (
   `numero_identificacion` BIGINT NOT NULL ,
   `nombre_persona` VARCHAR(45) NOT NULL ,
   `apellido_persona` VARCHAR(45) NOT NULL ,
@@ -23,9 +23,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SISPE`.`EXPERIENCIA`
+-- Table `sispe`.`experiencia`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `SISPE`.`EXPERIENCIA` (
+CREATE  TABLE IF NOT EXISTS `sispe`.`experiencia` (
   `numero_experiencia` INT NOT NULL ,
   `fecha_inicio` DATE NOT NULL ,
   `fecha_final` DATE NOT NULL ,
@@ -41,9 +41,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SISPE`.`USUARIO`
+-- Table `sispe`.`usuario`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `SISPE`.`USUARIO` (
+CREATE  TABLE IF NOT EXISTS `sispe`.`usuario` (
   `id_usuario` INT NOT NULL ,
   `nombre_usuario` VARCHAR(45) NOT NULL ,
   `contrasena_usuario` VARCHAR(45) NOT NULL ,

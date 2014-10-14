@@ -20,7 +20,7 @@ public class ConexionMysql {
 		String DRIVER="com.mysql.jdbc.Driver";
 		String USER="usuariosispe";
 		String PASSWORD="qwerty1234";
-		String URL ="jdbc:mysql://localhost:3306/SISPE?useServerPrepStmts=true";
+		String URL ="jdbc:mysql://localhost:3306/sispe?useServerPrepStmts=true";
 		try{
 			Class.forName(DRIVER).newInstance();
 			conexion=DriverManager.getConnection(URL,USER,PASSWORD);
