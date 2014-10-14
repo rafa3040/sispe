@@ -57,14 +57,14 @@ public class Validacion extends HttpServlet {
 				sesion.setAttribute("gestion", gestion);
 				// redireccion a la pagina principal
 				sesion.setAttribute("mensajeValidacion", "");
-				response.sendRedirect("inicio.jsp");
+				response.sendRedirect("index.jsp");
 			} else {
 				sesion.setAttribute("mensajeValidacion", "Contraseña incorrecta");
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("iniciosesion.jsp");
 			}
 		} else {
 			sesion.setAttribute("mensajeValidacion", "El usuario no existe en el sistema");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("iniciosesion.jsp");
 		}
 	}
 

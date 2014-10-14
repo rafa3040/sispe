@@ -31,13 +31,13 @@ public class FiltroValidacion implements Filter {
 		boolean evadirFiltro=false;
 		// evade el filtro si la página es /index.jsp o /Validacion
 		String url=peticion.getServletPath();
-		if(url.equals("/index.jsp") || url.equals("/Validacion")){
+		if(url.equals("/iniciosesion.jsp") || url.equals("/Validacion")){
 			evadirFiltro=true;
 		}
 		if(evadirFiltro==false){
 			// si no se ha iniciado sesión, se redirige a index.jsp
 			if(sesion==null || sesion.getAttribute("nombreUsuario")==null){
-				respuesta.sendRedirect("index.jsp");
+				respuesta.sendRedirect("iniciosesion.jsp");
 				return;
 			}
 		}

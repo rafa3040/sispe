@@ -431,14 +431,10 @@ footer h4 {color:#fff; margin-bottom:18px}
 	.list-services a.item-2 {background-position:0 -88px}
 	.list-services a.item-3 {background-position:0 -132px}
 	
-/*********extra***********/
-.block {height:395px}
-.extra {
-	min-height:100%; 
-	height:auto !important; 
-	height:100%; 
-	margin: 0 auto -395px; 
-	position:relative;
-	overflow:hidden;
-} 
-html, body {height:100%}
+/********* Extras ***********/
+
+section{
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+}
