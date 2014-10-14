@@ -1,4 +1,4 @@
-package persistence;
+package modelos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import logic.Experiencia;
 
 /**
  * Clase que realiza las consultas en la tabla EXPERIENCIA000

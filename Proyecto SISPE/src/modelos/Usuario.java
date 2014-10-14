@@ -1,4 +1,4 @@
-package logic;
+package modelos;
 
 public class Usuario {
 	

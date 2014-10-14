@@ -1,8 +1,9 @@
                                 <!DOCTYPE html>
-<%@page import="logic.Experiencia"%>
-<%@page import="gui.ModificarHojaVida"%>
-<%@page import="logic.Persona"%>
-<%@page import="logic.Gestion"%>
+<%@page import="modelos.Gestion"%>
+<%@page import="modelos.Experiencia"%>
+<%@page import="controladores.ModificarHojaVida"%>
+<%@page import="modelos.Persona"%>
+
 <html lang="en">
 <head>
     <title></title>
@@ -29,12 +30,6 @@
    		<script type="text/javascript" src="js/html5.js"></script>
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
 	<![endif]-->
-	
-	<%
-	if(session.getAttribute("nombreUsuario")==null){
-		response.sendRedirect("index.jsp");
-	}
-	%>
 	
 </head>
 <body id="page2">
@@ -87,28 +82,26 @@
                             <h3>Información de la hoja de vida solicitada</h3>
                             <br><br>
 							<%
-							
-							Gestion gestion=(Gestion)session.getAttribute("gestion");
-							long documento=Long.parseLong(request.getParameter("documento"));
-							Persona persona=gestion.consultarPersona(documento);
-							
-							out.print("<h5>Numero de identificación</h5>"+persona.getNumeroIdentificacion()+"<br>");
-							out.print("<h5>Nombre</h5>"+persona.getNombrePersona()+"<br>");
-							out.print("<h5>Apellido</h5>"+persona.getApellidoPersona()+"<br>");
-							out.print("<h5>Tipo de documento</h5>"+persona.getTipoDocumento().toString()+"<br>");
-							out.print("<h5>Fecha de nacimiento</h5>"+persona.textoFechaNacimiento()+"<br>");
-							out.print("<h5>Teléfono</h5>"+persona.getTelefono()+"<br>");
-							out.print("<h5>Profesión</h5>"+persona.getProfesion()+"<br>");
-							out.print("<h5>Especialización</h5>"+persona.getEspecializacion()+"<br>");
-							Experiencia[] experiencias=persona.getExperiencias();
-							for(int i=0 ; i<experiencias.length ; i++){
-								out.print("<h4>Experiencia laboral #"+(i+1)+"</h4><br>");
-								out.print("<h5>Fecha inicio</h5>"+persona.getExperiencias()[i].textoFechaInicio()+"<br>");
-								out.print("<h5>Fecha final</h5>"+persona.getExperiencias()[i].textoFechaFinal()+"<br>");
-							
-							}
-							session.setAttribute("personaSeleccionada", persona);
-							
+								Gestion gestion=(Gestion)session.getAttribute("gestion");
+												long documento=Long.parseLong(request.getParameter("documento"));
+												Persona persona=gestion.consultarPersona(documento);
+												
+												out.print("<h5>Numero de identificación</h5>"+persona.getNumeroIdentificacion()+"<br>");
+												out.print("<h5>Nombre</h5>"+persona.getNombrePersona()+"<br>");
+												out.print("<h5>Apellido</h5>"+persona.getApellidoPersona()+"<br>");
+												out.print("<h5>Tipo de documento</h5>"+persona.getTipoDocumento().toString()+"<br>");
+												out.print("<h5>Fecha de nacimiento</h5>"+persona.textoFechaNacimiento()+"<br>");
+												out.print("<h5>Teléfono</h5>"+persona.getTelefono()+"<br>");
+												out.print("<h5>Profesión</h5>"+persona.getProfesion()+"<br>");
+												out.print("<h5>Especialización</h5>"+persona.getEspecializacion()+"<br>");
+												Experiencia[] experiencias=persona.getExperiencias();
+												for(int i=0 ; i<experiencias.length ; i++){
+													out.print("<h4>Experiencia laboral #"+(i+1)+"</h4><br>");
+													out.print("<h5>Fecha inicio</h5>"+persona.getExperiencias()[i].textoFechaInicio()+"<br>");
+													out.print("<h5>Fecha final</h5>"+persona.getExperiencias()[i].textoFechaFinal()+"<br>");
+												
+												}
+												session.setAttribute("personaSeleccionada", persona);
 							%>
 							<br>
 							<a href="modificarhojavida.jsp">Modificar hoja de vida</a>

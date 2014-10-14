@@ -1,24 +1,19 @@
-package logic;
+package modelos;
 
 import java.util.ArrayList;
 
-import persistence.ExperienciaDao;
-import persistence.GestionBD;
-import persistence.PersonaDao;
-import persistence.UsuarioDao;
-
 public class Gestion {
 	
-	private GestionBD gestionBD;
+	private ConexionMysql conexionMysql;
 	private UsuarioDao usuarioDao;
 	private PersonaDao personaDao;
 	private ExperienciaDao experienciaDao;
 	
 	public Gestion() {
-		gestionBD=new GestionBD();
-		usuarioDao=gestionBD.getUsuarioDao();
-		personaDao=gestionBD.getPersonaDao();
-		experienciaDao=gestionBD.getExperienciaDao();
+		conexionMysql=new ConexionMysql();
+		usuarioDao=new UsuarioDao(conexionMysql.getConexion());
+		personaDao=new PersonaDao(conexionMysql.getConexion());
+		experienciaDao=new ExperienciaDao(conexionMysql.getConexion());
 	}
 	
 	// Métodos para la gestión de usuarios

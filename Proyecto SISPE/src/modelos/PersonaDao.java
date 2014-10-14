@@ -1,4 +1,4 @@
-package persistence;
+package modelos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
-
-import logic.Persona;
-import logic.TipoDocumento;
 
 /**
  * Clase que realiza las consultas en la tabla PERSONA

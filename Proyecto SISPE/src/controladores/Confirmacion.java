@@ -1,4 +1,4 @@
-package gui;
+package controladores;
 
 public class Confirmacion {
 	

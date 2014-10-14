@@ -41,12 +41,6 @@
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
 	<![endif]-->
 	
-	<%
-	if(session.getAttribute("nombreUsuario")==null){
-		response.sendRedirect("index.jsp");
-	}
-	%>
-	
 </head>
 <body id="page1">
 	<div class="extra">

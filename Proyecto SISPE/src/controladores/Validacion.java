@@ -1,4 +1,4 @@
-package gui;
+package controladores;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import logic.Gestion;
-import logic.Usuario;
+import modelos.Gestion;
+import modelos.Usuario;
 
 /**
  * Servlet que se encarga de iniciar y cerrar sesión

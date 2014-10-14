@@ -1,4 +1,4 @@
-package gui;
+package controladores;
 
 import java.io.IOException;
 
@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import logic.Gestion;
-import logic.Persona;
-
+import modelos.Gestion;
+import modelos.Persona;
 
 @WebServlet("/ModificarHojaVida")
 public class ModificarHojaVida extends HttpServlet {

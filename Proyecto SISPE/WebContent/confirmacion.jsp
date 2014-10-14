@@ -1,8 +1,8 @@
                                 <!DOCTYPE html>
-<%@page import="gui.Confirmacion"%>
-<%@page import="logic.TipoDocumento"%>
-<%@page import="logic.Persona"%>
-<%@page import="logic.Gestion"%>
+<%@page import="controladores.Confirmacion"%>
+<%@page import="modelos.TipoDocumento"%>
+<%@page import="modelos.Persona"%>
+
 <html lang="en">
 <head>
     <title></title>
@@ -29,12 +29,6 @@
    		<script type="text/javascript" src="js/html5.js"></script>
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
 	<![endif]-->
-	
-	<%
-	if(session.getAttribute("nombreUsuario")==null){
-		response.sendRedirect("index.jsp");
-	}
-	%>
 	
 </head>
 <body id="page2">

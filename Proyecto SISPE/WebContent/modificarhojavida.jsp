@@ -1,10 +1,10 @@
                                 <!DOCTYPE html>
 <%@page import="java.util.Calendar"%>
 <%@page import="org.apache.el.lang.ELSupport"%>
-<%@page import="logic.Experiencia"%>
-<%@page import="logic.TipoDocumento"%>
-<%@page import="logic.Persona"%>
-<%@page import="logic.Gestion"%>
+<%@page import="modelos.Experiencia"%>
+<%@page import="modelos.TipoDocumento"%>
+<%@page import="modelos.Persona"%>
+
 <html lang="en">
 <head>
     <title></title>
@@ -31,12 +31,6 @@
    		<script type="text/javascript" src="js/html5.js"></script>
         <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
 	<![endif]-->
-	
-	<%
-	if(session.getAttribute("nombreUsuario")==null){
-		response.sendRedirect("index.jsp");
-	}
-	%>
 	
 </head>
 <body id="page2">
