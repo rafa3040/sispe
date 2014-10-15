@@ -28,13 +28,14 @@ public class FiltroValidacion implements Filter {
 		HttpServletRequest peticion=(HttpServletRequest) request;
 		HttpServletResponse respuesta=(HttpServletResponse) response;
 		HttpSession sesion=peticion.getSession();
-		boolean evadirFiltro=false;
+		boolean filtroActivado=true;
 		// evade el filtro si la página es /index.jsp o /Validacion
 		String url=peticion.getServletPath();
-		if(url.equals("/iniciosesion.jsp") || url.equals("/Validacion")){
-			evadirFiltro=true;
+		if(url.equals("/iniciosesion.jsp") || url.equals("/css/iniciosesion.css") || url.equals("/Validacion")){
+			filtroActivado=false;
 		}
-		if(evadirFiltro==false){
+		// si el filtro esta activado, se realiza la validacion
+		if(filtroActivado){
 			// si no se ha iniciado sesión, se redirige a index.jsp
 			if(sesion==null || sesion.getAttribute("nombreUsuario")==null){
 				respuesta.sendRedirect("iniciosesion.jsp");

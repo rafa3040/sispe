@@ -31,10 +31,10 @@ CREATE  TABLE IF NOT EXISTS `sispe`.`experiencia` (
   `fecha_final` DATE NOT NULL ,
   `numero_identificacion` BIGINT NULL ,
   PRIMARY KEY (`numero_experiencia`) ,
-  INDEX `fk_EXPERIENCIA_PERSONA_idx` (`numero_identificacion` ASC) ,
-  CONSTRAINT `fk_EXPERIENCIA_PERSONA`
+  INDEX `fk_experiencia_persona_idx` (`numero_identificacion` ASC) ,
+  CONSTRAINT `fk_experiencia_persona`
     FOREIGN KEY (`numero_identificacion` )
-    REFERENCES `SISPE`.`PERSONA` (`numero_identificacion` )
+    REFERENCES `sispe`.`persona` (`numero_identificacion` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -50,7 +50,7 @@ CREATE  TABLE IF NOT EXISTS `sispe`.`usuario` (
   PRIMARY KEY (`id_usuario`, `nombre_usuario`) )
 ENGINE = InnoDB;
 
-USE `SISPE` ;
+USE `sispe` ;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

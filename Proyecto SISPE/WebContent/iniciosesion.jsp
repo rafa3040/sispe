@@ -3,9 +3,9 @@
 
 <head>
 
-<meta charset="UTF-8">
-<title>SISPE - Inicio de sesión</title>
-<link rel="stylesheet" href="css/validacion.css" media="screen" type="text/css" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/iniciosesion.css" type="text/css" media="screen">
+    <title>SISPE - Inicio de sesión</title>
 
 </head>
 
