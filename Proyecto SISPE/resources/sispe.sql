@@ -26,10 +26,10 @@ ENGINE = InnoDB;
 -- Table `sispe`.`experiencia`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `sispe`.`experiencia` (
-  `numero_experiencia` INT NOT NULL ,
+  `numero_experiencia` INT NOT NULL AUTO_INCREMENT ,
   `fecha_inicio` DATE NOT NULL ,
   `fecha_final` DATE NOT NULL ,
-  `numero_identificacion` BIGINT NULL ,
+  `numero_identificacion` BIGINT NOT NULL ,
   PRIMARY KEY (`numero_experiencia`) ,
   INDEX `fk_experiencia_persona_idx` (`numero_identificacion` ASC) ,
   CONSTRAINT `fk_experiencia_persona`
