@@ -72,9 +72,9 @@
 					<nav class="indent-left">
 						<ul class="menu wrapper">
 							<li class="active"><a href="index.jsp">Inicio</a></li>
-							<li><a href="company.jsp">our Company</a></li>
+							<li><a href="company.jsp">Carga Hojas de Vida</a></li>
 							<li><a href="hojasvida.jsp">Hojas de vida</a></li>
-							<li><a href="projects.jsp">our projects</a></li>
+							<li><a href="projects.jsp">Visualizacion </a></li>
 							<li><a href="Validacion?orden=cerrarsesion">Cerrar sesion</a></li>
 						</ul>
 					</nav>
