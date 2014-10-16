@@ -2,14 +2,14 @@ package modelos;
 
 import java.util.ArrayList;
 
-public class Gestion {
+public class GestionModelo {
 	
 	private ConexionMysql conexionMysql;
 	private UsuarioDao usuarioDao;
 	private PersonaDao personaDao;
 	private ExperienciaDao experienciaDao;
 	
-	public Gestion() {
+	public GestionModelo() {
 		conexionMysql=new ConexionMysql();
 		usuarioDao=new UsuarioDao(conexionMysql.getConexion());
 		personaDao=new PersonaDao(conexionMysql.getConexion());

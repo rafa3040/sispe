@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelos.Gestion;
+import modelos.GestionModelo;
 import modelos.Persona;
 
 @WebServlet("/ModificarHojaVida")
@@ -43,8 +43,8 @@ public class ModificarHojaVida extends HttpServlet {
 		persona.setProfesion(profesion);
 		persona.setEspecializacion(especializacion);
 		// Actualización de la base de datos
-		Gestion gestion=(Gestion) sesion.getAttribute("gestion");
-		gestion.actualizarPersona(persona);
+		GestionModelo gestionModelo=(GestionModelo) sesion.getAttribute("gestionModelo");
+		gestionModelo.actualizarPersona(persona);
 		// Confirmación
 		Confirmacion confirmacion=new Confirmacion();
 		confirmacion.setDescripcion("La hoja de vida se ha modificado exitosamente");

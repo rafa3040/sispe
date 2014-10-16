@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelos.Gestion;
+import modelos.GestionModelo;
 import modelos.Usuario;
 
 /**
@@ -21,10 +21,10 @@ import modelos.Usuario;
 public class Validacion extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private Gestion gestion;
+	private GestionModelo gestionModelo;
        
     public Validacion() {
-    	gestion=new Gestion();
+    	gestionModelo=new GestionModelo();
     }
 
     /**
@@ -46,7 +46,7 @@ public class Validacion extends HttpServlet {
 		HttpSession sesion=request.getSession();
 		String nombreUsuario=request.getParameter("nombreusuario");
 		String contrasenha=request.getParameter("contrasenha");
-		Usuario usuario=gestion.consultarUsuario(nombreUsuario);
+		Usuario usuario=gestionModelo.consultarUsuario(nombreUsuario);
 		if (usuario!=null) {
 			if (usuario.getContrasenhaUsuario().equals(contrasenha)) {
 				// se crea el atributo nombreusuario, para poder verificar
@@ -54,7 +54,7 @@ public class Validacion extends HttpServlet {
 				sesion.setAttribute("nombreUsuario", nombreUsuario);
 				// se inicializan los objetos de la logica que se van a 
 				// usar a lo largo de la sesion
-				sesion.setAttribute("gestion", gestion);
+				sesion.setAttribute("gestionModelo", gestionModelo);
 				// redireccion a la pagina principal
 				sesion.setAttribute("mensajeValidacion", "");
 				response.sendRedirect("index.jsp");

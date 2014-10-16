@@ -1,6 +1,6 @@
 <%@page import="modelos.Experiencia"%>
 <%@page import="modelos.Persona"%>
-<%@page import="modelos.Gestion"%>
+<%@page import="modelos.GestionModelo"%>
 
 <%@ include file="encabezado.jsp" %>
         
@@ -10,8 +10,7 @@
 <br>
 <br>
 <%
-
-Gestion gestion=(Gestion)session.getAttribute("gestion");
+GestionModelo gestion=(GestionModelo)session.getAttribute("gestionModelo");
 long documento=Long.parseLong(request.getParameter("documento"));
 Persona persona=gestion.consultarPersona(documento);
 
@@ -30,7 +29,6 @@ for(int i=0 ; i<experiencias.length ; i++){
 	out.print("<h5>Fecha final</h5>"+persona.getExperiencias()[i].textoFechaFinal()+"<br>");
 }
 session.setAttribute("personaSeleccionada", persona);
-
 %>
 <br>
 <a href="modificarhojavida.jsp">Modificar hoja de vida</a>
