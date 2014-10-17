@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+
+	<h:form id="loginForm">
+		<p:growl id="mensaje" showDetail="true" life="3000" />
+		<p:panel header="Inicio de sesión" style="width: 400px;">
+
+			<h:panelGrid id="loginPanel" columns="2">
+			
+				<h:outputText value="Usuario:" />
+				<p:inputText id="nombreUsuario" value="#{gestionSesion.nombreusuario}" />
+				
+				<h:outputText value="Contraseña:" />
+				<p:password id="contrasenha" value="#{gestionSesion.contrasenha}"
+					feedback="false" />
+				
+				<p:spacer />
+				<p:commandButton action="#{gestionSesion.iniciarSesion}" value="Iniciar sesión"
+					update="loginForm" ajax="true" />
+					
+			</h:panelGrid>
+
+		</p:panel>
+
+	</h:form>
+
+</h:body>
+
+</html>

@@ -60,11 +60,11 @@ public class Validacion extends HttpServlet {
 				response.sendRedirect("index.jsp");
 			} else {
 				sesion.setAttribute("mensajeValidacion", "Contraseña incorrecta");
-				response.sendRedirect("iniciosesion.jsp");
+				response.sendRedirect("iniciosesion.xhtml");
 			}
 		} else {
 			sesion.setAttribute("mensajeValidacion", "El usuario no existe en el sistema");
-			response.sendRedirect("iniciosesion.jsp");
+			response.sendRedirect("iniciosesion.xhtml");
 		}
 	}
 

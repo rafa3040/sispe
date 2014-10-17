@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(filterName="/FiltroValidacion",urlPatterns="/*")
-public class FiltroValidacion implements Filter {
+@WebFilter("/*")
+public class FiltroSesion implements Filter {
 
-    public FiltroValidacion() {
+    public FiltroSesion() {
 
     }
 
-    public void destroy() {
+	public void destroy() {
 
 	}
 
@@ -28,26 +28,35 @@ public class FiltroValidacion implements Filter {
 		HttpServletRequest peticion=(HttpServletRequest) request;
 		HttpServletResponse respuesta=(HttpServletResponse) response;
 		HttpSession sesion=peticion.getSession();
-		boolean filtroActivado=true;
-		// evade el filtro si la página es /index.jsp o /Validacion
 		String url=peticion.getServletPath();
-		if(url.equals("/iniciosesion.jsp") || url.equals("/css/iniciosesion.css") || url.equals("/Validacion")){
-			filtroActivado=false;
+		// Verifica si la URL requiere evadir el filtro
+		if (evadirFiltro(url)) {
+			chain.doFilter(request, response);
+			return;
 		}
-		// si el filtro esta activado, se realiza la validacion
-		if(filtroActivado){
-			// si no se ha iniciado sesión, se redirige a index.jsp
-			if(sesion==null || sesion.getAttribute("nombreUsuario")==null){
-				respuesta.sendRedirect("iniciosesion.jsp");
-				return;
-			}
+		// Verifica si se ha iniciado sesión
+		if(sesion==null || sesion.getAttribute("nombreUsuario")==null){
+			respuesta.sendRedirect("iniciosesion.xhtml");
+			return;
+		} else {
+			chain.doFilter(request, response);
 		}
-		// abre el filtro
-		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
 
+	}
+	
+	public boolean evadirFiltro(String url){
+		if (url.equals("/iniciosesion.xhtml")){
+			return true;
+		} else if (url.equals("/GestionSesion")){
+			return true;
+		} else if (url.indexOf("/javax.faces.resource/") != -1){
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
