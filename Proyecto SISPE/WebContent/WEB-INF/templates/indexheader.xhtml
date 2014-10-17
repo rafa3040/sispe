@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<div class="row-top">
+		<div class="main">
+			<div class="wrapper">
+				<h1>
+					<a href="inicio.html">Consulting</a>
+				</h1>
+				<form id="search-form" method="post" enctype="multipart/form-data">
+					<fieldset>
+						<div class="search-field">
+							<input name="search" type="text" value="Search..."
+								onBlur="if(this.value=='') this.value='Search...'"
+								onFocus="if(this.value =='Search...' ) this.value=''" /> <a
+								class="search-button" href="#"
+								onClick="document.getElementById('search-form').submit()"></a>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="menu-row">
+		<div class="menu-bg">
+			<div class="main">
+				<nav class="indent-left">
+					<ul class="menu wrapper">
+						<li class="active"><a href="index.jsp">Inicio</a></li>
+						<li><a href="company.jsp">Carga Hojas de Vida</a></li>
+						<li><a href="hojasvida.jsp">Hojas de vida</a></li>
+						<li><a href="projects.jsp">Visualizacion </a></li>
+						<li><a href="Validacion?orden=cerrarsesion">Cerrar sesion</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<div class="row-bot">
+		<div class="center-shadow">
+			<div class="carousel-container">
+				<div id="carousel">
+					<div class="carousel-feature">
+						<a href="#"><img class="carousel-image" alt=""
+							src="images/gallery-img1.png" /></a>
+					</div>
+					<div class="carousel-feature">
+						<a href="#"><img class="carousel-image" alt=""
+							src="images/gallery-img3.png" /></a>
+					</div>
+					<div class="carousel-feature">
+						<a href="#"><img class="carousel-image" alt=""
+							src="images/gallery-img2.png" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</ui:composition>
