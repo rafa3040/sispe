@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/WEB-INF/templates/basictemplate.xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+		<section>
+
+			<h2>Información de las hojas de vida cargadas al sistema</h2>
+
+			<h2>Visualización de las hojas de vida cargadas al sistema</h2>
+
+			<form action="mostrarhojavida.jsp" method="post">
+
+				<label>Ingrese el documento de identidad de la hoja de vida
+					a mostrar</label> <br />
+				<input type="text" name="documento" />
+				<input type="submit" value="Buscar" />
+			</form>
+
+		</section>
+
+	</ui:define>
+</ui:composition>
