@@ -1,9 +1,6 @@
 package controladores;
 
-import java.io.IOException;
-
 import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -49,8 +46,7 @@ public class GestionSesion {
 				// usar a lo largo de la sesión
 				sesion.setAttribute("gestionModelo", gestionModelo);
 				// redireccion a la pagina principal
-				redirigir("index.xhtml");
-				return "";
+				return "index.xhtml?faces-redirect=true";
 			} else {
 				gestionModelo=null;
 				mensajeEmergente=new FacesMessage(FacesMessage.SEVERITY_INFO, "No se inició sesión", "Contraseña incorrecta");
@@ -65,19 +61,10 @@ public class GestionSesion {
 		}
 	}
 	
-	public void cerrarSesion(){
+	public String cerrarSesion(){
 		HttpSession sesion=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		sesion.invalidate();
-		redirigir("iniciosesion.xhtml");
-	}
-	
-	private void redirigir(String url){
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();  
-		try {
-			externalContext.redirect(url);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		return "iniciosesion.xhtml?faces-redirect=true";
 	}
 
 }

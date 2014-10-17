@@ -9,21 +9,15 @@
 
 		<section>
 
-			<h:form id="mostrarhojavida">
+			<h:form id="mensajesistema">
 				<p:growl id="mensaje" showDetail="true" life="3000" />
-				<p:panel header="Mostrar hoja de vida" style="width: 400px;">
+				<p:panel header="Mensaje del sistema" style="width: 400px;">
 
 					<h:panelGrid id="mipanel" columns="2">
 
-						<h:outputText value="Documento:" />
-						<p:inputText id="documento"
-							required="true" value="#{personaInfo.numeroIdentificacion}">
-							<f:validateDoubleRange minimum="0" maximum="100000000000" />
-							</p:inputText>
+						<h:outputText value="#{mensaje.descripcion}" />
 
-						<p:spacer />
-						<p:commandButton action="#{personaInfo.cargarPersona}"
-							value="Mostrar hoja de vida" update="mostrarhojavida" ajax="true" />
+
 
 					</h:panelGrid>
 
