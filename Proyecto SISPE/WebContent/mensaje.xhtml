@@ -8,16 +8,14 @@
 	<ui:define name="content">
 
 		<section>
-
+		
 			<h:form id="mensajesistema">
 				<p:growl id="mensaje" showDetail="true" life="3000" />
 				<p:panel header="Mensaje del sistema" style="width: 400px;">
 
 					<h:panelGrid id="mipanel" columns="2">
 
-						<h:outputText value="#{mensaje.descripcion}" />
-
-
+						<h:outputText value="#{flash.mensaje}" />
 
 					</h:panelGrid>
 

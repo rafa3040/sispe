@@ -46,12 +46,12 @@ public class ModificarHojaVida extends HttpServlet {
 		GestionModelo gestionModelo=(GestionModelo) sesion.getAttribute("gestionModelo");
 		gestionModelo.actualizarPersona(persona);
 		// Confirmación
-		Confirmacion confirmacion=new Confirmacion();
-		confirmacion.setDescripcion("La hoja de vida se ha modificado exitosamente");
-		confirmacion.setArchivoEnlace("hojasvida.jsp");
-		confirmacion.setMensajeEnlace("Volver a la página de hojas de vida");
-		sesion.setAttribute("confirmacion", confirmacion);
-		response.sendRedirect("confirmacion.jsp");
+//		Confirmacion confirmacion=new Confirmacion();
+//		confirmacion.setDescripcion("La hoja de vida se ha modificado exitosamente");
+//		confirmacion.setArchivoEnlace("hojasvida.jsp");
+//		confirmacion.setMensajeEnlace("Volver a la página de hojas de vida");
+//		sesion.setAttribute("confirmacion", confirmacion);
+//		response.sendRedirect("confirmacion.jsp");
 	}
 
 }
