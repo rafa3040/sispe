@@ -41,11 +41,23 @@
 					<h:outputText value="#{fechaExperiencia.textoFechaFinal()}" />
 				</p:column>
 			</p:dataTable>
+			
 			<h:form id="botones" method="post" enctype="multipart/form-data">
 				<p:commandButton value="Modificar hoja de vida"
 					action="modificarhojavida.xhtml?faces-redirect=true" />
 				<p:commandButton value="Eliminar hoja de vida"
-					action="#{personaBean.eliminarHojaVida}" />
+					action="#{personaBean.eliminarHojaVida}">
+					<p:confirm header="Confirmar eliminación"
+						message="¿Está seguro que desea eliminar la hoja de vida mostrada?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade"
+					hideEffect="explode">
+					<p:commandButton value="Yes" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
 			</h:form>
 
 		</section>

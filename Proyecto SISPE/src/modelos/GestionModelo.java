@@ -47,6 +47,7 @@ public class GestionModelo {
 	}
 	
 	public void eliminarPersona(long numeroIdentificacion){
+		experienciaDao.eliminarExperiencias(numeroIdentificacion);		
 		personaDao.eliminarPersona(numeroIdentificacion);
 	}
 
