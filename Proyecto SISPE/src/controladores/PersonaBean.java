@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -177,17 +178,32 @@ public class PersonaBean {
 		persona.setEspecializacion(especializacion);
 		Experiencia experiencia;
 		Calendar fechaInicio, fechaFinal;
-		for (FechaExperiencia fechaExperiencia : fechasExperiencias) {
-			if(fechaExperiencia.getFechaInicio()!=null && fechaExperiencia.getFechaFinal()!=null){
-				fechaInicio=Calendar.getInstance();
-				fechaInicio.setTime(fechaExperiencia.getFechaInicio());
-				fechaFinal=Calendar.getInstance();
-				fechaFinal.setTime(fechaExperiencia.getFechaFinal());
-				experiencia=new Experiencia();
-				experiencia.setPersona(persona);
-				experiencia.setFechaInicio(fechaInicio);
-				experiencia.setFechaFinal(fechaFinal);
-				persona.getExperiencias().add(experiencia);
+		for (int i =0 ; i<fechasExperiencias.size() ; i++) {
+			Date dateFechaInicio=fechasExperiencias.get(i).getFechaInicio();
+			Date dateFechaFinal=fechasExperiencias.get(i).getFechaFinal();
+			if(dateFechaInicio!=null && dateFechaFinal!=null){
+				if(dateFechaInicio.before(dateFechaFinal)){
+					fechaInicio=Calendar.getInstance();
+					fechaInicio.setTime(dateFechaInicio);
+					fechaFinal=Calendar.getInstance();
+					fechaFinal.setTime(dateFechaFinal);
+					experiencia=new Experiencia();
+					experiencia.setPersona(persona);
+					experiencia.setFechaInicio(fechaInicio);
+					experiencia.setFechaFinal(fechaFinal);
+					persona.getExperiencias().add(experiencia);
+				} else {
+					FacesMessage mensajeEmergente=new FacesMessage(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1), "Fecha de inicio posterior a fecha final");
+					FacesContext.getCurrentInstance().addMessage(null, mensajeEmergente);
+					return "modificarhojavida.xthml";
+				}
+
+			} else if (dateFechaInicio==null && dateFechaFinal==null) {
+				continue;
+			} else {
+				FacesMessage mensajeEmergente=new FacesMessage(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1), "Rango de fechas incompleto");
+				FacesContext.getCurrentInstance().addMessage(null, mensajeEmergente);
+				return "modificarhojavida.xthml";
 			}
 		}
 		gestionModelo.actualizarPersona(persona);		

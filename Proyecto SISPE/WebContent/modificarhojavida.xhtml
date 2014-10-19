@@ -76,11 +76,12 @@
 						<p:commandButton action="#{personaBean.modificarHojaVida}"
 							value="Modificar" update="modificar" ajax="true" />
 
-						<p:commandButton action="mostrarhojavida.xhtml?faces-redirect=true"
-							value="Cancelar" />
+						<p:commandButton value="Revertir cambios" type="reset"/>
 					</h:panelGrid>
 
 				</p:panel>
+				
+				<h:commandLink action="hojasvida.xhtml?faces-redirect=true">Volver a la página de hojas de vida</h:commandLink>
 
 			</h:form>
 
