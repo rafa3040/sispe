@@ -49,6 +49,9 @@ public class GestionSesion {
 				// se inicializan los objetos de la logica que se van a 
 				// usar a lo largo de la sesión
 				sesion.setAttribute("gestionModelo", gestionModelo);
+				// se elimina la contraseña, para que ningún Facelet
+				// pueda acceder a ella
+				contrasenha="";
 				// redireccion a la pagina principal
 				return "index.xhtml?faces-redirect=true";
 			} else {

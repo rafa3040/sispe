@@ -1,6 +1,7 @@
 package modelos;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Persona {
@@ -14,10 +15,10 @@ public class Persona {
 	private String correoElectronico;
 	private String profesion;
 	private String especializacion;
-	private Experiencia[] experiencias;
+	private ArrayList<Experiencia> experiencias;
 	
 	public Persona() {
-
+		experiencias=new ArrayList<Experiencia>();
 	}
 
 	public long getNumeroIdentificacion() {
@@ -92,14 +93,14 @@ public class Persona {
 		this.especializacion = especializacion;
 	}
 
-	public Experiencia[] getExperiencias() {
+	public ArrayList<Experiencia> getExperiencias() {
 		return experiencias;
 	}
 
-	public void setExperiencias(Experiencia[] experiencias) {
+	public void setExperiencias(ArrayList<Experiencia> experiencias) {
 		this.experiencias = experiencias;
 	}
-	
+
 	@Override
 	public String toString() {
 		String mensaje=numeroIdentificacion+" "+nombrePersona+" "+apellidoPersona+" "

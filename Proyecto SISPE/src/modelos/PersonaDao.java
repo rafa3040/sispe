@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 
 /**
- * Clase que realiza las consultas en la tabla PERSONA
+ * Clase que realiza las consultas en la tabla persona
  * @author Solutions Developers
  *
  */
@@ -28,7 +28,7 @@ public class PersonaDao {
 	private void crearSentencias(){
 		try {
 			psConsultarPersona=conexion.prepareStatement("SELECT * FROM persona WHERE numero_identificacion=?");
-			psActualizarPersona=conexion.prepareStatement("UPDATE persona SET nombre_persona=?, apellido_persona=? WHERE numero_identificacion=?");
+			psActualizarPersona=conexion.prepareStatement("UPDATE persona SET nombre_persona=?, apellido_persona=?, fecha_nacimiento=?, telefono=?, correo_electronico=?, profesion=?, especializacion=? WHERE numero_identificacion=?");
 			psEliminarPersona=conexion.prepareStatement("DELETE FROM persona WHERE numero_identificacion=?");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -65,13 +65,16 @@ public class PersonaDao {
 	
 	public boolean actualizarPersona(Persona persona){
 		if(conexion!=null){
-			String nombrePersona=persona.getNombrePersona();
-			String apellidoPersona=persona.getApellidoPersona();
-			long numeroIdentificacion=persona.getNumeroIdentificacion();
 			try {
-				psActualizarPersona.setString(1, nombrePersona);
-				psActualizarPersona.setString(2, apellidoPersona);
-				psActualizarPersona.setLong(3, numeroIdentificacion);
+				psActualizarPersona.setString(1, persona.getNombrePersona());
+				psActualizarPersona.setString(2, persona.getApellidoPersona());
+				Timestamp fechaNacimiento=new Timestamp(persona.getFechaNacimiento().getTimeInMillis());
+				psActualizarPersona.setTimestamp(3, fechaNacimiento);
+				psActualizarPersona.setLong(4, persona.getTelefono());
+				psActualizarPersona.setString(5, persona.getCorreoElectronico());
+				psActualizarPersona.setString(6, persona.getProfesion());
+				psActualizarPersona.setString(7, persona.getEspecializacion());
+				psActualizarPersona.setLong(8, persona.getNumeroIdentificacion());
 				psActualizarPersona.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();

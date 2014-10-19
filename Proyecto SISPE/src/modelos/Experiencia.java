@@ -1,12 +1,11 @@
 package modelos;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Experiencia {
 	
 	private int numeroExperiencia;
-	private Persona hojaVida;
+	private Persona persona;
 	private Calendar fechaInicio;
 	private Calendar fechaFinal;
 	
@@ -22,12 +21,12 @@ public class Experiencia {
 		this.numeroExperiencia = numeroExperiencia;
 	}
 
-	public Persona getHojaVida() {
-		return hojaVida;
+	public Persona getPersona() {
+		return persona;
 	}
 
-	public void setHojaVida(Persona hojaVida) {
-		this.hojaVida = hojaVida;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 
 	public Calendar getFechaInicio() {
@@ -44,16 +43,6 @@ public class Experiencia {
 
 	public void setFechaFinal(Calendar fechaFinal) {
 		this.fechaFinal = fechaFinal;
-	}
-	
-	public String textoFechaInicio(){
-		SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
-		return formato.format(fechaInicio.getTime());
-	}
-	
-	public String textoFechaFinal(){
-		SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
-		return formato.format(fechaFinal.getTime());
 	}
 
 }

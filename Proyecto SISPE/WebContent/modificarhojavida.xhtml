@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/WEB-INF/templates/basictemplate.xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+		<section>
+
+			<h3>Modificación de la hoja de vida</h3>
+
+
+			<h:form id="modificar">
+				<p:growl id="mensaje" showDetail="true" life="3000" />
+				<p:panel header="Modificar hoja de vida" style="width: 700px;">
+
+					<h:panelGrid id="mipanel" columns="2">
+
+						<h:outputLabel value="Número de identificación" />
+						<p:inputText value="#{personaBean.numeroIdentificacion}"
+							disabled="true" />
+						<h:outputLabel value="Tipo de documento" />
+						<p:inputText value="#{personaBean.tipoDocumento}" disabled="true" />
+						<h:outputLabel value="Nombres" />
+						<p:inputText value="#{personaBean.nombrePersona}" required="true" />
+						<h:outputLabel value="Apellidos" />
+						<p:inputText value="#{personaBean.apellidoPersona}"
+							required="true" />
+						<h:outputLabel value="Fecha de nacimiento" />
+						<p:calendar value="#{personaBean.fechaNacimiento}" showOn="button"
+							required="true" />
+						<h:outputLabel value="Teléfono" />
+						<p:inputText value="#{personaBean.telefono}" required="true">
+							<f:validateDoubleRange minimum="0" maximum="100000000000" />
+						</p:inputText>
+						<h:outputLabel value="Correo electrónico" />
+						<p:inputText value="#{personaBean.correoElectronico}" />
+						<h:outputLabel value="Profesión" />
+						<p:inputText value="#{personaBean.profesion}" required="true" />
+						<h:outputLabel value="Especialización" />
+						<p:inputText value="#{personaBean.especializacion}"
+							required="true" />
+						<h:outputLabel value="Experiencia 1" />
+						<p:spacer />
+						<h:outputLabel value="Fecha inicio" />
+						<p:calendar
+							value="#{personaBean.fechasExperiencias[0].fechaInicio}"
+							showOn="button" />
+						<h:outputLabel value="Fecha final" />
+						<p:calendar
+							value="#{personaBean.fechasExperiencias[0].fechaFinal}"
+							showOn="button" />
+						<h:outputLabel value="Experiencia 2" />
+						<p:spacer />
+						<h:outputLabel value="Fecha inicio" />
+						<p:calendar
+							value="#{personaBean.fechasExperiencias[1].fechaInicio}"
+							showOn="button" />
+						<h:outputLabel value="Fecha final" />
+						<p:calendar
+							value="#{personaBean.fechasExperiencias[1].fechaFinal}"
+							showOn="button" />
+						<h:outputLabel value="Experiencia 3" />
+						<p:spacer />
+						<h:outputLabel value="Fecha inicio" />
+						<p:calendar
+							value="#{personaBean.fechasExperiencias[2].fechaInicio}"
+							showOn="button" />
+						<h:outputLabel value="Fecha final" />
+						<p:calendar
+							value="#{personaBean.fechasExperiencias[2].fechaFinal}"
+							showOn="button" />
+
+						<p:commandButton action="#{personaBean.modificarHojaVida}"
+							value="Modificar" update="modificar" ajax="true" />
+
+						<p:commandButton action="mostrarhojavida.xhtml?faces-redirect=true"
+							value="Cancelar" />
+					</h:panelGrid>
+
+				</p:panel>
+
+			</h:form>
+
+		</section>
+
+	</ui:define>
+</ui:composition>

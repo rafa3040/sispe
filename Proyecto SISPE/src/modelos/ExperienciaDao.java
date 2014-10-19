@@ -9,28 +9,30 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
- * Clase que realiza las consultas en la tabla EXPERIENCIA000
+ * Clase que realiza las consultas en la tabla experiencia
  * @author Solutions Developers
  *
  */
 public class ExperienciaDao {
 	
 	private Connection conexion;
+	private PersonaDao personaDao;
 	
-	private PreparedStatement psConsultarExperiencia;
-	private PreparedStatement psActualizarExperiencia;
-	private PreparedStatement psEliminarExperiencia;
+	private PreparedStatement psConsultarExperiencias;
+	private PreparedStatement psInsertarExperiencia;
+	private PreparedStatement psEliminarExperiencias;
 	
-	public ExperienciaDao(Connection conexion) {
+	public ExperienciaDao(Connection conexion, PersonaDao personaDao) {
 		this.conexion=conexion;
+		this.personaDao=personaDao;
 		crearSentencias();
 	}
 	
 	private void crearSentencias(){
 		try {
-			psConsultarExperiencia=conexion.prepareStatement("SELECT * FROM experiencia WHERE numero_identificacion=?");
-			psActualizarExperiencia=conexion.prepareStatement("UPDATE experiencia SET fecha_inicio=?, fecha_final=? WHERE numero_experiencia=?");
-			psEliminarExperiencia=conexion.prepareStatement("DELETE FROM experiencia WHERE numero_experiencia=?");
+			psConsultarExperiencias=conexion.prepareStatement("SELECT * FROM experiencia WHERE numero_identificacion=?");
+			psInsertarExperiencia=conexion.prepareStatement("INSERT INTO experiencia (fecha_inicio, fecha_final, numero_identificacion) VALUES (?,?,?)");
+			psEliminarExperiencias=conexion.prepareStatement("DELETE FROM experiencia WHERE numero_identificacion=?");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -40,8 +42,8 @@ public class ExperienciaDao {
 		ResultSet resultados=null;
 		if (conexion!=null) {
 			try {
-				psConsultarExperiencia.setLong(1, numeroIdentificacion);
-				resultados=psConsultarExperiencia.executeQuery();
+				psConsultarExperiencias.setLong(1, numeroIdentificacion);
+				resultados=psConsultarExperiencias.executeQuery();
 				ArrayList<Experiencia> experiencias=new ArrayList<>();
 				Experiencia experiencia;
 				while (resultados.next()) {
@@ -55,6 +57,8 @@ public class ExperienciaDao {
 					Calendar fechaFinal=Calendar.getInstance();
 					fechaFinal.setTimeInMillis(tiempoFinal.getTime());
 					experiencia.setFechaFinal(fechaFinal);
+					Persona persona=personaDao.consultarPersona(numeroIdentificacion);
+					experiencia.setPersona(persona);
 					experiencias.add(experiencia);
 				}
 				return experiencias;
@@ -65,18 +69,18 @@ public class ExperienciaDao {
 		return null;
 	}
 	
-	public boolean actualizarExperiencia(Experiencia experiencia){
+	public boolean insertarExperiencia(Experiencia experiencia){
 		if(conexion!=null){
 			Calendar fechaInicio=experiencia.getFechaInicio();
 			Timestamp tiempoInicio=new Timestamp(fechaInicio.getTimeInMillis());
 			Calendar fechaFinal=experiencia.getFechaFinal();
 			Timestamp tiempoFinal=new Timestamp(fechaFinal.getTimeInMillis());
-			int numeroExperiencia=experiencia.getNumeroExperiencia();
+			long numeroIdentificacion=experiencia.getPersona().getNumeroIdentificacion();
 			try {
-				psActualizarExperiencia.setTimestamp(1, tiempoInicio);
-				psActualizarExperiencia.setTimestamp(2, tiempoFinal);
-				psActualizarExperiencia.setInt(3, numeroExperiencia);
-				psActualizarExperiencia.executeUpdate();
+				psInsertarExperiencia.setTimestamp(1, tiempoInicio);
+				psInsertarExperiencia.setTimestamp(2, tiempoFinal);
+				psInsertarExperiencia.setLong(3, numeroIdentificacion);
+				psInsertarExperiencia.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -84,12 +88,12 @@ public class ExperienciaDao {
 		}
 		return false;
 	}
-
-	public boolean eliminarExperiencia(long numeroExperiencia){
+	
+	public boolean eliminarExperiencias(long numeroIdentificacion){
 		if(conexion!=null){
 			try {
-				psEliminarExperiencia.setLong(1, numeroExperiencia);
-				psEliminarExperiencia.executeUpdate();
+				psEliminarExperiencias.setLong(1, numeroIdentificacion);
+				psEliminarExperiencias.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -15,14 +15,14 @@
 
 					<h:panelGrid id="mipanel" columns="2">
 
-						<h:outputText value="Documento:" />
-						<p:inputText id="documento"
-							required="true" value="#{personaInfo.numeroIdentificacion}">
+						<h:outputLabel value="Documento" />
+						<p:inputText id="documento" required="true"
+							value="#{personaBean.numeroIdentificacion}">
 							<f:validateDoubleRange minimum="0" maximum="100000000000" />
-							</p:inputText>
+						</p:inputText>
 
 						<p:spacer />
-						<p:commandButton action="#{personaInfo.cargarPersona}"
+						<p:commandButton action="#{personaBean.cargarPersona}"
 							value="Mostrar hoja de vida" update="mostrarhojavida" ajax="true" />
 
 					</h:panelGrid>
