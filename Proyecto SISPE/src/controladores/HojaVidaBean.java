@@ -216,5 +216,12 @@ public class HojaVidaBean {
 		ELFlash.getFlash().put("mensaje", "Hoja de vida eliminada");
 		return "mensaje.xhtml?faces-redirect=true";
 	}
+	
+	public String cancelarModificacion(){
+		cargarHojaVida();
+		FacesMessage mensajeEmergente=new FacesMessage(FacesMessage.SEVERITY_WARN, "Modificar hoja de vida", "Se han descartado los cambios");
+		FacesContext.getCurrentInstance().addMessage(null, mensajeEmergente);
+		return "hojasvida.xthml";
+	}
 
 }

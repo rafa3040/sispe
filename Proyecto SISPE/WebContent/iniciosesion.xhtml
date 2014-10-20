@@ -7,34 +7,47 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
+	<h:outputStylesheet name="css/iniciosesion.css" />
 </h:head>
 
 <h:body>
 
-	<h:form id="loginForm">
-		<p:growl id="mensaje" showDetail="true" life="3000" />
-		<p:panel header="Inicio de sesión" style="width: 400px;">
-
-			<h:panelGrid id="loginPanel" columns="2">
-			
-				<h:outputText value="Usuario:" />
-				<p:inputText id="nombreUsuario" value="#{gestionSesion.nombreUsuario}" />
-				
-				<h:outputText value="Contraseña:" />
-				<p:password id="contrasenha" value="#{gestionSesion.contrasenha}"
-					feedback="false" />
-				
-				<p:spacer />
-				<p:commandButton action="#{gestionSesion.iniciarSesion}" value="Iniciar sesión"
-					update="loginForm" ajax="true" />
-					
-			</h:panelGrid>
-
-		</p:panel>
-
-	</h:form>
-
+	<h2>
+		Inspired by <a href="http://dribbble.com/shots/899672-Login-Form">this
+			dribbble shot</a> made by <a href="http://dribbble.com/ionuss">Ionut
+			Zamfir</a>.
+	</h2>
+	<div class="ribbon"></div>
+	<div class="login">
+		<h1>Let's get started.</h1>
+		<p>This will be an amazing experience</p>
+		<form action="login">
+			<div class="input">
+				<div class="blockinput">
+					<i class="icon-envelope-alt"></i><input type="text" placeholder="Usuario" />
+				</div>
+				<div class="blockinput">
+					<i class="icon-unlock"></i><input type="password" placeholder="Password" />
+				</div>
+			</div>
+			<button>Login</button>
+		</form>
+	</div>
+	<hr />
+	<h2>Another way to use the concept ...</h2>
+	<div class="ribbon ior"></div>
+	<div class="login io">
+		<div class="press">
+			CEO <span>Google</span>
+		</div>
+		<img
+			src="https://lh3.googleusercontent.com/-Y86IN-vEObo/AAAAAAAAAAI/AAAAAAACk4w/yvxY4GMx_8k/s120-c/photo.jpg"
+			alt="ggIO" />
+		<h1>Lawrence Edward Page</h1>
+		<p>CEO of Google</p>
+	</div>
+	<br />
+	<br />
 </h:body>
 
 </html>
