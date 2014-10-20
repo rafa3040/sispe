@@ -5,7 +5,7 @@ import java.util.Calendar;
 public class Experiencia {
 	
 	private int numeroExperiencia;
-	private Persona persona;
+	private HojaVida hojaVida;
 	private Calendar fechaInicio;
 	private Calendar fechaFinal;
 	
@@ -21,12 +21,12 @@ public class Experiencia {
 		this.numeroExperiencia = numeroExperiencia;
 	}
 
-	public Persona getPersona() {
-		return persona;
+	public HojaVida getPersona() {
+		return hojaVida;
 	}
 
-	public void setPersona(Persona persona) {
-		this.persona = persona;
+	public void setPersona(HojaVida hojaVida) {
+		this.hojaVida = hojaVida;
 	}
 
 	public Calendar getFechaInicio() {

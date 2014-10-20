@@ -17,12 +17,12 @@
 
 						<h:outputLabel value="Documento" />
 						<p:inputText id="documento" required="true"
-							value="#{personaBean.numeroIdentificacion}">
+							value="#{hojaVidaBean.numeroIdentificacion}">
 							<f:validateDoubleRange minimum="0" maximum="100000000000" />
 						</p:inputText>
 
 						<p:spacer />
-						<p:commandButton action="#{personaBean.cargarPersona}"
+						<p:commandButton action="#{hojaVidaBean.cargarHojaVida}"
 							value="Mostrar hoja de vida" update="mostrarhojavida" ajax="true" />
 
 					</h:panelGrid>

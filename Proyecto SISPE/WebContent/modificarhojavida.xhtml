@@ -6,9 +6,9 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
-
+	
 		<section>
-
+		
 			<h3>Modificación de la hoja de vida</h3>
 
 
@@ -19,61 +19,61 @@
 					<h:panelGrid id="mipanel" columns="2">
 
 						<h:outputLabel value="Número de identificación" />
-						<p:inputText value="#{personaBean.numeroIdentificacion}"
+						<p:inputText value="#{hojaVidaBean.numeroIdentificacion}"
 							disabled="true" />
 						<h:outputLabel value="Tipo de documento" />
-						<p:inputText value="#{personaBean.tipoDocumento}" disabled="true" />
+						<p:inputText value="#{hojaVidaBean.tipoDocumento}" disabled="true" />
 						<h:outputLabel value="Nombres" />
-						<p:inputText value="#{personaBean.nombrePersona}" required="true" />
+						<p:inputText value="#{hojaVidaBean.nombrePersona}" required="true" />
 						<h:outputLabel value="Apellidos" />
-						<p:inputText value="#{personaBean.apellidoPersona}"
+						<p:inputText value="#{hojaVidaBean.apellidoPersona}"
 							required="true" />
 						<h:outputLabel value="Fecha de nacimiento" />
-						<p:calendar value="#{personaBean.fechaNacimiento}" showOn="button"
-							required="true" />
+						<p:calendar value="#{hojaVidaBean.fechaNacimiento}" showOn="button"
+							required="true" pattern="dd-MM-yyyy" />
 						<h:outputLabel value="Teléfono" />
-						<p:inputText value="#{personaBean.telefono}" required="true">
+						<p:inputText value="#{hojaVidaBean.telefono}" required="true">
 							<f:validateDoubleRange minimum="0" maximum="100000000000" />
 						</p:inputText>
 						<h:outputLabel value="Correo electrónico" />
-						<p:inputText value="#{personaBean.correoElectronico}" />
+						<p:inputText value="#{hojaVidaBean.correoElectronico}" />
 						<h:outputLabel value="Profesión" />
-						<p:inputText value="#{personaBean.profesion}" required="true" />
+						<p:inputText value="#{hojaVidaBean.profesion}" required="true" />
 						<h:outputLabel value="Especialización" />
-						<p:inputText value="#{personaBean.especializacion}"
+						<p:inputText value="#{hojaVidaBean.especializacion}"
 							required="true" />
 						<h:outputLabel value="Experiencia 1" />
 						<p:spacer />
 						<h:outputLabel value="Fecha inicio" />
 						<p:calendar
-							value="#{personaBean.fechasExperiencias[0].fechaInicio}"
-							showOn="button" />
+							value="#{hojaVidaBean.fechasExperiencias[0].fechaInicio}"
+							showOn="button" pattern="dd-MM-yyyy" />
 						<h:outputLabel value="Fecha final" />
 						<p:calendar
-							value="#{personaBean.fechasExperiencias[0].fechaFinal}"
-							showOn="button" />
+							value="#{hojaVidaBean.fechasExperiencias[0].fechaFinal}"
+							showOn="button" pattern="dd-MM-yyyy" />
 						<h:outputLabel value="Experiencia 2" />
 						<p:spacer />
 						<h:outputLabel value="Fecha inicio" />
 						<p:calendar
-							value="#{personaBean.fechasExperiencias[1].fechaInicio}"
-							showOn="button" />
+							value="#{hojaVidaBean.fechasExperiencias[1].fechaInicio}"
+							showOn="button" pattern="dd-MM-yyyy" />
 						<h:outputLabel value="Fecha final" />
 						<p:calendar
-							value="#{personaBean.fechasExperiencias[1].fechaFinal}"
-							showOn="button" />
+							value="#{hojaVidaBean.fechasExperiencias[1].fechaFinal}"
+							showOn="button" pattern="dd-MM-yyyy" />
 						<h:outputLabel value="Experiencia 3" />
 						<p:spacer />
 						<h:outputLabel value="Fecha inicio" />
 						<p:calendar
-							value="#{personaBean.fechasExperiencias[2].fechaInicio}"
-							showOn="button" />
+							value="#{hojaVidaBean.fechasExperiencias[2].fechaInicio}"
+							showOn="button" pattern="dd-MM-yyyy" />
 						<h:outputLabel value="Fecha final" />
 						<p:calendar
-							value="#{personaBean.fechasExperiencias[2].fechaFinal}"
-							showOn="button" />
+							value="#{hojaVidaBean.fechasExperiencias[2].fechaFinal}"
+							showOn="button" pattern="dd-MM-yyyy" />
 
-						<p:commandButton action="#{personaBean.modificarHojaVida}"
+						<p:commandButton action="#{hojaVidaBean.modificarHojaVida}"
 							value="Modificar" update="modificar" ajax="true" />
 
 						<p:commandButton value="Revertir cambios" type="reset"/>

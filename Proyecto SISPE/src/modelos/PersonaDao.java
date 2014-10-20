@@ -35,46 +35,46 @@ public class PersonaDao {
 		}
 	}
 
-	public Persona consultarPersona(long numeroIdentificacion){
-		Persona persona=null;
+	public HojaVida consultarPersona(long numeroIdentificacion){
+		HojaVida hojaVida=null;
 		if (conexion!=null) {
 			try {
 				psConsultarPersona.setLong(1, numeroIdentificacion);
 				ResultSet dato=psConsultarPersona.executeQuery();
 				if(dato.next()){
-					persona=new Persona();
-					persona.setNumeroIdentificacion(dato.getLong(1));
-					persona.setNombrePersona(dato.getString(2));
-					persona.setApellidoPersona(dato.getString(3));
-					persona.setTipoDocumento(TipoDocumento.valueOf(dato.getString(4)));
+					hojaVida=new HojaVida();
+					hojaVida.setNumeroIdentificacion(dato.getLong(1));
+					hojaVida.setNombrePersona(dato.getString(2));
+					hojaVida.setApellidoPersona(dato.getString(3));
+					hojaVida.setTipoDocumento(TipoDocumento.valueOf(dato.getString(4)));
 					Timestamp tiempo=dato.getTimestamp(5);
 					Calendar fechaNacimiento=Calendar.getInstance();
 					fechaNacimiento.setTimeInMillis(tiempo.getTime());
-					persona.setFechaNacimiento(fechaNacimiento);
-					persona.setTelefono(dato.getLong(6));
-					persona.setCorreoElectronico(dato.getString(7));
-					persona.setProfesion(dato.getString(8));
-					persona.setEspecializacion(dato.getString(9));
+					hojaVida.setFechaNacimiento(fechaNacimiento);
+					hojaVida.setTelefono(dato.getLong(6));
+					hojaVida.setCorreoElectronico(dato.getString(7));
+					hojaVida.setProfesion(dato.getString(8));
+					hojaVida.setEspecializacion(dato.getString(9));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		return persona;
+		return hojaVida;
 	}
 	
-	public boolean actualizarPersona(Persona persona){
+	public boolean actualizarPersona(HojaVida hojaVida){
 		if(conexion!=null){
 			try {
-				psActualizarPersona.setString(1, persona.getNombrePersona());
-				psActualizarPersona.setString(2, persona.getApellidoPersona());
-				Timestamp fechaNacimiento=new Timestamp(persona.getFechaNacimiento().getTimeInMillis());
+				psActualizarPersona.setString(1, hojaVida.getNombrePersona());
+				psActualizarPersona.setString(2, hojaVida.getApellidoPersona());
+				Timestamp fechaNacimiento=new Timestamp(hojaVida.getFechaNacimiento().getTimeInMillis());
 				psActualizarPersona.setTimestamp(3, fechaNacimiento);
-				psActualizarPersona.setLong(4, persona.getTelefono());
-				psActualizarPersona.setString(5, persona.getCorreoElectronico());
-				psActualizarPersona.setString(6, persona.getProfesion());
-				psActualizarPersona.setString(7, persona.getEspecializacion());
-				psActualizarPersona.setLong(8, persona.getNumeroIdentificacion());
+				psActualizarPersona.setLong(4, hojaVida.getTelefono());
+				psActualizarPersona.setString(5, hojaVida.getCorreoElectronico());
+				psActualizarPersona.setString(6, hojaVida.getProfesion());
+				psActualizarPersona.setString(7, hojaVida.getEspecializacion());
+				psActualizarPersona.setLong(8, hojaVida.getNumeroIdentificacion());
 				psActualizarPersona.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();

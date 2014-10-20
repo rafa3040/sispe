@@ -57,8 +57,8 @@ public class ExperienciaDao {
 					Calendar fechaFinal=Calendar.getInstance();
 					fechaFinal.setTimeInMillis(tiempoFinal.getTime());
 					experiencia.setFechaFinal(fechaFinal);
-					Persona persona=personaDao.consultarPersona(numeroIdentificacion);
-					experiencia.setPersona(persona);
+					HojaVida hojaVida=personaDao.consultarPersona(numeroIdentificacion);
+					experiencia.setPersona(hojaVida);
 					experiencias.add(experiencia);
 				}
 				return experiencias;

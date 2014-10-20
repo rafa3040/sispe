@@ -12,28 +12,28 @@
 			<h3>Visualización de la hoja de vida</h3>
 
 			<h4>Documento de identidad</h4>
-			#{personaBean.numeroIdentificacion}
+			#{hojaVidaBean.numeroIdentificacion}
 			<h4>Nombres</h4>
-			#{personaBean.nombrePersona}
+			#{hojaVidaBean.nombrePersona}
 			<h4>Apellidos</h4>
-			#{personaBean.apellidoPersona}
+			#{hojaVidaBean.apellidoPersona}
 			<h4>Tipo de documento</h4>
-			#{personaBean.tipoDocumento}
+			#{hojaVidaBean.tipoDocumento}
 			<h4>Fecha de nacimiento</h4>
-			<h:outputText value="#{personaBean.fechaNacimiento}">
+			<h:outputText value="#{hojaVidaBean.fechaNacimiento}">
 				<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
 			</h:outputText>
 			<h4>Teléfono</h4>
-			#{personaBean.telefono}
+			#{hojaVidaBean.telefono}
 			<h4>Correo electrónico</h4>
-			#{personaBean.correoElectronico}
+			#{hojaVidaBean.correoElectronico}
 			<h4>Profesión</h4>
-			#{personaBean.profesion}
+			#{hojaVidaBean.profesion}
 			<h4>Especialización</h4>
-			#{personaBean.especializacion}
+			#{hojaVidaBean.especializacion}
 			<h4>Experiencias</h4>
 			<p:dataTable var="fechaExperiencia"
-				value="#{personaBean.fechasExperiencias}">
+				value="#{hojaVidaBean.fechasExperiencias}">
 				<p:column headerText="Fecha inicio">
 					<h:outputText value="#{fechaExperiencia.textoFechaInicio()}" />
 				</p:column>
@@ -46,14 +46,14 @@
 				<p:commandButton value="Modificar hoja de vida"
 					action="modificarhojavida.xhtml?faces-redirect=true" />
 				<p:commandButton value="Eliminar hoja de vida"
-					action="#{personaBean.eliminarHojaVida}">
+					action="#{hojaVidaBean.eliminarHojaVida}">
 					<p:confirm header="Confirmar eliminación"
 						message="¿Está seguro que desea eliminar la hoja de vida mostrada?"
 						icon="ui-icon-alert" />
 				</p:commandButton>
 				<p:confirmDialog global="true" showEffect="fade"
 					hideEffect="explode">
-					<p:commandButton value="Yes" type="button"
+					<p:commandButton value="Sí" type="button"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
