@@ -14,27 +14,29 @@
 
 <h:body>
 
-	<div class="ribbon"></div>
-	<div class="login">
-		<h1>SISPE</h1>
-		<p>Sistema de Seleccion de Personal</p>
-		<form action="login">
-			<div class="input">
-				<div class="blockinput">
+	<div class="container">
+		<section id="content">
+			<h:form action="">
+				<p:growl id="mensaje" showDetail="true" life="3000" />
+				<h1>SISPE</h1>
+				<h1>Inicio de sesión</h1>
+				<div>
 					<h:inputText type="text" value="#{gestionSesion.nombreUsuario}"
 						pt:placeholder="Nombre de usuario" />
 				</div>
-				<div class="blockinput">
+				<div>
 					<h:inputSecret id="contrasenha"
 						value="#{gestionSesion.contrasenha}" feedback="false"
 						pt:placeholder="Contraseña" />
 				</div>
-			</div>
-			<p:commandButton action="#{gestionSesion.iniciarSesion}"
+				<div>
+					<h:commandButton action="#{gestionSesion.iniciarSesion}"
 						value="Iniciar sesión" />
-		</form>
+				</div>
+			</h:form>
+		</section>
 	</div>
-	
+
 </h:body>
 
 </html>
