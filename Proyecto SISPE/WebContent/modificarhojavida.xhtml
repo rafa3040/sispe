@@ -6,82 +6,72 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
-	
-		<section>
 
-			<h:form id="modificar">
-				<p:growl id="mensaje" showDetail="true" life="3000" />
-				<p:panel header="Modificar hoja de vida" style="width: 700px;">
+		<h:form id="modificar">
+			<p:growl id="mensaje" showDetail="true" life="3000" />
+			<h:panelGrid id="mipanel" columns="2">
+				<f:facet name="header">
+					<h:outputLabel value="Modificar hoja de vida" />
+				</f:facet>
+				
+				<h:outputLabel value="Número de identificación" />
+				<p:inputText value="#{hojaVidaBean.numeroIdentificacion}"
+					disabled="true" />
+				<h:outputLabel value="Tipo de documento" />
+				<p:inputText value="#{hojaVidaBean.tipoDocumento}" disabled="true" />
+				<h:outputLabel value="Nombres" />
+				<p:inputText value="#{hojaVidaBean.nombrePersona}" required="true" />
+				<h:outputLabel value="Apellidos" />
+				<p:inputText value="#{hojaVidaBean.apellidoPersona}" required="true" />
+				<h:outputLabel value="Fecha de nacimiento" />
+				<p:calendar value="#{hojaVidaBean.fechaNacimiento}" showOn="button"
+					required="true" pattern="dd-MM-yyyy" />
+				<h:outputLabel value="Teléfono" />
+				<p:inputText value="#{hojaVidaBean.telefono}" required="true">
+					<f:validateDoubleRange minimum="0" maximum="100000000000" />
+				</p:inputText>
+				<h:outputLabel value="Correo electrónico" />
+				<p:inputText value="#{hojaVidaBean.correoElectronico}" />
+				<h:outputLabel value="Profesión" />
+				<p:inputText value="#{hojaVidaBean.profesion}" required="true" />
+				<h:outputLabel value="Especialización" />
+				<p:inputText value="#{hojaVidaBean.especializacion}" required="true" />
+				<h:outputLabel value="Experiencia 1" />
+				<p:spacer />
+				<h:outputLabel value="Fecha inicio" />
+				<p:calendar
+					value="#{hojaVidaBean.fechasExperiencias[0].fechaInicio}"
+					showOn="button" pattern="dd-MM-yyyy" />
+				<h:outputLabel value="Fecha final" />
+				<p:calendar value="#{hojaVidaBean.fechasExperiencias[0].fechaFinal}"
+					showOn="button" pattern="dd-MM-yyyy" />
+				<h:outputLabel value="Experiencia 2" />
+				<p:spacer />
+				<h:outputLabel value="Fecha inicio" />
+				<p:calendar
+					value="#{hojaVidaBean.fechasExperiencias[1].fechaInicio}"
+					showOn="button" pattern="dd-MM-yyyy" />
+				<h:outputLabel value="Fecha final" />
+				<p:calendar value="#{hojaVidaBean.fechasExperiencias[1].fechaFinal}"
+					showOn="button" pattern="dd-MM-yyyy" />
+				<h:outputLabel value="Experiencia 3" />
+				<p:spacer />
+				<h:outputLabel value="Fecha inicio" />
+				<p:calendar
+					value="#{hojaVidaBean.fechasExperiencias[2].fechaInicio}"
+					showOn="button" pattern="dd-MM-yyyy" />
+				<h:outputLabel value="Fecha final" />
+				<p:calendar value="#{hojaVidaBean.fechasExperiencias[2].fechaFinal}"
+					showOn="button" pattern="dd-MM-yyyy" />
 
-					<h:panelGrid id="mipanel" columns="2">
+				<p:commandButton action="#{hojaVidaBean.modificarHojaVida}"
+					value="Modificar" update="modificar" ajax="true" />
 
-						<h:outputLabel value="Número de identificación" />
-						<p:inputText value="#{hojaVidaBean.numeroIdentificacion}"
-							disabled="true" />
-						<h:outputLabel value="Tipo de documento" />
-						<p:inputText value="#{hojaVidaBean.tipoDocumento}" disabled="true" />
-						<h:outputLabel value="Nombres" />
-						<p:inputText value="#{hojaVidaBean.nombrePersona}" required="true" />
-						<h:outputLabel value="Apellidos" />
-						<p:inputText value="#{hojaVidaBean.apellidoPersona}"
-							required="true" />
-						<h:outputLabel value="Fecha de nacimiento" />
-						<p:calendar value="#{hojaVidaBean.fechaNacimiento}" showOn="button"
-							required="true" pattern="dd-MM-yyyy" />
-						<h:outputLabel value="Teléfono" />
-						<p:inputText value="#{hojaVidaBean.telefono}" required="true">
-							<f:validateDoubleRange minimum="0" maximum="100000000000" />
-						</p:inputText>
-						<h:outputLabel value="Correo electrónico" />
-						<p:inputText value="#{hojaVidaBean.correoElectronico}" />
-						<h:outputLabel value="Profesión" />
-						<p:inputText value="#{hojaVidaBean.profesion}" required="true" />
-						<h:outputLabel value="Especialización" />
-						<p:inputText value="#{hojaVidaBean.especializacion}"
-							required="true" />
-						<h:outputLabel value="Experiencia 1" />
-						<p:spacer />
-						<h:outputLabel value="Fecha inicio" />
-						<p:calendar
-							value="#{hojaVidaBean.fechasExperiencias[0].fechaInicio}"
-							showOn="button" pattern="dd-MM-yyyy" />
-						<h:outputLabel value="Fecha final" />
-						<p:calendar
-							value="#{hojaVidaBean.fechasExperiencias[0].fechaFinal}"
-							showOn="button" pattern="dd-MM-yyyy" />
-						<h:outputLabel value="Experiencia 2" />
-						<p:spacer />
-						<h:outputLabel value="Fecha inicio" />
-						<p:calendar
-							value="#{hojaVidaBean.fechasExperiencias[1].fechaInicio}"
-							showOn="button" pattern="dd-MM-yyyy" />
-						<h:outputLabel value="Fecha final" />
-						<p:calendar
-							value="#{hojaVidaBean.fechasExperiencias[1].fechaFinal}"
-							showOn="button" pattern="dd-MM-yyyy" />
-						<h:outputLabel value="Experiencia 3" />
-						<p:spacer />
-						<h:outputLabel value="Fecha inicio" />
-						<p:calendar
-							value="#{hojaVidaBean.fechasExperiencias[2].fechaInicio}"
-							showOn="button" pattern="dd-MM-yyyy" />
-						<h:outputLabel value="Fecha final" />
-						<p:calendar
-							value="#{hojaVidaBean.fechasExperiencias[2].fechaFinal}"
-							showOn="button" pattern="dd-MM-yyyy" />
+				<p:commandButton action="#{hojaVidaBean.cancelarModificacion}"
+					value="Cancelar" update="modificar" ajax="true" />
+			</h:panelGrid>
 
-						<p:commandButton action="#{hojaVidaBean.modificarHojaVida}"
-							value="Modificar" update="modificar" ajax="true" />
-
-						<p:commandButton action="#{hojaVidaBean.cancelarModificacion}"
-							value="Cancelar" update="modificar" ajax="true" />
-					</h:panelGrid>
-
-				</p:panel>
-
-			</h:form>
-
-		</section>
+		</h:form>
 
 	</ui:define>
 </ui:composition>

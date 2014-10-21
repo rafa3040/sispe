@@ -4,50 +4,39 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<title>SISPE - Inicio de sesión</title>
 	<h:outputStylesheet name="css/iniciosesion.css" />
 </h:head>
 
 <h:body>
 
-	<h2>
-		Inspired by <a href="http://dribbble.com/shots/899672-Login-Form">this
-			dribbble shot</a> made by <a href="http://dribbble.com/ionuss">Ionut
-			Zamfir</a>.
-	</h2>
-	<div class="ribbon"></div>
-	<div class="login">
-		<h1>Let's get started.</h1>
-		<p>This will be an amazing experience</p>
-		<form action="login">
-			<div class="input">
-				<div class="blockinput">
-					<i class="icon-envelope-alt"></i><input type="text" placeholder="Usuario" />
+	<div class="container">
+		<section id="content">
+			<h:form action="">
+				<p:growl id="mensaje" showDetail="true" life="3000" />
+				<h1>SISPE</h1>
+				<h1>Inicio de sesión</h1>
+				<div>
+					<h:inputText type="text" value="#{gestionSesion.nombreUsuario}"
+						pt:placeholder="Nombre de usuario" />
 				</div>
-				<div class="blockinput">
-					<i class="icon-unlock"></i><input type="password" placeholder="Password" />
+				<div>
+					<h:inputSecret id="contrasenha"
+						value="#{gestionSesion.contrasenha}" feedback="false"
+						pt:placeholder="Contraseña" />
 				</div>
-			</div>
-			<button>Login</button>
-		</form>
+				<div>
+					<h:commandButton action="#{gestionSesion.iniciarSesion}"
+						value="Iniciar sesión" />
+				</div>
+			</h:form>
+		</section>
 	</div>
-	<hr />
-	<h2>Another way to use the concept ...</h2>
-	<div class="ribbon ior"></div>
-	<div class="login io">
-		<div class="press">
-			CEO <span>Google</span>
-		</div>
-		<img
-			src="https://lh3.googleusercontent.com/-Y86IN-vEObo/AAAAAAAAAAI/AAAAAAACk4w/yvxY4GMx_8k/s120-c/photo.jpg"
-			alt="ggIO" />
-		<h1>Lawrence Edward Page</h1>
-		<p>CEO of Google</p>
-	</div>
-	<br />
-	<br />
+
 </h:body>
 
 </html>

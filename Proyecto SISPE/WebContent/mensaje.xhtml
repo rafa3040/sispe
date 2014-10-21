@@ -7,23 +7,14 @@
 
 	<ui:define name="content">
 
-		<section>
-		
-			<h:form id="mensajesistema">
-				<p:growl id="mensaje" showDetail="true" life="3000" />
-				<p:panel header="Mensaje del sistema" style="width: 400px;">
+		<h:form id="mensajesistema">
+			<p:growl id="mensaje" showDetail="true" life="3000" />
+			<h:panelGrid id="mipanel" columns="2">
 
-					<h:panelGrid id="mipanel" columns="2">
+				<h:outputText value="#{flash.mensaje}" />
 
-						<h:outputText value="#{flash.mensaje}" />
-
-					</h:panelGrid>
-
-				</p:panel>
-
-			</h:form>
-
-		</section>
+			</h:panelGrid>
+		</h:form>
 
 	</ui:define>
 </ui:composition>
