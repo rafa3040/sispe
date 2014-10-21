@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>SISPE - Inicio de sesión</title>
+	<h:outputStylesheet name="css/iniciosesion.css" />
+</h:head>
+
+<h:body>
+
+	<div class="container">
+		<section id="content">
+			<h:form action="">
+				<p:growl id="mensaje" showDetail="true" life="3000" />
+				<h1>SISPE</h1>
+				<h1>Inicio de sesión</h1>
+				<div>
+					<h:inputText type="text" value="#{gestionSesion.nombreUsuario}"
+						pt:placeholder="Nombre de usuario" />
+				</div>
+				<div>
+					<h:inputSecret id="contrasenha"
+						value="#{gestionSesion.contrasenha}" feedback="false"
+						pt:placeholder="Contraseña" />
+				</div>
+				<div>
+					<h:commandButton action="#{gestionSesion.iniciarSesion}"
+						value="Iniciar sesión" />
+				</div>
+			</h:form>
+		</section>
+	</div>
+
+</h:body>
+
+</html>
