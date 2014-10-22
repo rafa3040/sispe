@@ -9,9 +9,9 @@
 	
 		<h:form id="mostrarhojavida">
 			<p:growl id="mensaje" showDetail="true" life="3000" />
-			<h:panelGrid id="mipanel" columns="2">
+			<p:panelGrid id="mipanel" columns="2">
 				<f:facet name="header">
-					<h:outputLabel value="Visualizar hoja de vida" />
+					<h:outputLabel value="Visualizar hoja de vida" styleClass="titulo" />
 				</f:facet>
 
 				<h:outputLabel value="Documento" />
@@ -20,11 +20,12 @@
 					<f:validateDoubleRange minimum="0" maximum="100000000000" />
 				</p:inputText>
 
-				<p:spacer />
-				<p:commandButton action="#{hojaVidaBean.cargarHojaVida}"
-					value="Visualizar" update="mostrarhojavida" ajax="true" styleClass="estiloboton"/>
-
-				</h:panelGrid>
+				<f:facet name="footer">
+					<p:spacer width="120" height="10"/>
+					<p:commandButton action="#{hojaVidaBean.cargarHojaVida}"
+						value="Visualizar" update="mostrarhojavida" ajax="true" />
+				</f:facet>
+			</p:panelGrid>
 		</h:form>
 
 	</ui:define>

@@ -1,20 +1,16 @@
-.panelprincipal{
-	background-color: #e1e1e1;
+h3{
+	color: green;
 }
 
-.panelprincipal table {
+table {
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.panelprincipal label {
-	color: #0000ff;
-	font-weight: bold;
+label{
+	color: #14a4ff;
 }
 
-.estiloboton{
-	width: 240px;
-	height: 30px;
+.titulo{
+	color: #0086d7
 }
-
-
