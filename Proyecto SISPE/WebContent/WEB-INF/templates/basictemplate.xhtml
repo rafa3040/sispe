@@ -12,22 +12,22 @@
 
 <h:body>
 
-	<div class="header">
+	<header>
 		<ui:insert name="header">
 			<ui:include src="/WEB-INF/templates/basicheader.xhtml" />
 		</ui:insert>
-	</div>
+	</header>
 
-	<div class="content">
+	<section>
 		<ui:insert name="content" />
-	</div>
+	</section>
 
-	<hr />
-	<div class="footer">
+	<footer>
 		<ui:insert name="footer">
 			<ui:include src="/WEB-INF/templates/basicfooter.xhtml" />
 		</ui:insert>
-	</div>
+	</footer>
+	
 </h:body>
 
 </html>

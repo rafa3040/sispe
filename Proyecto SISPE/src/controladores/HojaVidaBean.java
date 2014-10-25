@@ -5,12 +5,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
-import com.sun.faces.context.flash.ELFlash;
 
 import modelos.Experiencia;
 import modelos.GestionModelo;
@@ -158,8 +157,8 @@ public class HojaVidaBean {
 			}
 			return "mostrarhojavida.xhtml?faces-redirect=true";
 		} catch (NullPointerException e) {
-			ELFlash.getFlash().put("mensaje", "La hoja de vida no se encuentra en la base de datos");
-			return "mensaje.xhtml?faces-redirect=true";
+			agregarMensaje(FacesMessage.SEVERITY_WARN, "Hojas de vida", "La hoja de vida no se encuentra en el sistema", false);
+			return "hojasvida.xhtml";
 		}
 	}
 	
@@ -193,35 +192,39 @@ public class HojaVidaBean {
 					experiencia.setFechaFinal(fechaFinal);
 					hojaVida.getExperiencias().add(experiencia);
 				} else {
-					FacesMessage mensajeEmergente=new FacesMessage(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1), "Fecha de inicio posterior a fecha final");
-					FacesContext.getCurrentInstance().addMessage(null, mensajeEmergente);
+					agregarMensaje(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1), "Fecha de inicio posterior a fecha final", false);
 					return "modificarhojavida.xthml";
 				}
-
 			} else if (dateFechaInicio==null && dateFechaFinal==null) {
 				continue;
 			} else {
-				FacesMessage mensajeEmergente=new FacesMessage(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1), "Rango de fechas incompleto");
-				FacesContext.getCurrentInstance().addMessage(null, mensajeEmergente);
+				agregarMensaje(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1), "Fecha incompleta", false);
 				return "modificarhojavida.xthml";
 			}
 		}
 		gestionModelo.actualizarHojaVida(hojaVida);		
-		ELFlash.getFlash().put("mensaje", "Hoja de vida actualizada");
-		return "mensaje.xhtml?faces-redirect=true";
+		agregarMensaje(FacesMessage.SEVERITY_INFO, "Hojas de vida", "La hoja de vida ha sido modificada", true);
+		return "mostrarhojavida.xthml?faces-redirect=true";
 	}
 	
 	public String eliminarHojaVida(){
 		gestionModelo.eliminarHojaVida(numeroIdentificacion);
-		ELFlash.getFlash().put("mensaje", "Hoja de vida eliminada");
-		return "mensaje.xhtml?faces-redirect=true";
+		agregarMensaje(FacesMessage.SEVERITY_INFO, "Hojas de vida", "La hoja de vida ha sido eliminada", true);
+		return "hojasvida.xhtml?faces-redirect=true";
 	}
 	
 	public String cancelarModificacion(){
 		cargarHojaVida();
-		FacesMessage mensajeEmergente=new FacesMessage(FacesMessage.SEVERITY_WARN, "Modificar hoja de vida", "Se han descartado los cambios");
+		agregarMensaje(FacesMessage.SEVERITY_INFO, "Modificar hoja de vida", "Se han descartado los cambios", true);
+		return "mostrarhojavida.xhtml?faces-redirect=true";
+	}
+	
+	private void agregarMensaje(Severity claseMensaje, String titulo, String descripcion, boolean redirigir){
+		FacesMessage mensajeEmergente=new FacesMessage(claseMensaje, titulo, descripcion);
 		FacesContext.getCurrentInstance().addMessage(null, mensajeEmergente);
-		return "hojasvida.xthml";
+		if (redirigir) {
+			FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+		}
 	}
 
 }

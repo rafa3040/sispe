@@ -5,36 +5,30 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<div class="row-top">
-		<div class="main">
-			<div class="wrapper">
-				<h1>
-					<a href="index.xhtml">Inicio SISPE</a>
-				</h1>
-				<h:form id="search-form" method="post" enctype="multipart/form-data">
-					<p:commandButton value="Cerrar sesión"
-						action="#{gestionSesion.cerrarSesion}" />
-				</h:form>
-			</div>
-		</div>
-	</div>
-	<div class="menu-row">
-		<div class="menu-bg">
-			<div class="main">
-				<nav class="indent-left">
-					<ul class="menu wrapper">
-						<li class="active"><a href="index.xhtml">Inicio</a></li>
-						<li><a href="#">Carga</a></li>
-						<li><a href="hojasvida.xhtml">Hojas de vida</a></li>
-						<li><a href="#">Selección</a></li>
-						<li><a href="#">Ayuda</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</div>
-	<div class="row-bot">
-		<div class="center-shadow"></div>
-	</div>
+	<h:form>
+
+		<h:graphicImage name="imagenes/logosispe.png" />
+
+		<p:menubar>
+
+			<p:menuitem value="Inicio" url="index.xhtml" icon="ui-icon-pencil" />
+
+			<p:menuitem value="Carga" url="#" icon="ui-icon-pencil" />
+
+			<p:menuitem value="Hojas de vida" url="hojasvida.xhtml"
+				icon="ui-icon-pencil" />
+
+			<p:menuitem value="Selección" url="#" icon="ui-icon-pencil" />
+
+			<p:menuitem value="Ayuda" url="#" icon="ui-icon-pencil" />
+
+			<f:facet name="options">
+				<p:commandButton type="submit" value="Cerrar sesión"
+					icon="ui-icon-extlink" action="#{gestionSesion.cerrarSesion}" />
+			</f:facet>
+
+		</p:menubar>
+		
+	</h:form>
 
 </ui:composition>

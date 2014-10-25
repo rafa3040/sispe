@@ -1,5 +1,28 @@
-h3{
-	color: green;
+header {
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	background-image: url("#{resource['imagenes:fondo2.jpg']}");
+}
+
+section {
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	background-image: url("#{resource['imagenes:fondo3.jpg']}");
+}
+
+footer {
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+	background-image: url("#{resource['imagenes:fondo2.jpg']}");
+	font-weight: bold;
+}
+
+.ui-menubar, .ui-menu-child, .ui-menu {
+	background: #CED8F6 !important;
 }
 
 table {
@@ -7,10 +30,10 @@ table {
 	margin-right: auto;
 }
 
-label{
+label {
 	color: #14a4ff;
 }
 
-.titulo{
+.titulo {
 	color: #0086d7
 }
