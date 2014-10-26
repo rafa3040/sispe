@@ -13,63 +13,77 @@
 				<f:facet name="header">
 					<h:outputLabel value="Modificar hoja de vida" styleClass="titulo" />
 				</f:facet>
-				
 				<h:outputLabel value="Número de identificación" />
 				<p:inputText value="#{hojaVidaBean.numeroIdentificacion}"
 					disabled="true" />
 				<h:outputLabel value="Tipo de documento" />
 				<p:inputText value="#{hojaVidaBean.tipoDocumento}" disabled="true" />
 				<h:outputLabel value="Nombres" />
-				<p:inputText value="#{hojaVidaBean.nombrePersona}" required="true" />
+				<p:inputText value="#{hojaVidaBean.nombrePersona}" required="true"
+					requiredMessage="No se ha digitado un nombre" />
 				<h:outputLabel value="Apellidos" />
-				<p:inputText value="#{hojaVidaBean.apellidoPersona}" required="true" />
+				<p:inputText value="#{hojaVidaBean.apellidoPersona}" required="true"
+					requiredMessage="No se ha digitado un apellido" />
 				<h:outputLabel value="Fecha de nacimiento" />
 				<p:calendar value="#{hojaVidaBean.fechaNacimiento}" showOn="button"
-					required="true" pattern="dd-MM-yyyy" />
+					required="true" pattern="dd-MM-yyyy"
+					requiredMessage="No se ha digitado una fecha de nacimiento"
+					converterMessage="Fecha de nacimiento digitada incorrectamente" />
 				<h:outputLabel value="Teléfono" />
-				<p:inputText value="#{hojaVidaBean.telefono}" required="true">
+				<p:inputText value="#{hojaVidaBean.telefono}" required="true"
+					requiredMessage="No se ha digitado un teléfono"
+					converterMessage="Teléfono digitado erróneamente">
 					<f:validateDoubleRange minimum="0" maximum="100000000000" />
 				</p:inputText>
 				<h:outputLabel value="Correo electrónico" />
 				<p:inputText value="#{hojaVidaBean.correoElectronico}" />
 				<h:outputLabel value="Profesión" />
-				<p:inputText value="#{hojaVidaBean.profesion}" required="true" />
+				<p:inputText value="#{hojaVidaBean.profesion}" required="true"
+					requiredMessage="No se ha digitado una profesión" />
 				<h:outputLabel value="Especialización" />
-				<p:inputText value="#{hojaVidaBean.especializacion}" required="true" />
+				<p:inputText value="#{hojaVidaBean.especializacion}" required="true"
+					requiredMessage="No se ha digitado una especialización" />
 				<h:outputLabel value="Experiencia 1" />
 				<p:spacer />
 				<h:outputLabel value="Fecha inicio" />
 				<p:calendar
 					value="#{hojaVidaBean.fechasExperiencias[0].fechaInicio}"
-					showOn="button" pattern="dd-MM-yyyy" />
+					showOn="button" pattern="dd-MM-yyyy"
+					converterMessage="Fecha digitada erróneamente" />
 				<h:outputLabel value="Fecha final" />
 				<p:calendar value="#{hojaVidaBean.fechasExperiencias[0].fechaFinal}"
-					showOn="button" pattern="dd-MM-yyyy" />
+					showOn="button" pattern="dd-MM-yyyy"
+					converterMessage="Fecha digitada erróneamente" />
 				<h:outputLabel value="Experiencia 2" />
 				<p:spacer />
 				<h:outputLabel value="Fecha inicio" />
 				<p:calendar
 					value="#{hojaVidaBean.fechasExperiencias[1].fechaInicio}"
-					showOn="button" pattern="dd-MM-yyyy" />
+					showOn="button" pattern="dd-MM-yyyy"
+					converterMessage="Fecha digitada erróneamente" />
 				<h:outputLabel value="Fecha final" />
 				<p:calendar value="#{hojaVidaBean.fechasExperiencias[1].fechaFinal}"
-					showOn="button" pattern="dd-MM-yyyy" />
+					showOn="button" pattern="dd-MM-yyyy"
+					converterMessage="Fecha digitada erróneamente" />
 				<h:outputLabel value="Experiencia 3" />
 				<p:spacer />
 				<h:outputLabel value="Fecha inicio" />
 				<p:calendar
 					value="#{hojaVidaBean.fechasExperiencias[2].fechaInicio}"
-					showOn="button" pattern="dd-MM-yyyy" />
+					showOn="button" pattern="dd-MM-yyyy"
+					converterMessage="Fecha digitada erróneamente" />
 				<h:outputLabel value="Fecha final" />
 				<p:calendar value="#{hojaVidaBean.fechasExperiencias[2].fechaFinal}"
-					showOn="button" pattern="dd-MM-yyyy" />
+					showOn="button" pattern="dd-MM-yyyy"
+					converterMessage="Fecha digitada erróneamente" />
 				<f:facet name="footer">
-					<p:spacer width="100" height="10" />
-					<p:commandButton action="#{hojaVidaBean.modificarHojaVida}"
-						value="Modificar" update="modificar" ajax="true" />
-					<p:spacer width="100" height="10" />
-					<p:commandButton action="#{hojaVidaBean.cancelarModificacion}"
-						value="Cancelar" update="modificar" ajax="true" />
+					<h:panelGroup style="display:block; text-align:center">
+						<p:commandButton action="#{hojaVidaBean.modificarHojaVida}"
+							value="Modificar" update="modificar" ajax="true" />
+						<p:spacer width="100" height="10"/>
+						<p:commandButton action="#{hojaVidaBean.cancelarModificacion}"
+							value="Cancelar" update="modificar" ajax="false" />
+					</h:panelGroup>
 				</f:facet>
 			</p:panelGrid>
 

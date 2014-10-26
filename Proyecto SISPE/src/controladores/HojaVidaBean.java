@@ -22,7 +22,7 @@ public class HojaVidaBean {
 	
 	private GestionModelo gestionModelo;
 	
-	private long numeroIdentificacion;
+	private Long numeroIdentificacion;
 	private String nombrePersona;
 	private String apellidoPersona;
 	private String tipoDocumento;
@@ -39,11 +39,11 @@ public class HojaVidaBean {
 		fechasExperiencias=new ArrayList<FechaExperiencia>();
 	}
 
-	public long getNumeroIdentificacion() {
+	public Long getNumeroIdentificacion() {
 		return numeroIdentificacion;
 	}
 
-	public void setNumeroIdentificacion(long numeroIdentificacion) {
+	public void setNumeroIdentificacion(Long numeroIdentificacion) {
 		this.numeroIdentificacion = numeroIdentificacion;
 	}
 

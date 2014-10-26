@@ -21,6 +21,7 @@ footer {
 	font-weight: bold;
 }
 
+/* color de la barra de menú */
 .ui-menubar, .ui-menu-child, .ui-menu {
 	background: #CED8F6 !important;
 }

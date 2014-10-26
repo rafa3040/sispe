@@ -3,27 +3,29 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
-	
+
 		<h:form id="mostrarhojavida">
 			<p:growl id="mensaje" showDetail="true" life="3000" />
 			<p:panelGrid id="mipanel" columns="2">
 				<f:facet name="header">
 					<h:outputLabel value="Visualizar hoja de vida" styleClass="titulo" />
 				</f:facet>
-
 				<h:outputLabel value="Documento" />
 				<p:inputText id="documento" required="true"
-					value="#{hojaVidaBean.numeroIdentificacion}">
+					value="#{hojaVidaBean.numeroIdentificacion}"
+					requiredMessage="No se ha digitado un documento"
+					converterMessage="Documento digitado erróneamente">
 					<f:validateDoubleRange minimum="0" maximum="100000000000" />
 				</p:inputText>
-
 				<f:facet name="footer">
-					<p:spacer width="120" height="10"/>
-					<p:commandButton action="#{hojaVidaBean.cargarHojaVida}"
-						value="Visualizar" update="mostrarhojavida" ajax="true" />
+					<h:panelGroup style="display:block; text-align:center">
+						<p:commandButton action="#{hojaVidaBean.cargarHojaVida}"
+							value="Visualizar" update="mostrarhojavida" ajax="true" />
+					</h:panelGroup>
 				</f:facet>
 			</p:panelGrid>
 		</h:form>
