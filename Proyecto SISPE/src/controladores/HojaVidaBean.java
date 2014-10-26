@@ -157,7 +157,7 @@ public class HojaVidaBean {
 			}
 			return "mostrarhojavida.xhtml?faces-redirect=true";
 		} catch (NullPointerException e) {
-			agregarMensaje(FacesMessage.SEVERITY_WARN, "Hojas de vida", "La hoja de vida no se encuentra en el sistema", false);
+			agregarMensaje(FacesMessage.SEVERITY_WARN, "La hoja de vida no se encuentra en el sistema", false);
 			return "hojasvida.xhtml";
 		}
 	}
@@ -192,35 +192,35 @@ public class HojaVidaBean {
 					experiencia.setFechaFinal(fechaFinal);
 					hojaVida.getExperiencias().add(experiencia);
 				} else {
-					agregarMensaje(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1), "Fecha de inicio posterior a fecha final", false);
+					agregarMensaje(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1)+": fecha de inicio posterior a fecha final", false);
 					return "modificarhojavida.xthml";
 				}
 			} else if (dateFechaInicio==null && dateFechaFinal==null) {
 				continue;
 			} else {
-				agregarMensaje(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1), "Fecha incompleta", false);
+				agregarMensaje(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1)+": fecha incompleta", false);
 				return "modificarhojavida.xthml";
 			}
 		}
 		gestionModelo.actualizarHojaVida(hojaVida);		
-		agregarMensaje(FacesMessage.SEVERITY_INFO, "Hojas de vida", "La hoja de vida ha sido modificada", true);
+		agregarMensaje(FacesMessage.SEVERITY_INFO, "La hoja de vida ha sido modificada", true);
 		return "mostrarhojavida.xthml?faces-redirect=true";
 	}
 	
 	public String eliminarHojaVida(){
 		gestionModelo.eliminarHojaVida(numeroIdentificacion);
-		agregarMensaje(FacesMessage.SEVERITY_INFO, "Hojas de vida", "La hoja de vida ha sido eliminada", true);
+		agregarMensaje(FacesMessage.SEVERITY_INFO, "La hoja de vida ha sido eliminada", true);
 		return "hojasvida.xhtml?faces-redirect=true";
 	}
 	
 	public String cancelarModificacion(){
 		cargarHojaVida();
-		agregarMensaje(FacesMessage.SEVERITY_INFO, "Modificar hoja de vida", "Se han descartado los cambios", true);
+		agregarMensaje(FacesMessage.SEVERITY_INFO, "Se ha cancelado la modificación de la hoja de vida", true);
 		return "mostrarhojavida.xhtml?faces-redirect=true";
 	}
 	
-	private void agregarMensaje(Severity claseMensaje, String titulo, String descripcion, boolean redirigir){
-		FacesMessage mensajeEmergente=new FacesMessage(claseMensaje, titulo, descripcion);
+	private void agregarMensaje(Severity claseMensaje, String descripcion, boolean redirigir){
+		FacesMessage mensajeEmergente=new FacesMessage(claseMensaje, descripcion, "");
 		FacesContext.getCurrentInstance().addMessage(null, mensajeEmergente);
 		if (redirigir) {
 			FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
