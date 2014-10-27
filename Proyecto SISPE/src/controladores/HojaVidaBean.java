@@ -182,15 +182,20 @@ public class HojaVidaBean {
 			Date dateFechaFinal=fechasExperiencias.get(i).getFechaFinal();
 			if(dateFechaInicio!=null && dateFechaFinal!=null){
 				if(dateFechaInicio.before(dateFechaFinal)){
-					fechaInicio=Calendar.getInstance();
-					fechaInicio.setTime(dateFechaInicio);
-					fechaFinal=Calendar.getInstance();
-					fechaFinal.setTime(dateFechaFinal);
-					experiencia=new Experiencia();
-					experiencia.setHojaVida(hojaVida);
-					experiencia.setFechaInicio(fechaInicio);
-					experiencia.setFechaFinal(fechaFinal);
-					hojaVida.getExperiencias().add(experiencia);
+					if (dateFechaInicio.after(new Date()) || dateFechaFinal.after(new Date())) {
+						agregarMensaje(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1)+": fecha de inicio o final posterior a fecha actual", false);
+						return "modificarhojavida.xthml";
+					} else {
+						fechaInicio=Calendar.getInstance();
+						fechaInicio.setTime(dateFechaInicio);
+						fechaFinal=Calendar.getInstance();
+						fechaFinal.setTime(dateFechaFinal);
+						experiencia=new Experiencia();
+						experiencia.setHojaVida(hojaVida);
+						experiencia.setFechaInicio(fechaInicio);
+						experiencia.setFechaFinal(fechaFinal);
+						hojaVida.getExperiencias().add(experiencia);
+					}
 				} else {
 					agregarMensaje(FacesMessage.SEVERITY_WARN, "Experiencia "+(i+1)+": fecha de inicio posterior a fecha final", false);
 					return "modificarhojavida.xthml";

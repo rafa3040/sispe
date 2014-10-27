@@ -16,6 +16,7 @@ footer {
 	padding-bottom: 20px;
 	text-align: center;
 	font-weight: bold;
+	color: #ffffff;
 }
 
 body {
@@ -41,6 +42,19 @@ table {
 
 label {
 	color: #14a4ff;
+}
+
+h2{
+	
+	color: #ffffff;
+	text-align:center;
+}
+
+
+h3{
+	
+	color: #ffffff;
+	text-align:center;
 }
 
 .titulo {
