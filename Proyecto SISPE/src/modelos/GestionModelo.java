@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 public class GestionModelo {
@@ -63,39 +59,10 @@ public class GestionModelo {
 	// * Métodos para la gestión de archivos *
 	// ***************************************
 	public void cargarHojasVida(Workbook libroExcel) throws InvalidFormatException, IOException{
-		cargarArchivo(libroExcel);
+		CargaExcel cargaExcel=new CargaExcel();
+		cargaExcel.cargarArchivo(libroExcel);
 	}
 	
-	private void cargarArchivo(Workbook libroExcel) throws InvalidFormatException, IOException{
-		Sheet hoja = libroExcel.getSheetAt(0);
 
-		int linea = 0;
-		for (Row fila : hoja){        // itera a través de cada fila
-			System.out.print((linea++) + ": \t");
-			for (Cell celda : fila){    // itera a través de cada celda
-				switch (celda.getCellType())
-				{
-				case Cell.CELL_TYPE_STRING:
-					System.out.print(celda.getRichStringCellValue());
-					break;
-				case Cell.CELL_TYPE_NUMERIC:
-					if (DateUtil.isCellDateFormatted(celda))
-						System.out.print(celda.getDateCellValue());
-					else
-						System.out.print(celda.getNumericCellValue());
-					break;
-				case Cell.CELL_TYPE_BOOLEAN:
-					System.out.print(celda.getBooleanCellValue());
-					break;
-				case Cell.CELL_TYPE_FORMULA:
-					System.out.print(celda.getCellFormula());
-					break;
-				default:
-					System.out.print(" -- ");
-				}
-			}
-			System.out.println();
-		}
-	}
 
 }
