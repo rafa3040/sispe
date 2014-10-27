@@ -2,14 +2,12 @@ header {
 	padding-top: 20px;
 	padding-left: 20px;
 	padding-bottom: 20px;
-	background-image: url("#{resource['imagenes:fondo2.jpg']}");
 }
 
 section {
 	padding-top: 20px;
 	padding-left: 20px;
 	padding-bottom: 20px;
-	background-image: url("#{resource['imagenes:fondo3.jpg']}");
 }
 
 footer {
@@ -17,13 +15,18 @@ footer {
 	padding-left: 20px;
 	padding-bottom: 20px;
 	text-align: center;
-	background-image: url("#{resource['imagenes:fondo2.jpg']}");
 	font-weight: bold;
+}
+
+body {
+	
+	background-image: url("#{resource['imagenes:fondo2.jpg']}");
+	
 }
 
 /* color del fondo de la barra de menú */
 .ui-menubar, .ui-menu-child, .ui-menu {
-	background: #CED8F6 !important;
+	background: #FFFFFF !important;
 }
 
 /* color del texto de la barra de menú */
