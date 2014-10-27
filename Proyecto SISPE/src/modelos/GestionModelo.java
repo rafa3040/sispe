@@ -13,6 +13,9 @@ public class GestionModelo {
 	private PersonaDao personaDao;
 	private ExperienciaDao experienciaDao;
 	
+	private ArrayList<Integer> filasNoExtraidas;
+	private ArrayList<Long> filasDuplicadas;
+	
 	public GestionModelo() {
 		conexionMysql=new ConexionMysql();
 		usuarioDao=new UsuarioDao(conexionMysql.getConexion());
@@ -34,9 +37,20 @@ public class GestionModelo {
 	
 	public HojaVida consultarHojaVida(long numeroIdentificacion){
 		HojaVida hojaVida=personaDao.consultarPersona(numeroIdentificacion);
-		ArrayList<Experiencia> experiencias=experienciaDao.consultarExperiencias(numeroIdentificacion);
-		hojaVida.setExperiencias(experiencias);
-		return hojaVida;
+		if(hojaVida!=null){
+			ArrayList<Experiencia> experiencias=experienciaDao.consultarExperiencias(numeroIdentificacion);
+			hojaVida.setExperiencias(experiencias);
+			return hojaVida;
+		} else {
+			return null;
+		}
+	}
+	
+	public void insertarHojaVida(HojaVida hojaVida){
+		personaDao.insertarPersona(hojaVida);
+		for (Experiencia experiencia : hojaVida.getExperiencias()) {
+			experienciaDao.insertarExperiencia(experiencia);
+		}
 	}
 	
 	// Como el objeto HojaVida a actualizar puede tener Experiencias diferentes a las que
@@ -61,8 +75,24 @@ public class GestionModelo {
 	public void cargarHojasVida(Workbook libroExcel) throws InvalidFormatException, IOException{
 		CargaExcel cargaExcel=new CargaExcel();
 		cargaExcel.cargarArchivo(libroExcel);
+		ArrayList<HojaVida> hojasVidaExtraidas=cargaExcel.getHojasVidaExtraidas();
+		filasNoExtraidas=cargaExcel.getFilasNoExtraidas();
+		filasDuplicadas=new ArrayList<Long>();
+		for (HojaVida hojaVida : hojasVidaExtraidas) {
+			if(consultarHojaVida(hojaVida.getNumeroIdentificacion())==null){
+				insertarHojaVida(hojaVida);
+			} else {
+				filasDuplicadas.add(hojaVida.getNumeroIdentificacion());
+			}
+		}
 	}
-	
 
+	public ArrayList<Integer> getFilasNoExtraidas() {
+		return filasNoExtraidas;
+	}
+
+	public ArrayList<Long> getFilasDuplicadas() {
+		return filasDuplicadas;
+	}
 
 }

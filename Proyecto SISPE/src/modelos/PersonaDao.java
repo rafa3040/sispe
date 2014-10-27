@@ -17,6 +17,7 @@ public class PersonaDao {
 	private Connection conexion;
 	
 	private PreparedStatement psConsultarPersona;
+	private PreparedStatement psInsertarPersona;
 	private PreparedStatement psActualizarPersona;
 	private PreparedStatement psEliminarPersona;
 	
@@ -28,6 +29,7 @@ public class PersonaDao {
 	private void crearSentencias(){
 		try {
 			psConsultarPersona=conexion.prepareStatement("SELECT * FROM persona WHERE numero_identificacion=?");
+			psInsertarPersona=conexion.prepareStatement("INSERT INTO persona SET numero_identificacion=?, nombre_persona=?, apellido_persona=?, fecha_nacimiento=?, telefono=?, correo_electronico=?, profesion=?, especializacion=?");
 			psActualizarPersona=conexion.prepareStatement("UPDATE persona SET nombre_persona=?, apellido_persona=?, fecha_nacimiento=?, telefono=?, correo_electronico=?, profesion=?, especializacion=? WHERE numero_identificacion=?");
 			psEliminarPersona=conexion.prepareStatement("DELETE FROM persona WHERE numero_identificacion=?");
 		} catch (SQLException e) {
@@ -61,6 +63,27 @@ public class PersonaDao {
 			}
 		}
 		return hojaVida;
+	}
+	
+	public boolean insertarPersona(HojaVida hojaVida){
+		if(conexion!=null){
+			try {
+				psInsertarPersona.setLong(1, hojaVida.getNumeroIdentificacion());
+				psInsertarPersona.setString(2, hojaVida.getNombrePersona());
+				psInsertarPersona.setString(3, hojaVida.getApellidoPersona());
+				Timestamp fechaNacimiento=new Timestamp(hojaVida.getFechaNacimiento().getTimeInMillis());
+				psInsertarPersona.setTimestamp(4, fechaNacimiento);
+				psInsertarPersona.setLong(5, hojaVida.getTelefono());
+				psInsertarPersona.setString(6, hojaVida.getCorreoElectronico());
+				psInsertarPersona.setString(7, hojaVida.getProfesion());
+				psInsertarPersona.setString(8, hojaVida.getEspecializacion());
+				psInsertarPersona.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean actualizarPersona(HojaVida hojaVida){

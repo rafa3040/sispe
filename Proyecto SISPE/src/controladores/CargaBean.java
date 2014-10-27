@@ -1,5 +1,7 @@
 package controladores;
 
+import java.util.ArrayList;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -22,6 +24,9 @@ public class CargaBean {
 	
 	private UploadedFile archivo;
 	
+	private ArrayList<Integer> filasNoExtraidas;
+	private ArrayList<Long> filasDuplicadas;
+	
 	public CargaBean() {
 		HttpSession sesion=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		gestionModelo=(GestionModelo) sesion.getAttribute("gestionModelo");
@@ -35,12 +40,22 @@ public class CargaBean {
 		this.archivo = archivo;
 	}
 
+	public ArrayList<Integer> getFilasNoAgregadas() {
+		return filasNoExtraidas;
+	}
+
+	public ArrayList<Long> getFilasDuplicadas() {
+		return filasDuplicadas;
+	}
+
 	public String cargarHojaVida() {
 		if(archivo != null && archivo.getSize()>0) {
 			try {
 				Workbook libroExcel=WorkbookFactory.create(archivo.getInputstream());
 				gestionModelo.cargarHojasVida(libroExcel);
 				archivo=null;
+				filasNoExtraidas=gestionModelo.getFilasNoExtraidas();
+				filasDuplicadas=gestionModelo.getFilasDuplicadas();
 				ELFlash.getFlash().put("mensaje", "Archivo cargado exitosamente");
 				return "resultadoscarga.xhtml?faces-redirect=true";
 			} catch (Exception e) {
@@ -54,5 +69,17 @@ public class CargaBean {
 			return "";
 		}
     }
+	
+	public void info(){
+		System.out.println("Duplicadas");
+		for (Long long1 : filasDuplicadas) {
+			System.out.println(String.valueOf(long1));
+		}
+		System.out.println("No agregadas");
+		for(Integer integer	: filasNoExtraidas){
+			System.out.println(String.valueOf(integer));
+		}
+	}
+	
 
 }

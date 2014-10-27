@@ -58,7 +58,7 @@ public class ExperienciaDao {
 					fechaFinal.setTimeInMillis(tiempoFinal.getTime());
 					experiencia.setFechaFinal(fechaFinal);
 					HojaVida hojaVida=personaDao.consultarPersona(numeroIdentificacion);
-					experiencia.setPersona(hojaVida);
+					experiencia.setHojaVida(hojaVida);
 					experiencias.add(experiencia);
 				}
 				return experiencias;
@@ -75,7 +75,7 @@ public class ExperienciaDao {
 			Timestamp tiempoInicio=new Timestamp(fechaInicio.getTimeInMillis());
 			Calendar fechaFinal=experiencia.getFechaFinal();
 			Timestamp tiempoFinal=new Timestamp(fechaFinal.getTimeInMillis());
-			long numeroIdentificacion=experiencia.getPersona().getNumeroIdentificacion();
+			long numeroIdentificacion=experiencia.getHojaVida().getNumeroIdentificacion();
 			try {
 				psInsertarExperiencia.setTimestamp(1, tiempoInicio);
 				psInsertarExperiencia.setTimestamp(2, tiempoFinal);

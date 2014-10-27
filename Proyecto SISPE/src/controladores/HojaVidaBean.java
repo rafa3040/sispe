@@ -128,8 +128,8 @@ public class HojaVidaBean {
 	}
 
 	public String cargarHojaVida(){
-		try {
-			HojaVida hojaVida=gestionModelo.consultarHojaVida(numeroIdentificacion);
+		HojaVida hojaVida=gestionModelo.consultarHojaVida(numeroIdentificacion);
+		if (hojaVida!=null) {
 			nombrePersona=hojaVida.getNombrePersona();
 			apellidoPersona=hojaVida.getApellidoPersona();
 			tipoDocumento=hojaVida.getTipoDocumento().toString();
@@ -156,7 +156,7 @@ public class HojaVidaBean {
 				fechaExperiencia.setFechaFinal(experiencia.getFechaFinal().getTime());
 			}
 			return "mostrarhojavida.xhtml?faces-redirect=true";
-		} catch (NullPointerException e) {
+		} else {
 			agregarMensaje(FacesMessage.SEVERITY_WARN, "La hoja de vida no se encuentra en el sistema", false);
 			return "hojasvida.xhtml";
 		}
@@ -187,7 +187,7 @@ public class HojaVidaBean {
 					fechaFinal=Calendar.getInstance();
 					fechaFinal.setTime(dateFechaFinal);
 					experiencia=new Experiencia();
-					experiencia.setPersona(hojaVida);
+					experiencia.setHojaVida(hojaVida);
 					experiencia.setFechaInicio(fechaInicio);
 					experiencia.setFechaFinal(fechaFinal);
 					hojaVida.getExperiencias().add(experiencia);
