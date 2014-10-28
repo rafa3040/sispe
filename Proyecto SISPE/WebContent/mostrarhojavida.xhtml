@@ -9,86 +9,178 @@
 
 		<h:form id="modificar">
 			<p:growl id="mensaje" showDetail="true" life="3000" />
-			<p:panelGrid id="mipanel" columns="2">
+			<p:panelGrid id="mipanel">
 				<f:facet name="header">
-					<h:outputLabel value="Visualizar hoja de vida" styleClass="titulo" />
+					<p:row>
+						<p:column colspan="2">
+							<h:outputLabel value="Visualizar hoja de vida"
+								styleClass="titulo" />
+						</p:column>
+					</p:row>
 				</f:facet>
-				<h:outputLabel value="Número de identificación" />
-				#{hojaVidaBean.numeroIdentificacion}
-				<h:outputLabel value="Tipo de documento" />
-				#{hojaVidaBean.tipoDocumento}
-				<h:outputLabel value="Nombres" />
-				#{hojaVidaBean.nombrePersona}
-				<h:outputLabel value="Apellidos" />
-				#{hojaVidaBean.apellidoPersona}
-				<h:outputLabel value="Fecha de nacimiento" />
-				<h:outputText value="#{hojaVidaBean.fechaNacimiento}">
-					<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-				</h:outputText>
-				<h:outputLabel value="Teléfono" />
-				#{hojaVidaBean.telefono}
-				<h:outputLabel value="Correo electrónico" />
-				#{hojaVidaBean.correoElectronico}
-				<h:outputLabel value="Profesión" />
-				#{hojaVidaBean.profesion}
-				<h:outputLabel value="Especialización" />
-				#{hojaVidaBean.especializacion}
-				<h:outputLabel value="Experiencia 1" />
-				<p:spacer />
-				<h:outputLabel value="Fecha inicio" />
-				<h:outputText
-					value="#{hojaVidaBean.fechasExperiencias[0].fechaInicio}">
-					<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-				</h:outputText>
-				<h:outputLabel value="Fecha final" />
-				<h:outputText
-					value="#{hojaVidaBean.fechasExperiencias[0].fechaFinal}">
-					<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-				</h:outputText>
-				<h:outputLabel value="Experiencia 2" />
-				<p:spacer />
-				<h:outputLabel value="Fecha inicio" />
-				<h:outputText
-					value="#{hojaVidaBean.fechasExperiencias[1].fechaInicio}">
-					<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-				</h:outputText>
-				<h:outputLabel value="Fecha final" />
-				<h:outputText
-					value="#{hojaVidaBean.fechasExperiencias[1].fechaFinal}">
-					<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-				</h:outputText>
-				<h:outputLabel value="Experiencia 3" />
-				<p:spacer />
-				<h:outputLabel value="Fecha inicio" />
-				<h:outputText
-					value="#{hojaVidaBean.fechasExperiencias[2].fechaInicio}">
-					<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-				</h:outputText>
-				<h:outputLabel value="Fecha final" />
-				<h:outputText
-					value="#{hojaVidaBean.fechasExperiencias[2].fechaFinal}">
-					<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-				</h:outputText>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Número de identificación" />
+					</p:column>
+					<p:column>#{hojaVidaBean.numeroIdentificacion}</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Tipo de documento" />
+					</p:column>
+					<p:column>#{hojaVidaBean.tipoDocumento}</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Nombres" />
+					</p:column>
+					<p:column>#{hojaVidaBean.nombrePersona}</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Apellidos" />
+					</p:column>
+					<p:column>#{hojaVidaBean.apellidoPersona}</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Fecha de nacimiento" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{hojaVidaBean.fechaNacimiento}">
+							<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Teléfono" />
+					</p:column>
+					<p:column>#{hojaVidaBean.telefono}</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Correo electrónico" />
+					</p:column>
+					<p:column>#{hojaVidaBean.correoElectronico}</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Profesión" />
+					</p:column>
+					<p:column>#{hojaVidaBean.profesion}</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Especialización" />
+					</p:column>
+					<p:column>#{hojaVidaBean.especializacion}</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2" style="text-align:center">
+						<h:outputLabel value="Experiencia 1" styleClass="titulo" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Fecha inicio" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{hojaVidaBean.fechasExperiencias[0].textoFechaInicio()}">
+							<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Fecha final" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{hojaVidaBean.fechasExperiencias[0].textoFechaFinal()}">
+							<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2" style="text-align:center">
+						<h:outputLabel value="Experiencia 2" styleClass="titulo" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Fecha inicio" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{hojaVidaBean.fechasExperiencias[1].textoFechaInicio()}">
+							<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Fecha final" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{hojaVidaBean.fechasExperiencias[1].textoFechaFinal()}">
+							<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2" style="text-align:center">
+						<h:outputLabel value="Experiencia 3" styleClass="titulo" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Fecha inicio" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{hojaVidaBean.fechasExperiencias[2].textoFechaInicio()}">
+							<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Fecha final" />
+					</p:column>
+					<p:column>
+						<h:outputText
+							value="#{hojaVidaBean.fechasExperiencias[2].textoFechaFinal()}">
+							<f:convertDateTime pattern="dd/MM/yyyy" type="date" />
+						</h:outputText>
+					</p:column>
+				</p:row>
 				<f:facet name="footer">
-					<h:panelGroup style="display:block; text-align:center">
-						<p:commandButton value="Modificar hoja de vida"
-							action="modificarhojavida.xhtml?faces-redirect=true" />
-						<p:spacer width="100" height="10" />
-						<p:commandButton value="Eliminar hoja de vida"
-							action="#{hojaVidaBean.eliminarHojaVida}">
-							<p:confirm header="Confirmar eliminación"
-								message="¿Está seguro que desea eliminar la hoja de vida mostrada?"
-								icon="ui-icon-alert" />
-						</p:commandButton>
+					<p:row>
+						<p:column colspan="2">
+							<h:panelGroup style="display:block; text-align:center">
+								<p:commandButton value="Modificar hoja de vida"
+									action="modificarhojavida.xhtml?faces-redirect=true" />
+								<p:spacer width="100" height="10" />
+								<p:commandButton value="Eliminar hoja de vida"
+									action="#{hojaVidaBean.eliminarHojaVida}">
+									<p:confirm header="Confirmar eliminación"
+										message="¿Está seguro que desea eliminar la hoja de vida mostrada?"
+										icon="ui-icon-alert" />
+								</p:commandButton>
 
-						<p:confirmDialog global="true" showEffect="fade"
-							hideEffect="explode">
-							<p:commandButton value="Sí" type="button"
-								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-							<p:commandButton value="No" type="button"
-								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-						</p:confirmDialog>
-					</h:panelGroup>
+								<p:confirmDialog global="true" showEffect="fade"
+									hideEffect="explode">
+									<p:commandButton value="Sí" type="button"
+										styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+									<p:commandButton value="No" type="button"
+										styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								</p:confirmDialog>
+							</h:panelGroup>
+						</p:column>
+					</p:row>
 				</f:facet>
 			</p:panelGrid>
 

@@ -170,6 +170,10 @@ public class HojaVidaBean {
 		hojaVida.setApellidoPersona(apellidoPersona);
 		Calendar fecha=Calendar.getInstance();
 		fecha.setTime(fechaNacimiento);
+		if (fecha.after(Calendar.getInstance())) {
+			agregarMensaje(FacesMessage.SEVERITY_WARN, "Fecha de nacimiento posterior a la fecha actual", false);
+			return "modificarhojavida.xthml";
+		}
 		hojaVida.setFechaNacimiento(fecha);
 		hojaVida.setTelefono(telefono);
 		hojaVida.setCorreoElectronico(correoElectronico);
