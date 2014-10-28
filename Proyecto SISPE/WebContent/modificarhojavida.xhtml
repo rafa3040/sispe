@@ -80,7 +80,11 @@
 						<h:outputLabel value="Correo electrónico" />
 					</p:column>
 					<p:column>
-						<p:inputText value="#{hojaVidaBean.correoElectronico}" />
+						<p:inputText value="#{hojaVidaBean.correoElectronico}"
+						validatorMessage="Correo electrónico mal ingresado">
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
 					</p:column>
 				</p:row>
 				<p:row>

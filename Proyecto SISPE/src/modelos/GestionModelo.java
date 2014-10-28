@@ -83,6 +83,7 @@ public class GestionModelo {
 				insertarHojaVida(hojaVida);
 			} else {
 				filasDuplicadas.add(hojaVida.getNumeroIdentificacion());
+				actualizarHojaVida(hojaVida);
 			}
 		}
 	}

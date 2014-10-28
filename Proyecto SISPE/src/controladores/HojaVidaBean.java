@@ -143,7 +143,7 @@ public class HojaVidaBean {
 			// Crea tres instancias de FechaExperiencia, de tal modo que el Facelet
 			// modificarhojavida pueda modificar hasta tres experiencias, incluso 
 			// si alguna de estas no existe en la base de datos
-			for(int i=0; i<3; i++){
+			for(int i = 0; i < 3; i++){
 				fechasExperiencias.add(new FechaExperiencia());
 			}
 			ArrayList<Experiencia> experiencias=hojaVida.getExperiencias();
