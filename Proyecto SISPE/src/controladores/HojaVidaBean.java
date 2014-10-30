@@ -27,7 +27,7 @@ public class HojaVidaBean {
 	private String apellidoPersona;
 	private String tipoDocumento;
 	private Date fechaNacimiento;
-	private long telefono;
+	private Long telefono;
 	private String correoElectronico;
 	private String profesion;
 	private String especializacion;
@@ -79,11 +79,11 @@ public class HojaVidaBean {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public long getTelefono() {
+	public Long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(long telefono) {
+	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
 	}
 
@@ -133,7 +133,11 @@ public class HojaVidaBean {
 			nombrePersona=hojaVida.getNombrePersona();
 			apellidoPersona=hojaVida.getApellidoPersona();
 			tipoDocumento=hojaVida.getTipoDocumento().toString();
-			fechaNacimiento=new Date(hojaVida.getFechaNacimiento().getTimeInMillis());
+			if(hojaVida.getFechaNacimiento()!=null){
+				fechaNacimiento=new Date(hojaVida.getFechaNacimiento().getTimeInMillis());
+			} else {
+				fechaNacimiento=null;
+			}
 			telefono=hojaVida.getTelefono();
 			correoElectronico=hojaVida.getCorreoElectronico();
 			profesion=hojaVida.getProfesion();

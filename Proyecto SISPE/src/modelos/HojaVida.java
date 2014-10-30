@@ -6,12 +6,12 @@ import java.util.Calendar;
 
 public class HojaVida {
 	
-	private long numeroIdentificacion;
+	private Long numeroIdentificacion;
 	private String nombrePersona;
 	private String apellidoPersona;
 	private TipoDocumento tipoDocumento;
 	private Calendar fechaNacimiento;
-	private long telefono;
+	private Long telefono;
 	private String correoElectronico;
 	private String profesion;
 	private String especializacion;
@@ -21,11 +21,11 @@ public class HojaVida {
 		experiencias=new ArrayList<Experiencia>();
 	}
 
-	public long getNumeroIdentificacion() {
+	public Long getNumeroIdentificacion() {
 		return numeroIdentificacion;
 	}
 
-	public void setNumeroIdentificacion(long numeroIdentificacion) {
+	public void setNumeroIdentificacion(Long numeroIdentificacion) {
 		this.numeroIdentificacion = numeroIdentificacion;
 	}
 
@@ -61,11 +61,11 @@ public class HojaVida {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public long getTelefono() {
+	public Long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(long telefono) {
+	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
 	}
 

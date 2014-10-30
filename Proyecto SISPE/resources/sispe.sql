@@ -11,13 +11,13 @@ USE `sispe` ;
 CREATE  TABLE IF NOT EXISTS `sispe`.`persona` (
   `numero_identificacion` BIGINT NOT NULL ,
   `nombre_persona` VARCHAR(45) NOT NULL ,
-  `apellido_persona` VARCHAR(45) NOT NULL ,
+  `apellido_persona` VARCHAR(45) ,
   `tipo_documento` ENUM('CC','CE') NOT NULL ,
-  `fecha_nacimiento` DATE NOT NULL ,
-  `telefono` BIGINT NOT NULL ,
-  `correo_electronico` VARCHAR(45) NOT NULL ,
-  `profesion` VARCHAR(45) NOT NULL ,
-  `especializacion` VARCHAR(45) NOT NULL ,
+  `fecha_nacimiento` DATE ,
+  `telefono` BIGINT ,
+  `correo_electronico` VARCHAR(45) ,
+  `profesion` VARCHAR(45) ,
+  `especializacion` VARCHAR(45) ,
   PRIMARY KEY (`numero_identificacion`) )
 ENGINE = InnoDB;
 

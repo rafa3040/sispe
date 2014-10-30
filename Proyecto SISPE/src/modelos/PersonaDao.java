@@ -1,10 +1,11 @@
 package modelos;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.Calendar;
 
 /**
@@ -49,11 +50,19 @@ public class PersonaDao {
 					hojaVida.setNombrePersona(dato.getString(2));
 					hojaVida.setApellidoPersona(dato.getString(3));
 					hojaVida.setTipoDocumento(TipoDocumento.valueOf(dato.getString(4)));
-					Timestamp tiempo=dato.getTimestamp(5);
-					Calendar fechaNacimiento=Calendar.getInstance();
-					fechaNacimiento.setTimeInMillis(tiempo.getTime());
-					hojaVida.setFechaNacimiento(fechaNacimiento);
-					hojaVida.setTelefono(dato.getLong(6));
+					Date tiempo=dato.getDate(5);
+					if(tiempo!=null){
+						Calendar fechaNacimiento=Calendar.getInstance();
+						fechaNacimiento.setTimeInMillis(tiempo.getTime());
+						hojaVida.setFechaNacimiento(fechaNacimiento);
+					} else {
+						hojaVida.setFechaNacimiento(null);
+					}
+					if (dato.getObject(6)!=null) {
+						hojaVida.setTelefono(dato.getLong(6));
+					} else {
+						hojaVida.setTelefono(null);
+					}
 					hojaVida.setCorreoElectronico(dato.getString(7));
 					hojaVida.setProfesion(dato.getString(8));
 					hojaVida.setEspecializacion(dato.getString(9));
@@ -71,9 +80,17 @@ public class PersonaDao {
 				psInsertarPersona.setLong(1, hojaVida.getNumeroIdentificacion());
 				psInsertarPersona.setString(2, hojaVida.getNombrePersona());
 				psInsertarPersona.setString(3, hojaVida.getApellidoPersona());
-				Timestamp fechaNacimiento=new Timestamp(hojaVida.getFechaNacimiento().getTimeInMillis());
-				psInsertarPersona.setTimestamp(4, fechaNacimiento);
-				psInsertarPersona.setLong(5, hojaVida.getTelefono());
+				if(hojaVida.getFechaNacimiento()!=null){
+					Date fechaNacimiento=new Date(hojaVida.getFechaNacimiento().getTimeInMillis());
+					psInsertarPersona.setDate(4, fechaNacimiento);
+				} else {
+					psInsertarPersona.setTimestamp(4, null);
+				}
+				if(hojaVida.getTelefono()!=null){
+					psInsertarPersona.setLong(5, hojaVida.getTelefono());
+				} else {
+					psInsertarPersona.setNull(5, Types.BIGINT);
+				}
 				psInsertarPersona.setString(6, hojaVida.getCorreoElectronico());
 				psInsertarPersona.setString(7, hojaVida.getProfesion());
 				psInsertarPersona.setString(8, hojaVida.getEspecializacion());
@@ -91,9 +108,17 @@ public class PersonaDao {
 			try {
 				psActualizarPersona.setString(1, hojaVida.getNombrePersona());
 				psActualizarPersona.setString(2, hojaVida.getApellidoPersona());
-				Timestamp fechaNacimiento=new Timestamp(hojaVida.getFechaNacimiento().getTimeInMillis());
-				psActualizarPersona.setTimestamp(3, fechaNacimiento);
-				psActualizarPersona.setLong(4, hojaVida.getTelefono());
+				if (hojaVida.getFechaNacimiento()!=null) {
+					Date fechaNacimiento=new Date(hojaVida.getFechaNacimiento().getTimeInMillis());
+					psActualizarPersona.setDate(3, fechaNacimiento);
+				} else {
+					psActualizarPersona.setTimestamp(3, null);
+				}
+				if (hojaVida.getTelefono()!=null) {
+					psActualizarPersona.setLong(4, hojaVida.getTelefono());
+				} else {
+					psActualizarPersona.setNull(4, Types.BIGINT);
+				}
 				psActualizarPersona.setString(5, hojaVida.getCorreoElectronico());
 				psActualizarPersona.setString(6, hojaVida.getProfesion());
 				psActualizarPersona.setString(7, hojaVida.getEspecializacion());

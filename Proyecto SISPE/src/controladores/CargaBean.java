@@ -24,7 +24,7 @@ public class CargaBean {
 	
 	private UploadedFile archivo;
 	
-	private ArrayList<Integer> filasNoExtraidas;
+	private ArrayList<Integer> filasNoAgregadas;
 	private ArrayList<Long> filasDuplicadas;
 	
 	public CargaBean() {
@@ -41,20 +41,20 @@ public class CargaBean {
 	}
 
 	public ArrayList<Integer> getFilasNoAgregadas() {
-		return filasNoExtraidas;
+		return filasNoAgregadas;
 	}
 
 	public ArrayList<Long> getFilasDuplicadas() {
 		return filasDuplicadas;
 	}
 
-	public String cargarHojaVida() {
+	public String cargarHojasVida() {
 		if(archivo != null && archivo.getSize()>0) {
 			try {
 				Workbook libroExcel=WorkbookFactory.create(archivo.getInputstream());
 				gestionModelo.cargarHojasVida(libroExcel);
 				archivo=null;
-				filasNoExtraidas=gestionModelo.getFilasNoExtraidas();
+				filasNoAgregadas=gestionModelo.getFilasNoExtraidas();
 				filasDuplicadas=gestionModelo.getFilasDuplicadas();
 				ELFlash.getFlash().put("mensaje", "Archivo cargado exitosamente");
 				return "resultadoscarga.xhtml?faces-redirect=true";
@@ -76,7 +76,7 @@ public class CargaBean {
 			System.out.println(String.valueOf(long1));
 		}
 		System.out.println("No agregadas");
-		for(Integer integer	: filasNoExtraidas){
+		for(Integer integer	: filasNoAgregadas){
 			System.out.println(String.valueOf(integer));
 		}
 	}
