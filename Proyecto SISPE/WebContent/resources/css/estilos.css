@@ -4,7 +4,6 @@ header {
 	padding-bottom: 20px;
 }
 
-
 section {
 	padding-top: 20px;
 	padding-left: 20px;
@@ -21,9 +20,7 @@ footer {
 }
 
 body {
-	
 	background-image: url("#{resource['imagenes:fondo2.jpg']}");
-	
 }
 
 /* color del fondo de la barra de menú */
@@ -41,17 +38,14 @@ table {
 	margin-right: auto;
 }
 
-
 label {
 	color: #14a4ff;
 }
-
 
 h2{
 	color: #ffffff;
 	text-align:center;
 }
-
 
 h3{
 	color: #ffffff;

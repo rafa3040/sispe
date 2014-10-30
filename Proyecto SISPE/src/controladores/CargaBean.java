@@ -24,8 +24,9 @@ public class CargaBean {
 	
 	private UploadedFile archivo;
 	
-	private ArrayList<Integer> filasNoAgregadas;
-	private ArrayList<Long> filasDuplicadas;
+	private ArrayList<Integer> registrosNoAgregados;
+	private ArrayList<Long> registrosAgregados;
+	private ArrayList<Long> registrosActualizados;
 	
 	public CargaBean() {
 		HttpSession sesion=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -40,12 +41,16 @@ public class CargaBean {
 		this.archivo = archivo;
 	}
 
-	public ArrayList<Integer> getFilasNoAgregadas() {
-		return filasNoAgregadas;
+	public ArrayList<Integer> getRegistrosNoAgregados() {
+		return registrosNoAgregados;
 	}
 
-	public ArrayList<Long> getFilasDuplicadas() {
-		return filasDuplicadas;
+	public ArrayList<Long> getRegistrosAgregados() {
+		return registrosAgregados;
+	}
+
+	public ArrayList<Long> getRegistrosActualizados() {
+		return registrosActualizados;
 	}
 
 	public String cargarHojasVida() {
@@ -54,8 +59,9 @@ public class CargaBean {
 				Workbook libroExcel=WorkbookFactory.create(archivo.getInputstream());
 				gestionModelo.cargarHojasVida(libroExcel);
 				archivo=null;
-				filasNoAgregadas=gestionModelo.getFilasNoExtraidas();
-				filasDuplicadas=gestionModelo.getFilasDuplicadas();
+				registrosNoAgregados=gestionModelo.getRegistrosNoAgregados();
+				registrosAgregados=gestionModelo.getRegistrosAgregados();
+				registrosActualizados=gestionModelo.getRegistrosActualizados();
 				ELFlash.getFlash().put("mensaje", "Archivo cargado exitosamente");
 				return "resultadoscarga.xhtml?faces-redirect=true";
 			} catch (Exception e) {
@@ -70,16 +76,4 @@ public class CargaBean {
 		}
     }
 	
-	public void info(){
-		System.out.println("Duplicadas");
-		for (Long long1 : filasDuplicadas) {
-			System.out.println(String.valueOf(long1));
-		}
-		System.out.println("No agregadas");
-		for(Integer integer	: filasNoAgregadas){
-			System.out.println(String.valueOf(integer));
-		}
-	}
-	
-
 }

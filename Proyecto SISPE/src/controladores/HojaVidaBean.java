@@ -172,13 +172,21 @@ public class HojaVidaBean {
 		hojaVida.setTipoDocumento(TipoDocumento.valueOf(tipoDocumento));
 		hojaVida.setNombrePersona(nombrePersona);
 		hojaVida.setApellidoPersona(apellidoPersona);
-		Calendar fecha=Calendar.getInstance();
-		fecha.setTime(fechaNacimiento);
-		if (fecha.after(Calendar.getInstance())) {
-			agregarMensaje(FacesMessage.SEVERITY_WARN, "Fecha de nacimiento posterior a la fecha actual", false);
+		if(fechaNacimiento!=null){
+			Calendar fecha=Calendar.getInstance();
+			fecha.setTime(fechaNacimiento);
+			if (fecha.after(Calendar.getInstance())) {
+				agregarMensaje(FacesMessage.SEVERITY_WARN, "Fecha de nacimiento posterior a la fecha actual", false);
+				return "modificarhojavida.xthml";
+			}
+			hojaVida.setFechaNacimiento(fecha);
+		} else {
+			hojaVida.setFechaNacimiento(null);
+		}
+		if(telefono==null && correoElectronico.length()==0){
+			agregarMensaje(FacesMessage.SEVERITY_WARN, "No existe teléfono o correo electrónico ingresado", false);
 			return "modificarhojavida.xthml";
 		}
-		hojaVida.setFechaNacimiento(fecha);
 		hojaVida.setTelefono(telefono);
 		hojaVida.setCorreoElectronico(correoElectronico);
 		hojaVida.setProfesion(profesion);

@@ -7,26 +7,30 @@
 
 	<ui:define name="content">
 
-		<section>
-		
-			<h:form id="mensajesistema">
-				<p:growl id="mensaje" showDetail="true" life="3000" />
-				<p:panel header="Resultado de la carga de Hojas de Vida" style="width: 400px;">
-
-					<h:panelGrid id="mipanel" columns="2">
-
-						<h:outputText value="#{flash.mensaje}" />
-
-					</h:panelGrid>
-
-				</p:panel>
-										<p:commandButton value="Modificar hoja de vida"
-							action="#{cargaBean.info}" />
-
-			</h:form>
-			
-
-		</section>
+		<h3>Resultados del proceso de carga de hojas de vida</h3>
+		<p:panelGrid columns="3">
+			<p:dataList value="#{cargaBean.registrosNoAgregados}" var="registro"
+				emptyMessage="ninguna" paginator="true" rows="10">
+				<f:facet name="header">
+					No agregadas (# fila)
+       			</f:facet>
+				#{registro}
+    		</p:dataList>
+			<p:dataList value="#{cargaBean.registrosAgregados}" var="registro"
+				emptyMessage="ninguna" paginator="true" rows="10">
+				<f:facet name="header">
+            		Agregadas (# documento)
+        		</f:facet>
+				#{registro}
+    		</p:dataList>
+			<p:dataList value="#{cargaBean.registrosActualizados}" var="registro"
+				emptyMessage="ninguna" paginator="true" rows="10">
+				<f:facet name="header">
+            		Actualizadas (# documento)
+        		</f:facet>
+				#{registro}
+    		</p:dataList>
+		</p:panelGrid>
 
 	</ui:define>
 </ui:composition>

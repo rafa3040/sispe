@@ -13,8 +13,9 @@ public class GestionModelo {
 	private PersonaDao personaDao;
 	private ExperienciaDao experienciaDao;
 	
-	private ArrayList<Integer> filasNoExtraidas;
-	private ArrayList<Long> filasDuplicadas;
+	private ArrayList<Integer> registrosNoAgregados;
+	private ArrayList<Long> registrosAgregados;
+	private ArrayList<Long> registrosActualizados;
 	
 	public GestionModelo() {
 		conexionMysql=new ConexionMysql();
@@ -76,24 +77,30 @@ public class GestionModelo {
 		CargaExcel cargaExcel=new CargaExcel();
 		cargaExcel.cargarArchivo(libroExcel);
 		ArrayList<HojaVida> hojasVidaExtraidas=cargaExcel.getHojasVidaExtraidas();
-		filasNoExtraidas=cargaExcel.getFilasNoExtraidas();
-		filasDuplicadas=new ArrayList<Long>();
+		registrosNoAgregados=cargaExcel.getFilasNoExtraidas();
+		registrosAgregados=new ArrayList<Long>();
+		registrosActualizados=new ArrayList<Long>();
 		for (HojaVida hojaVida : hojasVidaExtraidas) {
 			if(consultarHojaVida(hojaVida.getNumeroIdentificacion())==null){
 				insertarHojaVida(hojaVida);
+				registrosAgregados.add(hojaVida.getNumeroIdentificacion());
 			} else {
-				filasDuplicadas.add(hojaVida.getNumeroIdentificacion());
 				actualizarHojaVida(hojaVida);
+				registrosActualizados.add(hojaVida.getNumeroIdentificacion());
 			}
 		}
 	}
 
-	public ArrayList<Integer> getFilasNoExtraidas() {
-		return filasNoExtraidas;
+	public ArrayList<Integer> getRegistrosNoAgregados() {
+		return registrosNoAgregados;
 	}
 
-	public ArrayList<Long> getFilasDuplicadas() {
-		return filasDuplicadas;
+	public ArrayList<Long> getRegistrosAgregados() {
+		return registrosAgregados;
+	}
+
+	public ArrayList<Long> getRegistrosActualizados() {
+		return registrosActualizados;
 	}
 
 }

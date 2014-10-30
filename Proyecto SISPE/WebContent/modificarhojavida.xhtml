@@ -48,8 +48,7 @@
 						<h:outputLabel value="Apellidos" />
 					</p:column>
 					<p:column>
-						<p:inputText value="#{hojaVidaBean.apellidoPersona}"
-							required="true" requiredMessage="No se ha digitado un apellido" />
+						<p:inputText value="#{hojaVidaBean.apellidoPersona}" />
 					</p:column>
 				</p:row>
 				<p:row>
@@ -58,8 +57,7 @@
 					</p:column>
 					<p:column>
 						<p:calendar value="#{hojaVidaBean.fechaNacimiento}"
-							showOn="button" required="true" pattern="dd-MM-yyyy"
-							requiredMessage="No se ha digitado una fecha de nacimiento"
+							showOn="button" pattern="dd-MM-yyyy"
 							converterMessage="Fecha de nacimiento digitada incorrectamente" />
 					</p:column>
 				</p:row>
@@ -68,8 +66,7 @@
 						<h:outputLabel value="Teléfono" />
 					</p:column>
 					<p:column>
-						<p:inputText value="#{hojaVidaBean.telefono}" required="true"
-							requiredMessage="No se ha digitado un teléfono"
+						<p:inputText value="#{hojaVidaBean.telefono}"
 							converterMessage="Teléfono digitado erróneamente">
 							<f:validateDoubleRange minimum="0" maximum="100000000000" />
 						</p:inputText>
@@ -81,7 +78,7 @@
 					</p:column>
 					<p:column>
 						<p:inputText value="#{hojaVidaBean.correoElectronico}"
-						validatorMessage="Correo electrónico mal ingresado">
+							validatorMessage="Correo electrónico mal ingresado">
 							<f:validateRegex
 								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 						</p:inputText>
@@ -92,8 +89,7 @@
 						<h:outputLabel value="Profesión" />
 					</p:column>
 					<p:column>
-						<p:inputText value="#{hojaVidaBean.profesion}" required="true"
-							requiredMessage="No se ha digitado una profesión" />
+						<p:inputText value="#{hojaVidaBean.profesion}" />
 					</p:column>
 				</p:row>
 				<p:row>
@@ -101,14 +97,12 @@
 						<h:outputLabel value="Especialización" />
 					</p:column>
 					<p:column>
-						<p:inputText value="#{hojaVidaBean.especializacion}"
-							required="true"
-							requiredMessage="No se ha digitado una especialización" />
+						<p:inputText value="#{hojaVidaBean.especializacion}" />
 					</p:column>
 				</p:row>
 				<p:row>
 					<p:column colspan="2" style="text-align:center">
-						<h:outputLabel value="Experiencia 1" styleClass="titulo"/>
+						<h:outputLabel value="Experiencia 1" styleClass="titulo" />
 					</p:column>
 				</p:row>
 				<p:row>
