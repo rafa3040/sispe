@@ -1,9 +1,7 @@
 package modelos;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
 
 public class GestionModelo {
@@ -70,10 +68,17 @@ public class GestionModelo {
 		personaDao.eliminarPersona(numeroIdentificacion);
 	}
 	
+	public ArrayList<HojaVida> consultarHojasVida(int edadMinima, int edadMaxima, String profesion, String especializacion, int mesesExperiencia){
+		ArrayList<HojaVida> seleccionadas=new ArrayList<HojaVida>();
+
+		return seleccionadas;
+	}
+	
 	// ***************************************
 	// * Métodos para la gestión de archivos *
 	// ***************************************
-	public void cargarHojasVida(Workbook libroExcel) throws InvalidFormatException, IOException{
+	
+	public void cargarHojasVida(Workbook libroExcel) {
 		CargaExcel cargaExcel=new CargaExcel();
 		cargaExcel.cargarArchivo(libroExcel);
 		ArrayList<HojaVida> hojasVidaExtraidas=cargaExcel.getHojasVidaExtraidas();

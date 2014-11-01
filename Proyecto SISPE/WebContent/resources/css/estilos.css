@@ -55,3 +55,9 @@ h3{
 .titulo {
 	color: #0086d7;
 }
+
+.tablatransparente tr, .tablatransparente td {
+    background: none;
+    border-style: none !important;
+    vertical-align: top;
+}

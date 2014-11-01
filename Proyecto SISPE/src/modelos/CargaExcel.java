@@ -1,12 +1,10 @@
 package modelos;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -36,7 +34,7 @@ public class CargaExcel {
 		return filasNoExtraidas;
 	}
 
-	public void cargarArchivo(Workbook libroExcel) throws InvalidFormatException, IOException{
+	public void cargarArchivo(Workbook libroExcel) {
 		Sheet hoja = libroExcel.getSheetAt(0);
 		int numeroFilas=hoja.getLastRowNum()+1;
 		// Borra el ArrayList de hojas de vida extraídas y de filas corruptas
@@ -142,12 +140,15 @@ public class CargaExcel {
 	 * está vacía, el método devuelve null
 	 * @param celda
 	 * @return
+	 * @throws Exception  
 	 */
-	private String extraerTexto(Cell celda){
+	private String extraerTexto(Cell celda) throws Exception {
 		if (celda==null) {
 			return "";
-		} else {
+		} else if (celda.getCellType()==Cell.CELL_TYPE_STRING) {
 			return celda.getRichStringCellValue().toString();
+		} else {
+			throw new Exception("Celda ("+celda.getRowIndex()+","+celda.getColumnIndex()+") con formato incorrecto");
 		}
 	}
 	
