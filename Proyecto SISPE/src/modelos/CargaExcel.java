@@ -137,14 +137,14 @@ public class CargaExcel {
 	
 	/**
 	 * Extrae un texto de una celda de tipo texto. Si la celda
-	 * está vacía, el método devuelve null
+	 * está indefinida o en blanco, el método devuelve null
 	 * @param celda
 	 * @return
 	 * @throws Exception  
 	 */
 	private String extraerTexto(Cell celda) throws Exception {
 		if (celda==null) {
-			throw new Exception("Celda inexistente");
+			return "";
 		} else if (celda.getCellType()==Cell.CELL_TYPE_BLANK) {
 			return "";
 		} else if (celda.getCellType()==Cell.CELL_TYPE_STRING) {
@@ -156,7 +156,7 @@ public class CargaExcel {
 	
 	/**
 	 * Extrae un número de una celda de tipo numérico. Si la celda
-	 * está vacía, el método devuelve null, si la celda no está
+	 * está indefinida o en blanco, el método devuelve null, si la celda no está
 	 * vacía y no contiene un número válido, se genera una excepción
 	 * @param celda
 	 * @return
@@ -165,7 +165,7 @@ public class CargaExcel {
 	private Long extraerNumero(Cell celda) throws Exception {
 		Long numero=null;
 		if(celda==null){
-			throw new Exception("Celda inexistente");
+			return null;
 		} else if (celda.getCellType()==Cell.CELL_TYPE_BLANK) {
 			return null;
 		} else if (celda.getCellType()==Cell.CELL_TYPE_NUMERIC) {
@@ -183,7 +183,7 @@ public class CargaExcel {
 	
 	/**
 	 * Extrae un Date de una celda de tipo fecha. Si la celda
-	 * está vacía, el método devuelve null, si la celda no está
+	 * está indefinida o en blanco, el método devuelve null, si la celda no está
 	 * vacía y no contiene un número válido, se genera una excepción
 	 * @param celda
 	 * @return
@@ -192,7 +192,7 @@ public class CargaExcel {
 	private Date extraerFecha(Cell celda) throws Exception {
 		Date fecha=null;
 		if(celda==null){
-			throw new Exception("Celda inexistente");
+			return null;
 		} else if (celda.getCellType()==Cell.CELL_TYPE_BLANK) {
 			return null;
 		} else if (celda.getCellType()==Cell.CELL_TYPE_NUMERIC && HSSFDateUtil.isCellDateFormatted(celda)) {
