@@ -7,30 +7,43 @@
 
 	<ui:define name="content">
 
-		<h3>Resultados del proceso de carga de hojas de vida</h3>
-		<p:panelGrid columns="3" styleClass="tablatransparente">
-			<p:dataList value="#{cargaBean.registrosNoAgregados}" var="registro"
-				emptyMessage="ninguna" paginator="true" rows="10">
-				<f:facet name="header">
-					No agregadas (# fila)
-       			</f:facet>
-				#{registro}
-    		</p:dataList>
-			<p:dataList value="#{cargaBean.registrosAgregados}" var="registro"
-				emptyMessage="ninguna" paginator="true" rows="10">
-				<f:facet name="header">
-            		Agregadas (# documento)
-        		</f:facet>
-				#{registro}
-    		</p:dataList>
-			<p:dataList value="#{cargaBean.registrosActualizados}" var="registro"
-				emptyMessage="ninguna" paginator="true" rows="10">
-				<f:facet name="header">
-            		Actualizadas (# documento)
-        		</f:facet>
-				#{registro}
-    		</p:dataList>
-		</p:panelGrid>
+		<p:dataTable var="hojaVida" value="#{seleccionBean.hojasVida}">
+			<f:facet name="header">
+				<h:outputLabel value="Hojas de vida seleccionadas"
+					styleClass="titulo" />
+			</f:facet>
+
+			<p:column headerText="Número identificación">
+				<h:outputText value="#{hojaVida.numeroIdentificacion}" />
+			</p:column>
+
+			<p:column headerText="Nombres">
+				<h:outputText value="#{hojaVida.nombrePersona}" />
+			</p:column>
+
+			<p:column headerText="Apellidos">
+				<h:outputText value="#{hojaVida.apellidoPersona}" />
+			</p:column>
+
+			<p:column headerText="Edad">
+				<h:outputText value="#{hojaVida.edadPersona}" />
+			</p:column>
+
+			<p:column headerText="Profesión">
+				<h:outputText value="#{hojaVida.profesion}" />
+			</p:column>
+
+			<p:column headerText="Especialización">
+				<h:outputText value="#{hojaVida.especializacion}" />
+			</p:column>
+
+			<f:facet name="footer">
+				<h:outputLabel
+					value="En total se seleccionaron #{seleccionBean.hojasVida.size()} hojas de vida"
+					styleClass="titulo" />
+			</f:facet>
+
+		</p:dataTable>
 
 	</ui:define>
 </ui:composition>

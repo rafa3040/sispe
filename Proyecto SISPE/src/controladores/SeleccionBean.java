@@ -20,6 +20,7 @@ public class SeleccionBean {
 	private String profesion;
 	private String especializacion;
 	private int mesesExperiencia;
+	private ArrayList<HojaVida> hojasVida;
 	
 	public SeleccionBean() {
 		HttpSession sesion=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -68,12 +69,17 @@ public class SeleccionBean {
 		this.mesesExperiencia = mesesExperiencia;
 	}
 
-	public void seleccionarHojasVida(){
-		ArrayList<HojaVida> seleccionadas=gestionModelo.consultarHojasVida(edadMinima, edadMaxima, profesion, especializacion, mesesExperiencia);
-		for (HojaVida hojaVida : seleccionadas) {
-			System.out.println(hojaVida);
-		}
+	public ArrayList<HojaVida> getHojasVida() {
+		return hojasVida;
 	}
-	
+
+	public void setHojasVida(ArrayList<HojaVida> hojasVida) {
+		this.hojasVida = hojasVida;
+	}
+
+	public String seleccionarHojasVida(){
+		hojasVida=gestionModelo.consultarHojasVida(edadMinima, edadMaxima, profesion, especializacion, mesesExperiencia);
+		return "resultadosseleccion.xhtml?faces-redirect=true";
+	}
 
 }

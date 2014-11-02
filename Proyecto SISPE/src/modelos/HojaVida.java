@@ -17,6 +17,9 @@ public class HojaVida {
 	private String especializacion;
 	private ArrayList<Experiencia> experiencias;
 	
+	private int edadPersona;
+	private int mesesExperiencia;
+	
 	public HojaVida() {
 		experiencias=new ArrayList<Experiencia>();
 	}
@@ -99,6 +102,22 @@ public class HojaVida {
 
 	public void setExperiencias(ArrayList<Experiencia> experiencias) {
 		this.experiencias = experiencias;
+	}
+
+	public int getEdadPersona() {
+		return edadPersona;
+	}
+
+	public void setEdadPersona(int edadPersona) {
+		this.edadPersona = edadPersona;
+	}
+
+	public int getMesesExperiencia() {
+		return mesesExperiencia;
+	}
+
+	public void setMesesExperiencia(int mesesExperiencia) {
+		this.mesesExperiencia = mesesExperiencia;
 	}
 
 	@Override
