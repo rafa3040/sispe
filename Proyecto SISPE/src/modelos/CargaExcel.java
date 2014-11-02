@@ -144,6 +144,8 @@ public class CargaExcel {
 	 */
 	private String extraerTexto(Cell celda) throws Exception {
 		if (celda==null) {
+			throw new Exception("Celda inexistente");
+		} else if (celda.getCellType()==Cell.CELL_TYPE_BLANK) {
 			return "";
 		} else if (celda.getCellType()==Cell.CELL_TYPE_STRING) {
 			return celda.getRichStringCellValue().toString();
@@ -163,10 +165,17 @@ public class CargaExcel {
 	private Long extraerNumero(Cell celda) throws Exception {
 		Long numero=null;
 		if(celda==null){
+			throw new Exception("Celda inexistente");
+		} else if (celda.getCellType()==Cell.CELL_TYPE_BLANK) {
 			return null;
 		} else if (celda.getCellType()==Cell.CELL_TYPE_NUMERIC) {
-			numero=(long) celda.getNumericCellValue();
-			return numero;
+			double numeroExtraido=celda.getNumericCellValue();
+			if (numeroExtraido % 1 == 0) {
+				numero=(long) numeroExtraido;
+				return numero;
+			} else {
+				throw new Exception("Celda ("+celda.getRowIndex()+","+celda.getColumnIndex()+") cuyo número posee parte decimal, siendo que no es permitido");
+			}
 		} else {
 			throw new Exception("Celda ("+celda.getRowIndex()+","+celda.getColumnIndex()+") con formato incorrecto");
 		}
@@ -183,6 +192,8 @@ public class CargaExcel {
 	private Date extraerFecha(Cell celda) throws Exception {
 		Date fecha=null;
 		if(celda==null){
+			throw new Exception("Celda inexistente");
+		} else if (celda.getCellType()==Cell.CELL_TYPE_BLANK) {
 			return null;
 		} else if (celda.getCellType()==Cell.CELL_TYPE_NUMERIC && HSSFDateUtil.isCellDateFormatted(celda)) {
 			fecha=celda.getDateCellValue();
