@@ -8,8 +8,7 @@ public class GestionModelo {
 	
 	private ConexionMysql conexionMysql;
 	private UsuarioDao usuarioDao;
-	private PersonaDao personaDao;
-	private ExperienciaDao experienciaDao;
+	private HojaVidaDao hojaVidaDao;
 	
 	private ArrayList<Integer> registrosNoAgregados;
 	private ArrayList<Long> registrosAgregados;
@@ -18,8 +17,7 @@ public class GestionModelo {
 	public GestionModelo() {
 		conexionMysql=new ConexionMysql();
 		usuarioDao=new UsuarioDao(conexionMysql.getConexion());
-		personaDao=new PersonaDao(conexionMysql.getConexion());
-		experienciaDao=new ExperienciaDao(conexionMysql.getConexion(), personaDao);
+		hojaVidaDao=new HojaVidaDao(conexionMysql.getConexion());
 	}
 	
 	// ***************************************
@@ -35,37 +33,22 @@ public class GestionModelo {
 	// ********************************************
 	
 	public HojaVida consultarHojaVida(long numeroIdentificacion){
-		HojaVida hojaVida=personaDao.consultarPersona(numeroIdentificacion);
-		if(hojaVida!=null){
-			ArrayList<Experiencia> experiencias=experienciaDao.consultarExperiencias(numeroIdentificacion);
-			hojaVida.setExperiencias(experiencias);
-			return hojaVida;
-		} else {
-			return null;
-		}
+		return hojaVidaDao.consultarHojaVida(numeroIdentificacion);
 	}
 	
 	public void insertarHojaVida(HojaVida hojaVida){
-		personaDao.insertarPersona(hojaVida);
-		for (Experiencia experiencia : hojaVida.getExperiencias()) {
-			experienciaDao.insertarExperiencia(experiencia);
-		}
+		hojaVidaDao.insertarHojaVida(hojaVida);
 	}
 	
 	// Como el objeto HojaVida a actualizar puede tener Experiencias diferentes a las que
 	// tenía anteriormente, se eliminan todas las experiencias anteriores y se
 	// ingresan las nuevas experiencias
 	public void actualizarHojaVida(HojaVida hojaVida){
-		experienciaDao.eliminarExperiencias(hojaVida.getNumeroIdentificacion());
-		for (Experiencia experiencia : hojaVida.getExperiencias()) {
-			experienciaDao.insertarExperiencia(experiencia);
-		}
-		personaDao.actualizarPersona(hojaVida);
+		hojaVidaDao.actualizarHojaVida(hojaVida);
 	}
 	
 	public void eliminarHojaVida(long numeroIdentificacion){
-		experienciaDao.eliminarExperiencias(numeroIdentificacion);		
-		personaDao.eliminarPersona(numeroIdentificacion);
+		hojaVidaDao.eliminarHojaVida(numeroIdentificacion);
 	}
 	
 	public ArrayList<HojaVida> consultarHojasVida(int edadMinima, int edadMaxima, String profesion, String especializacion, int mesesExperiencia){

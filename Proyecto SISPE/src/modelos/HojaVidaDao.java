@@ -5,7 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -13,7 +15,7 @@ import java.util.Calendar;
  * @author Solutions Developers
  *
  */
-public class PersonaDao {
+public class HojaVidaDao {
 	
 	private Connection conexion;
 	
@@ -21,24 +23,32 @@ public class PersonaDao {
 	private PreparedStatement psInsertarPersona;
 	private PreparedStatement psActualizarPersona;
 	private PreparedStatement psEliminarPersona;
+	private PreparedStatement psConsultarExperiencias;
+	private PreparedStatement psInsertarExperiencia;
+	private PreparedStatement psEliminarExperiencias;
 	
-	public PersonaDao(Connection conexion) {
+	public HojaVidaDao(Connection conexion) {
 		this.conexion=conexion;
 		crearSentencias();
 	}
 	
 	private void crearSentencias(){
 		try {
+			// Sentencias para la tabla persona
 			psConsultarPersona=conexion.prepareStatement("SELECT * FROM persona WHERE numero_identificacion=?");
 			psInsertarPersona=conexion.prepareStatement("INSERT INTO persona SET numero_identificacion=?, nombre_persona=?, apellido_persona=?, fecha_nacimiento=?, telefono=?, correo_electronico=?, profesion=?, especializacion=?");
 			psActualizarPersona=conexion.prepareStatement("UPDATE persona SET nombre_persona=?, apellido_persona=?, fecha_nacimiento=?, telefono=?, correo_electronico=?, profesion=?, especializacion=? WHERE numero_identificacion=?");
 			psEliminarPersona=conexion.prepareStatement("DELETE FROM persona WHERE numero_identificacion=?");
+			// Sentencias para la tabla experiencia
+			psConsultarExperiencias=conexion.prepareStatement("SELECT * FROM experiencia WHERE numero_identificacion=?");
+			psInsertarExperiencia=conexion.prepareStatement("INSERT INTO experiencia (fecha_inicio, fecha_final, numero_identificacion) VALUES (?,?,?)");
+			psEliminarExperiencias=conexion.prepareStatement("DELETE FROM experiencia WHERE numero_identificacion=?");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public HojaVida consultarPersona(long numeroIdentificacion){
+	public HojaVida consultarHojaVida(long numeroIdentificacion){
 		HojaVida hojaVida=null;
 		if (conexion!=null) {
 			try {
@@ -66,6 +76,8 @@ public class PersonaDao {
 					hojaVida.setCorreoElectronico(dato.getString(7));
 					hojaVida.setProfesion(dato.getString(8));
 					hojaVida.setEspecializacion(dato.getString(9));
+					ArrayList<Experiencia> experiencias=consultarExperiencias(hojaVida);
+					hojaVida.setExperiencias(experiencias);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -74,7 +86,7 @@ public class PersonaDao {
 		return hojaVida;
 	}
 	
-	public boolean insertarPersona(HojaVida hojaVida){
+	public boolean insertarHojaVida(HojaVida hojaVida){
 		if(conexion!=null){
 			try {
 				psInsertarPersona.setLong(1, hojaVida.getNumeroIdentificacion());
@@ -95,6 +107,9 @@ public class PersonaDao {
 				psInsertarPersona.setString(7, hojaVida.getProfesion());
 				psInsertarPersona.setString(8, hojaVida.getEspecializacion());
 				psInsertarPersona.executeUpdate();
+				for (Experiencia experiencia : hojaVida.getExperiencias()) {
+					insertarExperiencia(experiencia);
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -103,7 +118,7 @@ public class PersonaDao {
 		return false;
 	}
 	
-	public boolean actualizarPersona(HojaVida hojaVida){
+	public boolean actualizarHojaVida(HojaVida hojaVida){
 		if(conexion!=null){
 			try {
 				psActualizarPersona.setString(1, hojaVida.getNombrePersona());
@@ -124,6 +139,10 @@ public class PersonaDao {
 				psActualizarPersona.setString(7, hojaVida.getEspecializacion());
 				psActualizarPersona.setLong(8, hojaVida.getNumeroIdentificacion());
 				psActualizarPersona.executeUpdate();
+				eliminarExperiencias(hojaVida.getNumeroIdentificacion());
+				for (Experiencia experiencia : hojaVida.getExperiencias()) {
+					insertarExperiencia(experiencia);
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -132,11 +151,75 @@ public class PersonaDao {
 		return false;
 	}
 
-	public boolean eliminarPersona(long numeroIdentificacion){
+	public boolean eliminarHojaVida(long numeroIdentificacion){
 		if(conexion!=null){
 			try {
+				eliminarExperiencias(numeroIdentificacion);
 				psEliminarPersona.setLong(1, numeroIdentificacion);
 				psEliminarPersona.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	public ArrayList<Experiencia> consultarExperiencias(HojaVida hojaVida){
+		ResultSet resultados=null;
+		if (conexion!=null) {
+			try {
+				psConsultarExperiencias.setLong(1, hojaVida.getNumeroIdentificacion());
+				resultados=psConsultarExperiencias.executeQuery();
+				ArrayList<Experiencia> experiencias=new ArrayList<>();
+				Experiencia experiencia;
+				while (resultados.next()) {
+					experiencia=new Experiencia();
+					experiencia.setNumeroExperiencia(resultados.getInt(1));
+					Timestamp tiempoInicio=resultados.getTimestamp(2);
+					Calendar fechaInicio=Calendar.getInstance();
+					fechaInicio.setTimeInMillis(tiempoInicio.getTime());
+					experiencia.setFechaInicio(fechaInicio);
+					Timestamp tiempoFinal=resultados.getTimestamp(3);
+					Calendar fechaFinal=Calendar.getInstance();
+					fechaFinal.setTimeInMillis(tiempoFinal.getTime());
+					experiencia.setFechaFinal(fechaFinal);
+					experiencia.setHojaVida(hojaVida);
+					experiencias.add(experiencia);
+				}
+				return experiencias;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
+	public boolean insertarExperiencia(Experiencia experiencia){
+		if(conexion!=null){
+			Calendar fechaInicio=experiencia.getFechaInicio();
+			Timestamp tiempoInicio=new Timestamp(fechaInicio.getTimeInMillis());
+			Calendar fechaFinal=experiencia.getFechaFinal();
+			Timestamp tiempoFinal=new Timestamp(fechaFinal.getTimeInMillis());
+			long numeroIdentificacion=experiencia.getHojaVida().getNumeroIdentificacion();
+			try {
+				psInsertarExperiencia.setTimestamp(1, tiempoInicio);
+				psInsertarExperiencia.setTimestamp(2, tiempoFinal);
+				psInsertarExperiencia.setLong(3, numeroIdentificacion);
+				psInsertarExperiencia.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean eliminarExperiencias(long numeroIdentificacion){
+		if(conexion!=null){
+			try {
+				psEliminarExperiencias.setLong(1, numeroIdentificacion);
+				psEliminarExperiencias.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
