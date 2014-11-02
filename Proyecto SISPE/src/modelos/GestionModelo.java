@@ -51,9 +51,8 @@ public class GestionModelo {
 		hojaVidaDao.eliminarHojaVida(numeroIdentificacion);
 	}
 	
-	public ArrayList<HojaVida> consultarHojasVida(int edadMinima, int edadMaxima, String profesion, String especializacion, int mesesExperiencia){
-		ArrayList<HojaVida> seleccionadas=new ArrayList<HojaVida>();
-
+	public ArrayList<HojaVida> consultarHojasVida(int edadMinima, int edadMaxima, String patronProfesion, String patronEspecializacion, int mesesExperiencia){
+		ArrayList<HojaVida> seleccionadas=hojaVidaDao.consultarHojasVida(edadMinima, edadMaxima, patronProfesion, patronEspecializacion);
 		return seleccionadas;
 	}
 	

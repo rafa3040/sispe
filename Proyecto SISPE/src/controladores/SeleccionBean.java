@@ -1,11 +1,20 @@
 package controladores;
 
+import java.util.ArrayList;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+import modelos.GestionModelo;
+import modelos.HojaVida;
 
 @ManagedBean
 @SessionScoped
 public class SeleccionBean {
+	
+	private GestionModelo gestionModelo;
 	
 	private int edadMinima, edadMaxima;
 	private String profesion;
@@ -13,6 +22,8 @@ public class SeleccionBean {
 	private int mesesExperiencia;
 	
 	public SeleccionBean() {
+		HttpSession sesion=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		gestionModelo=(GestionModelo) sesion.getAttribute("gestionModelo");
 		edadMinima=18;
 		edadMaxima=28;
 	}
@@ -58,7 +69,10 @@ public class SeleccionBean {
 	}
 
 	public void seleccionarHojasVida(){
-		System.out.println("seleccion");
+		ArrayList<HojaVida> seleccionadas=gestionModelo.consultarHojasVida(edadMinima, edadMaxima, profesion, especializacion, mesesExperiencia);
+		for (HojaVida hojaVida : seleccionadas) {
+			System.out.println(hojaVida);
+		}
 	}
 	
 

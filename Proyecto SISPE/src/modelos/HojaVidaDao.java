@@ -26,6 +26,7 @@ public class HojaVidaDao {
 	private PreparedStatement psConsultarExperiencias;
 	private PreparedStatement psInsertarExperiencia;
 	private PreparedStatement psEliminarExperiencias;
+	private PreparedStatement psConsultarHojasVida;
 	
 	public HojaVidaDao(Connection conexion) {
 		this.conexion=conexion;
@@ -43,11 +44,13 @@ public class HojaVidaDao {
 			psConsultarExperiencias=conexion.prepareStatement("SELECT * FROM experiencia WHERE numero_identificacion=?");
 			psInsertarExperiencia=conexion.prepareStatement("INSERT INTO experiencia (fecha_inicio, fecha_final, numero_identificacion) VALUES (?,?,?)");
 			psEliminarExperiencias=conexion.prepareStatement("DELETE FROM experiencia WHERE numero_identificacion=?");
+			// Sentencias para las consultas detalladas
+			psConsultarHojasVida=conexion.prepareStatement("SELECT * FROM persona WHERE timestampdiff(YEAR,fecha_nacimiento,curdate()) BETWEEN ? and ? AND profesion LIKE ? AND especializacion LIKE ?");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public HojaVida consultarHojaVida(long numeroIdentificacion){
 		HojaVida hojaVida=null;
 		if (conexion!=null) {
@@ -165,6 +168,8 @@ public class HojaVidaDao {
 		return false;
 	}
 	
+	// Consultas referentes a la tabla experiencia
+	
 	public ArrayList<Experiencia> consultarExperiencias(HojaVida hojaVida){
 		ResultSet resultados=null;
 		if (conexion!=null) {
@@ -226,6 +231,53 @@ public class HojaVidaDao {
 			return true;
 		}
 		return false;
+	}
+	
+	// Consultas detalladas
+	
+	public ArrayList<HojaVida> consultarHojasVida(int edadMinima, int edadMaxima, String patronProfesion, String patronEspecializacion){
+		ResultSet resultados=null;
+		if (conexion!=null) {
+			try {
+				psConsultarHojasVida.setInt(1, edadMinima);
+				psConsultarHojasVida.setInt(2, edadMaxima);
+				psConsultarHojasVida.setString(3, "%"+patronProfesion+"%");
+				psConsultarHojasVida.setString(4, "%"+patronEspecializacion+"%");
+				resultados=psConsultarHojasVida.executeQuery();
+				ArrayList<HojaVida> hojasVida=new ArrayList<HojaVida>();
+				HojaVida hojaVida;
+				while (resultados.next()) {
+					hojaVida=new HojaVida();
+					hojaVida.setNumeroIdentificacion(resultados.getLong(1));
+					hojaVida.setNombrePersona(resultados.getString(2));
+					hojaVida.setApellidoPersona(resultados.getString(3));
+					hojaVida.setTipoDocumento(TipoDocumento.valueOf(resultados.getString(4)));
+					Date tiempo=resultados.getDate(5);
+					if(tiempo!=null){
+						Calendar fechaNacimiento=Calendar.getInstance();
+						fechaNacimiento.setTimeInMillis(tiempo.getTime());
+						hojaVida.setFechaNacimiento(fechaNacimiento);
+					} else {
+						hojaVida.setFechaNacimiento(null);
+					}
+					if (resultados.getObject(6)!=null) {
+						hojaVida.setTelefono(resultados.getLong(6));
+					} else {
+						hojaVida.setTelefono(null);
+					}
+					hojaVida.setCorreoElectronico(resultados.getString(7));
+					hojaVida.setProfesion(resultados.getString(8));
+					hojaVida.setEspecializacion(resultados.getString(9));
+					ArrayList<Experiencia> experiencias=consultarExperiencias(hojaVida);
+					hojaVida.setExperiencias(experiencias);
+					hojasVida.add(hojaVida);
+				}
+				return hojasVida;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 
 }
