@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/WEB-INF/templates/basictemplate.xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+		<h2>Ayuda de SISPE</h2>
+		<h:form>
+			<p:panel header="Carga" 
+				style="margin-bottom:20px">
+				<h:panelGrid columns="1" cellpadding="10">
+					El módulo de carga se encarga de leer un archivo Excel que contenga hojas de vida
+					en un formato igual al siguiente formato de carga:
+					    <p:commandButton value="Descargar formato" ajax="false"
+						icon="ui-icon-arrowthick-1-s">
+						<p:fileDownload value="#{ayudaBean.formatoCarga}" />
+					</p:commandButton>
+				</h:panelGrid>
+			</p:panel>
+						<p:panel header="Hojas de vida" 
+				style="margin-bottom:20px">
+				<h:panelGrid columns="1" cellpadding="10">
+					En el módulo de hojas de vida se puede visualizar, modificar y eliminar cualquier
+					hoja de vida que se encuentre en la base de datos del sistema.
+				</h:panelGrid>
+			</p:panel>
+									<p:panel header="Selección" 
+				style="margin-bottom:20px">
+				<h:panelGrid columns="1" cellpadding="10">
+					En este módulo se podrán seleccionar hojas de vida con base en los siguientes criterios
+					de selección: edad, profesión, especialización y meses de experiencia.
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

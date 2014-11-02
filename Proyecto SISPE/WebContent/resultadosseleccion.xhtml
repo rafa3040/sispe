@@ -7,7 +7,7 @@
 
 	<ui:define name="content">
 
-		<p:dataTable var="hojaVida" value="#{seleccionBean.hojasVida}">
+		<p:dataTable var="hojaVida" value="#{seleccionBean.hojasVida}" tableStyle="width:auto">
 			<f:facet name="header">
 				<h:outputLabel value="Hojas de vida seleccionadas"
 					styleClass="titulo" />
@@ -35,6 +35,10 @@
 
 			<p:column headerText="Especialización">
 				<h:outputText value="#{hojaVida.especializacion}" />
+			</p:column>
+			
+						<p:column headerText="Meses de experiencia">
+				<h:outputText value="#{hojaVida.mesesExperiencia}" />
 			</p:column>
 
 			<f:facet name="footer">
