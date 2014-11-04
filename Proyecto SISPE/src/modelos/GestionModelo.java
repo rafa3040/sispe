@@ -36,15 +36,15 @@ public class GestionModelo {
 		return hojaVidaDao.consultarHojaVida(numeroIdentificacion);
 	}
 	
-	public void insertarHojaVida(HojaVida hojaVida){
-		hojaVidaDao.insertarHojaVida(hojaVida);
+	public boolean insertarHojaVida(HojaVida hojaVida){
+		return hojaVidaDao.insertarHojaVida(hojaVida);
 	}
 	
 	// Como el objeto HojaVida a actualizar puede tener Experiencias diferentes a las que
 	// tenía anteriormente, se eliminan todas las experiencias anteriores y se
 	// ingresan las nuevas experiencias
-	public void actualizarHojaVida(HojaVida hojaVida){
-		hojaVidaDao.actualizarHojaVida(hojaVida);
+	public boolean actualizarHojaVida(HojaVida hojaVida){
+		return hojaVidaDao.actualizarHojaVida(hojaVida);
 	}
 	
 	public void eliminarHojaVida(long numeroIdentificacion){
@@ -68,12 +68,19 @@ public class GestionModelo {
 		registrosAgregados=new ArrayList<Long>();
 		registrosActualizados=new ArrayList<Long>();
 		for (HojaVida hojaVida : hojasVidaExtraidas) {
+			// Si la hoja de vida no existe, la inserta
 			if(consultarHojaVida(hojaVida.getNumeroIdentificacion())==null){
-				insertarHojaVida(hojaVida);
-				registrosAgregados.add(hojaVida.getNumeroIdentificacion());
-			} else {
-				actualizarHojaVida(hojaVida);
-				registrosActualizados.add(hojaVida.getNumeroIdentificacion());
+				boolean insertado=insertarHojaVida(hojaVida);
+				if (insertado) {
+					registrosAgregados.add(hojaVida.getNumeroIdentificacion());
+				}
+			} 
+			// Si la hoja de vida ya existe, la actualiza
+			else {
+				boolean actualizado=actualizarHojaVida(hojaVida);
+				if (actualizado) {
+					registrosActualizados.add(hojaVida.getNumeroIdentificacion());
+				}
 			}
 		}
 	}

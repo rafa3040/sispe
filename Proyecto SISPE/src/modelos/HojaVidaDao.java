@@ -115,6 +115,7 @@ public class HojaVidaDao {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				return false;
 			}
 			return true;
 		}
@@ -148,6 +149,7 @@ public class HojaVidaDao {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				return false;
 			}
 			return true;
 		}

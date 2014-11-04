@@ -12,21 +12,21 @@
 			<p:dataList value="#{cargaBean.registrosNoAgregados}" var="registro"
 				emptyMessage="ninguna" paginator="true" rows="10">
 				<f:facet name="header">
-					No agregadas (# fila)
+					Hojas de vida no agregadas (# fila)
        			</f:facet>
 				#{registro}
     		</p:dataList>
 			<p:dataList value="#{cargaBean.registrosAgregados}" var="registro"
 				emptyMessage="ninguna" paginator="true" rows="10">
 				<f:facet name="header">
-            		Agregadas (# documento)
+            		Hojas de vida agregadas (# documento)
         		</f:facet>
 				#{registro}
     		</p:dataList>
 			<p:dataList value="#{cargaBean.registrosActualizados}" var="registro"
 				emptyMessage="ninguna" paginator="true" rows="10">
 				<f:facet name="header">
-            		Actualizadas (# documento)
+            		Hojas de vida actualizadas (# documento)
         		</f:facet>
 				#{registro}
     		</p:dataList>

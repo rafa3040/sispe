@@ -10,14 +10,14 @@ USE `sispe` ;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `sispe`.`persona` (
   `numero_identificacion` BIGINT NOT NULL ,
-  `nombre_persona` VARCHAR(45) NOT NULL ,
-  `apellido_persona` VARCHAR(45) ,
+  `nombre_persona` VARCHAR(50) NOT NULL ,
+  `apellido_persona` VARCHAR(50) ,
   `tipo_documento` ENUM('CC','CE') NOT NULL ,
   `fecha_nacimiento` DATE ,
   `telefono` BIGINT ,
-  `correo_electronico` VARCHAR(45) ,
-  `profesion` VARCHAR(45) ,
-  `especializacion` VARCHAR(45) ,
+  `correo_electronico` VARCHAR(50) ,
+  `profesion` VARCHAR(100) ,
+  `especializacion` VARCHAR(100) ,
   PRIMARY KEY (`numero_identificacion`) )
 ENGINE = InnoDB;
 
