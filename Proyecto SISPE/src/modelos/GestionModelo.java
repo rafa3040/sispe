@@ -52,7 +52,7 @@ public class GestionModelo {
 	}
 	
 	public ArrayList<HojaVida> consultarHojasVida(int edadMinima, int edadMaxima, String patronProfesion, String patronEspecializacion, int mesesExperiencia){
-		ArrayList<HojaVida> seleccionadas=hojaVidaDao.consultarHojasVida(edadMinima, edadMaxima, patronProfesion, patronEspecializacion);
+		ArrayList<HojaVida> seleccionadas=hojaVidaDao.consultarHojasVida(edadMinima, edadMaxima, patronProfesion, patronEspecializacion, mesesExperiencia);
 		return seleccionadas;
 	}
 	

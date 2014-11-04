@@ -45,7 +45,7 @@ public class HojaVidaDao {
 			psInsertarExperiencia=conexion.prepareStatement("INSERT INTO experiencia (fecha_inicio, fecha_final, numero_identificacion) VALUES (?,?,?)");
 			psEliminarExperiencias=conexion.prepareStatement("DELETE FROM experiencia WHERE numero_identificacion=?");
 			// Sentencias para las consultas detalladas
-			psConsultarHojasVida=conexion.prepareStatement("SELECT *,timestampdiff(YEAR,fecha_nacimiento,curdate())  FROM persona WHERE timestampdiff(YEAR,fecha_nacimiento,curdate()) BETWEEN ? and ? AND profesion LIKE ? AND especializacion LIKE ?");
+			psConsultarHojasVida=conexion.prepareStatement("SELECT p.*,timestampdiff(YEAR,p.fecha_nacimiento,curdate()) AS edad, sum(timestampdiff(MONTH,fecha_inicio,fecha_final)) AS meses_experiencia FROM experiencia e JOIN persona p ON e.numero_identificacion=p.numero_identificacion GROUP BY numero_identificacion HAVING edad BETWEEN ? AND ? AND profesion LIKE ? AND especializacion LIKE ? AND meses_experiencia>=?");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -235,7 +235,7 @@ public class HojaVidaDao {
 	
 	// Consultas detalladas
 	
-	public ArrayList<HojaVida> consultarHojasVida(int edadMinima, int edadMaxima, String patronProfesion, String patronEspecializacion){
+	public ArrayList<HojaVida> consultarHojasVida(int edadMinima, int edadMaxima, String patronProfesion, String patronEspecializacion, int mesesExperiencia){
 		ResultSet resultados=null;
 		if (conexion!=null) {
 			try {
@@ -243,6 +243,7 @@ public class HojaVidaDao {
 				psConsultarHojasVida.setInt(2, edadMaxima);
 				psConsultarHojasVida.setString(3, "%"+patronProfesion+"%");
 				psConsultarHojasVida.setString(4, "%"+patronEspecializacion+"%");
+				psConsultarHojasVida.setInt(5, mesesExperiencia);
 				resultados=psConsultarHojasVida.executeQuery();
 				ArrayList<HojaVida> hojasVida=new ArrayList<HojaVida>();
 				HojaVida hojaVida;
@@ -271,6 +272,7 @@ public class HojaVidaDao {
 					ArrayList<Experiencia> experiencias=consultarExperiencias(hojaVida);
 					hojaVida.setExperiencias(experiencias);
 					hojaVida.setEdadPersona(resultados.getInt(10));
+					hojaVida.setMesesExperiencia(resultados.getInt(11));
 					hojasVida.add(hojaVida);
 				}
 				return hojasVida;
