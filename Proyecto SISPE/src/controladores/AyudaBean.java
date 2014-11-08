@@ -18,7 +18,7 @@ public class AyudaBean {
 	private StreamedContent formatoCarga;
 	
 	public AyudaBean() {
-        InputStream flujoEntrada = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/resources/archivos/formato carga.xls");
+        InputStream flujoEntrada = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/resources/archivos/formato carga.xlsx");
         formatoCarga = new DefaultStreamedContent(flujoEntrada, "application/vnd.ms-excel", "formato carga.xlsx");
 	}
 
