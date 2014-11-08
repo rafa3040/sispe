@@ -9,35 +9,58 @@
 
 		<h:form id="realizarseleccion">
 			<p:growl id="mensaje" life="3000" />
-			<p:panelGrid id="mipanel" columns="2">
+			<p:panelGrid id="mipanel" columns="3">
 				<f:facet name="header">
 					<h:outputLabel value="Selección de hojas de vida"
 						styleClass="titulo" />
 				</f:facet>
+				<h:selectBooleanCheckbox id="checkboxEdad"
+					value="#{seleccionBean.activarEdad}">
+					<p:ajax event="change" update="mipanel" />
+				</h:selectBooleanCheckbox>
 				<h:outputLabel value="Edad" />
 				<h:panelGrid columns="1" style="margin-bottom: 10px">
 					<h:outputText id="displayRange"
 						value="Entre #{seleccionBean.edadMinima} y #{seleccionBean.edadMaxima}" />
-					<p:slider for="edadminima,edadmaxima" display="displayRange"
-						style="width: 300px" range="true" minValue="18" maxValue="60"
-						displayTemplate="Entre {min} y {max}" />
+					<p:slider for="edadMinima,edadMaxima" display="displayRange"
+						style="width: 300px" range="true" minValue="18" maxValue="70"
+						displayTemplate="Entre {min} y {max}"
+						disabled="#{!seleccionBean.activarEdad}" />
 				</h:panelGrid>
+				<h:selectBooleanCheckbox id="checkboxProfesion"
+					value="#{seleccionBean.activarProfesion}">
+					<p:ajax event="change" update="mipanel" />
+				</h:selectBooleanCheckbox>
 				<h:outputLabel value="Profesión (patrón)" />
-				<p:inputText value="#{seleccionBean.profesion}" required="true"
-					requiredMessage="No se ha ingresado una profesión" />
+				<p:inputText value="#{seleccionBean.profesion}"
+					disabled="#{!seleccionBean.activarProfesion}" required="true"
+					requiredMessage="No se ha digitado una profesión" />
+				<h:selectBooleanCheckbox id="checkboxEspecializacion"
+					value="#{seleccionBean.activarEspecializacion}">
+					<p:ajax event="change" update="mipanel" />
+				</h:selectBooleanCheckbox>
 				<h:outputLabel value="Especialización (patrón)" />
-				<p:inputText value="#{seleccionBean.especializacion}" />
+				<p:inputText value="#{seleccionBean.especializacion}"
+					disabled="#{!seleccionBean.activarEspecializacion}" required="true"
+					requiredMessage="No se ha digitado una especialización" />
+				<h:selectBooleanCheckbox id="checkboxMesesExperiencia"
+					value="#{seleccionBean.activarMesesExperiencia}">
+					<p:ajax event="change" update="mipanel" />
+				</h:selectBooleanCheckbox>
 				<h:outputLabel value="Meses de experiencia" />
 				<p:spinner id="minMax" value="#{seleccionBean.mesesExperiencia}"
-					min="0" />
+					min="0" disabled="#{!seleccionBean.activarMesesExperiencia}" />
 				<f:facet name="footer">
 					<h:panelGroup style="display:block; text-align:center">
-						<p:commandButton value="Seleccionar" ajax="false" action="#{seleccionBean.seleccionarHojasVida}" />
+						<p:commandButton value="Seleccionar" ajax="false"
+							action="#{seleccionBean.seleccionarHojasVida}" />
 					</h:panelGroup>
 				</f:facet>
 			</p:panelGrid>
-			<h:inputHidden id="edadminima" value="#{seleccionBean.edadMinima}" />
-			<h:inputHidden id="edadmaxima" value="#{seleccionBean.edadMaxima}" />
+			<h:inputHidden id="edadMinima" value="#{seleccionBean.edadMinima}"
+				disabled="#{!seleccionBean.activarEdad}" />
+			<h:inputHidden id="edadMaxima" value="#{seleccionBean.edadMaxima}"
+				disabled="#{!seleccionBean.activarEdad}" />
 		</h:form>
 
 	</ui:define>

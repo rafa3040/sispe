@@ -7,7 +7,10 @@
 
 	<ui:define name="content">
 
-		<p:dataTable var="hojaVida" value="#{seleccionBean.hojasVida}" tableStyle="width:auto">
+		<p:dataTable var="hojaVida" value="#{seleccionBean.hojasVida}"
+			tableStyle="width:auto"
+			emptyMessage="No existen hojas de vida para mostrar">
+			
 			<f:facet name="header">
 				<h:outputLabel value="Hojas de vida seleccionadas"
 					styleClass="titulo" />
@@ -36,8 +39,8 @@
 			<p:column headerText="Especialización">
 				<h:outputText value="#{hojaVida.especializacion}" />
 			</p:column>
-			
-						<p:column headerText="Meses de experiencia">
+
+			<p:column headerText="Meses de experiencia">
 				<h:outputText value="#{hojaVida.mesesExperiencia}" />
 			</p:column>
 
