@@ -9,31 +9,60 @@
 
 		<h2>Ayuda de SISPE</h2>
 		<h:form>
-			<p:panel header="Carga" 
-				style="margin-bottom:20px">
-				<h:panelGrid columns="1" cellpadding="10">
-					El módulo de carga se encarga de leer un archivo Excel que contenga hojas de vida
-					en un formato igual al siguiente formato de carga:
-					    <p:commandButton value="Descargar formato" ajax="false"
-						icon="ui-icon-arrowthick-1-s">
-						<p:fileDownload value="#{ayudaBean.formatoCarga}" />
-					</p:commandButton>
-				</h:panelGrid>
-			</p:panel>
-						<p:panel header="Hojas de vida" 
-				style="margin-bottom:20px">
-				<h:panelGrid columns="1" cellpadding="10">
-					En el módulo de hojas de vida se puede visualizar, modificar y eliminar cualquier
-					hoja de vida que se encuentre en la base de datos del sistema.
-				</h:panelGrid>
-			</p:panel>
-									<p:panel header="Selección" 
-				style="margin-bottom:20px">
-				<h:panelGrid columns="1" cellpadding="10">
-					En este módulo se podrán seleccionar hojas de vida con base en los siguientes criterios
-					de selección: edad, profesión, especialización y meses de experiencia.
-				</h:panelGrid>
-			</p:panel>
+
+			<p:panelGrid columns="1" style="width: 80%">
+				<f:facet name="header">
+					<h:outputLabel value="Carga" styleClass="titulo" />
+				</f:facet>
+				El módulo de carga se encarga de leer un archivo Excel que contenga hojas
+				de vida en un formato igual al siguiente formato de carga:
+				<p:commandButton value="Descargar formato" ajax="false"
+					icon="ui-icon-arrowthick-1-s">
+					<p:fileDownload value="#{ayudaBean.formatoCarga}" />
+				</p:commandButton>
+			</p:panelGrid>
+			<br />
+			<br />
+			<p:panelGrid columns="1" style="width: 80%">
+				<f:facet name="header">
+					<h:outputLabel value="Hojas de vida" styleClass="titulo" />
+				</f:facet>
+				En el módulo de hojas de vida se puede visualizar, modificar y eliminar cualquier
+				hoja de vida que se encuentre en la base de datos del sistema.
+			</p:panelGrid>
+			<br />
+			<br />
+			<p:panelGrid columns="1" style="width: 80%">
+				<f:facet name="header">
+					<h:outputLabel value="Selección" styleClass="titulo" />
+				</f:facet>
+				En este módulo se podrán seleccionar hojas de vida con base en los siguientes criterios
+				de selección: edad, profesión, especialización y meses de experiencia.
+			</p:panelGrid>
+
+
+			<!-- 				<h:panelGrid columns="1" cellpadding="10"> -->
+<!-- 					El módulo de carga se encarga de leer un archivo Excel que contenga hojas de vida -->
+<!-- 					en un formato igual al siguiente formato de carga: -->
+<!-- 					    <p:commandButton value="Descargar formato" ajax="false" -->
+<!-- 						icon="ui-icon-arrowthick-1-s"> -->
+<!-- 						<p:fileDownload value="#{ayudaBean.formatoCarga}" /> -->
+<!-- 					</p:commandButton> -->
+<!-- 				</h:panelGrid> -->
+<!-- 						<p:panel header="Hojas de vida"  -->
+<!-- 				style="margin-bottom:20px"> -->
+<!-- 				<h:panelGrid columns="1" cellpadding="10"> -->
+<!-- 					En el módulo de hojas de vida se puede visualizar, modificar y eliminar cualquier -->
+<!-- 					hoja de vida que se encuentre en la base de datos del sistema. -->
+<!-- 				</h:panelGrid> -->
+<!-- 			</p:panel> -->
+<!-- 									<p:panel header="Selección"  -->
+<!-- 				style="margin-bottom:20px"> -->
+<!-- 				<h:panelGrid columns="1" cellpadding="10"> -->
+<!-- 					En este módulo se podrán seleccionar hojas de vida con base en los siguientes criterios -->
+<!-- 					de selección: edad, profesión, especialización y meses de experiencia. -->
+<!-- 				</h:panelGrid> -->
+<!-- 			</p:panel> -->
 		</h:form>
 
 	</ui:define>

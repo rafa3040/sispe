@@ -8,8 +8,8 @@
 	<ui:define name="content">
 
 		<p:dataTable var="hojaVida" value="#{seleccionBean.hojasVida}"
-			tableStyle="width:auto"
-			emptyMessage="No existen hojas de vida para mostrar">
+			tableStyle="table-layout:auto;width:100%;"
+			emptyMessage="No se encontraron hojas de vida que cumplieran con los criterios de selección ingresados.">
 			
 			<f:facet name="header">
 				<h:outputLabel value="Hojas de vida seleccionadas"

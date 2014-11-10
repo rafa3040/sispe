@@ -16,40 +16,44 @@
 				</f:facet>
 				<h:selectBooleanCheckbox id="checkboxEdad"
 					value="#{seleccionBean.activarEdad}">
-					<p:ajax event="change" update="mipanel" />
+					<p:ajax event="change" update="panelEdad" />
 				</h:selectBooleanCheckbox>
 				<h:outputLabel value="Edad" />
-				<h:panelGrid columns="1" style="margin-bottom: 10px">
+				<h:panelGrid id="panelEdad" columns="1" style="margin-bottom: 10px">
 					<h:outputText id="displayRange"
 						value="Entre #{seleccionBean.edadMinima} y #{seleccionBean.edadMaxima}" />
 					<p:slider for="edadMinima,edadMaxima" display="displayRange"
-						style="width: 300px" range="true" minValue="18" maxValue="70"
+						style="width: 250px" range="true" minValue="18" maxValue="70"
 						displayTemplate="Entre {min} y {max}"
 						disabled="#{!seleccionBean.activarEdad}" />
 				</h:panelGrid>
 				<h:selectBooleanCheckbox id="checkboxProfesion"
 					value="#{seleccionBean.activarProfesion}">
-					<p:ajax event="change" update="mipanel" />
+					<p:ajax event="change" update="inputProfesion" />
 				</h:selectBooleanCheckbox>
 				<h:outputLabel value="Profesión (patrón)" />
-				<p:inputText value="#{seleccionBean.profesion}"
+				<p:inputText id="inputProfesion" value="#{seleccionBean.profesion}"
 					disabled="#{!seleccionBean.activarProfesion}" required="true"
 					requiredMessage="No se ha digitado una profesión" />
 				<h:selectBooleanCheckbox id="checkboxEspecializacion"
 					value="#{seleccionBean.activarEspecializacion}">
-					<p:ajax event="change" update="mipanel" />
+					<p:ajax event="change" update="inputEspecializacion" />
 				</h:selectBooleanCheckbox>
 				<h:outputLabel value="Especialización (patrón)" />
-				<p:inputText value="#{seleccionBean.especializacion}"
+				<p:inputText id="inputEspecializacion" value="#{seleccionBean.especializacion}"
 					disabled="#{!seleccionBean.activarEspecializacion}" required="true"
 					requiredMessage="No se ha digitado una especialización" />
 				<h:selectBooleanCheckbox id="checkboxMesesExperiencia"
 					value="#{seleccionBean.activarMesesExperiencia}">
-					<p:ajax event="change" update="mipanel" />
+					<p:ajax event="change" update="panelMeses" />
 				</h:selectBooleanCheckbox>
-				<h:outputLabel value="Meses de experiencia" />
-				<p:spinner id="minMax" value="#{seleccionBean.mesesExperiencia}"
-					min="0" disabled="#{!seleccionBean.activarMesesExperiencia}" />
+				<h:outputLabel value="Experiencia mínima" />
+				<h:panelGrid id="panelMeses" columns="2" style="margin-bottom: 10px">
+					<p:spinner id="spinnerMeses" min="0" size="8"
+						value="#{seleccionBean.mesesExperiencia}"
+						disabled="#{!seleccionBean.activarMesesExperiencia}" />
+					<h:outputText value="meses" />
+				</h:panelGrid>
 				<f:facet name="footer">
 					<h:panelGroup style="display:block; text-align:center">
 						<p:commandButton value="Seleccionar" ajax="false"
