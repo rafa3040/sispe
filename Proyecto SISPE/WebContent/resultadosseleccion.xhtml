@@ -8,7 +8,7 @@
 	<ui:define name="content">
 
 		<p:dataTable var="hojaVida" value="#{seleccionBean.hojasVida}"
-			tableStyle="table-layout:auto;width:100%;"
+			tableStyle="table-layout:auto;width:100%;" paginator="true" rows="10"
 			emptyMessage="No se encontraron hojas de vida que cumplieran con los criterios de selección ingresados.">
 			
 			<f:facet name="header">
