@@ -14,11 +14,14 @@
 
 <h:body>
 
+	<header>
+		<h:graphicImage name="imagenes/logosispe.png" styleClass="centrado" width="250" height="150" />
+	</header>
+
 	<div class="container">
 		<section id="content">
 			<h:form action="">
 				<p:growl id="mensaje" showDetail="true" life="3000" />
-				<h1>SISPE</h1>
 				<h1>Inicio de sesión</h1>
 				<div>
 					<h:inputText type="text" value="#{gestionSesion.nombreUsuario}"
@@ -39,6 +42,11 @@
 			</h:form>
 		</section>
 	</div>
+	
+	<footer>
+		<h4>Página desarrollada por:</h4>
+		<h:graphicImage name="imagenes/logosd.png" styleClass="centrado" width="250" height="150" />
+	</footer>
 
 </h:body>
 
